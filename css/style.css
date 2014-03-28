@@ -1,0 +1,87 @@
+@import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,700italic,400italic);
+
+body {font-family: 'Source Sans Pro', sans-serif; font-size: 14px; color: #666;}
+
+#lean_overlay {
+    position: fixed;
+    z-index:100;
+    top: 0px;
+    left: 0px;
+    height:100%;
+    width:100%;
+    background: #000;
+    display: none;
+}
+
+.popupContainer{
+	position:absolute;
+	padding: 15px;
+	width:330px;
+	height: 400px;
+	left:45%;
+	top:80px;
+	background: #FFF;
+}
+
+.btn {
+	color:white;
+	font-size:20px;
+	font-family: Segoe UI Semibold;
+	margin-left: 70px;
+	text-decoration: none;
+}
+
+.btn:hover{
+	text-decoration:underline;
+}
+
+.btn_red {
+	-moz-box-shadow:inset 0px 0px 0px 0px #1E90FF;
+	-webkit-box-shadow:inset 0px 0px 0px 0px #1E90FF;
+	background-color:#1E90FF;
+	-webkit-border-top-left-radius:4px;
+	-moz-border-radius-topleft:4px;
+	border-top-left-radius:4px;
+	-webkit-border-top-right-radius:4px;
+	-moz-border-radius-topright:4px;
+	border-top-right-radius:4px;
+	-webkit-border-bottom-right-radius:4px;
+	-moz-border-radius-bottomright:4px;
+	border-bottom-right-radius:4px;
+	-webkit-border-bottom-left-radius:4px;
+	-moz-border-radius-bottomleft:4px;
+	border-bottom-left-radius:4px;
+	text-indent:-6px;
+	border:1px solid #84bbf3;
+	display:inline-block;
+	color:white;
+	font-family:Segoe UI Semibold;
+	font-size:18px;
+	font-weight:bold;
+	font-style:normal;
+	height:41px;
+	line-height:41px;
+	width:193px;
+	text-decoration:none;
+	text-align:center;
+	cursor:pointer;
+}
+
+.btn_red:hover {
+	border-color: #0050EF;
+}
+
+.one_half {width:50%; display: block; float:left;}
+.one_half.last {width:45%; margin-left:5%;}
+
+/* Popup Styles*/
+.popupHeader {font-size:16px; text-transform: uppercase;}
+.popupHeader {background:#F4F4F2; position:relative; padding:10px 20px; border-bottom:1px solid #DDD; font-weight:bold;}
+.popupHeader .modal_close {position: absolute; right: 0; top:0; padding:10px 15px; background:#E4E4E2; cursor: pointer; color:#aaa; font-size:16px;}
+
+.popupBody {padding:20px;}
+
+
+/* User Register Form */
+.user_register {display: none; padding:20px;}
+.user_register input[type="username"], .user_register input[type="email"], .user_register input[type="password"], .user_register input[type="password"] {display: block; width:90%; padding: 10px; border:1px solid #DDD; color:#666;}

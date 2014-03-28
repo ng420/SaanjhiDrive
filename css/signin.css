@@ -1,0 +1,160 @@
+body {
+  padding-top: 40px;
+  padding-bottom: 40px;
+  background-color: #1BA1E2;
+}
+
+
+.form-signin .form-signin-heading,
+.form-signin .checkbox {
+  margin-bottom: 10px;
+ 
+}
+.checkbox{
+	 font-size:16px;
+}
+.form-signin .checkbox {
+  font-weight: normal;
+}
+
+.form-signin .form-control {
+  position: relative;
+  height: auto;
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+  padding: 10px;
+  font-size: 16px;
+}
+
+.form-signin .form-control:focus {
+  z-index: 2;
+}
+
+.form-signin input[type="username"] {
+	margin-bottom: -1px;
+	border-bottom-left-radius: 10px;
+	border-top-right-radius: 10px;
+	border-bottom-right-radius: 10px;
+	border-top-left-radius: 10px;
+}
+
+.form-signin input[type="password"] {
+	margin-bottom: 10px;
+	border-bottom-left-radius: 10px;
+	border-top-right-radius: 10px;
+	border-bottom-right-radius: 10px;
+	border-top-left-radius: 10px;
+}
+
+.login_container {
+	float: right;
+	margin-top: -10px;
+	margin-right:100px;
+	border:1px solid white;
+	padding-top: 50px;
+	padding-bottom: 40px;
+	padding-left: 40px;
+	padding-right: 40px;
+	color: white;
+	font-family: Segoe UI Semibold;
+	border-bottom-left-radius: 10px;
+	border-top-right-radius: 10px;
+	border-bottom-right-radius: 10px;
+	border-top-left-radius: 10px;
+	margin-bottom:10px;
+}
+
+.forgotpwd{
+	cursor:pointer;
+	font-family:Segoe UI Semibold;
+	font-size: 16px;
+}
+.forgotpwd:hover{
+	text-decoration:underline;
+	border-bottom-color: white;
+}
+
+.panel-title{
+	text-align:center;
+	color: white;
+	font-family:  Segoe UI;
+	font-size: 50px;
+	font-weight: normal;
+}
+
+.panel-subtitle{
+	text-align:center;
+	color: white;
+	margin-top: -30px;
+	font-family:  Segoe UI;
+	font-size: 30px;
+	font-weight: normal;
+}
+
+.form-signin button[type="submit"] {
+	-moz-box-shadow:inset 0px 0px 0px 0px #1E90FF;
+	-webkit-box-shadow:inset 0px 0px 0px 0px #1E90FF;
+	background-color:#1E90FF;
+	-webkit-border-top-left-radius:4px;
+	-moz-border-radius-topleft:4px;
+	border-top-left-radius:4px;
+	-webkit-border-top-right-radius:4px;
+	-moz-border-radius-topright:4px;
+	border-top-right-radius:4px;
+	-webkit-border-bottom-right-radius:4px;
+	-moz-border-radius-bottomright:4px;
+	border-bottom-right-radius:4px;
+	-webkit-border-bottom-left-radius:4px;
+	-moz-border-radius-bottomleft:4px;
+	border-bottom-left-radius:4px;
+	text-indent:-6px;
+	border:1px solid #84bbf3;
+	display:inline-block;
+	color:white;
+	font-family:Segoe UI Semibold;
+	font-size:18px;
+	font-weight:bold;
+	font-style:normal;
+	height:41px;
+	line-height:41px;
+	width:193px;
+	text-decoration:none;
+	text-align:center;
+	cursor:pointer;
+}
+.form-signin button[type="submit"]:hover {
+	border-color: #0050EF;
+}
+.form-signin-heading{
+	margin-top: -30px;
+	font-size: 30px;
+}
+
+.br1{
+	display: block;
+   margin: 10px 0;
+}
+
+.br2{
+	display: block;
+    margin: 6px 0;
+}
+
+.signuplink{
+	cursor:pointer;
+	font-family:Segoe UI Semibold;
+	font-size:18px;
+	color:white;
+	margin-left:50px;
+}
+
+.signuplink:hover{
+	text-decoration:underline;
+	border-bottom-color: white;
+}
+
+
+.all{
+	float:right;
+}

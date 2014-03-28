@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>SaanjhiDrive</title>
+	    <link href="css/signin.css" rel="stylesheet">
+	<link rel="shortcut icon" href="images/icon.ico">
+	<script type="text/javascript" src="js/jquery-1.11.0.min.js"></script>
+	<script type="text/javascript" src="js/jquery.leanModal.min.js"></script>
+	<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" />
+	<link type="text/css" rel="stylesheet" href="css/style.css" />
+	<script>
+	function signin()
+	{
+		var uname=document.forms["signinform"]["usrname"].value;
+		var upwd=document.forms["signinform"]["usrpwd"].value;
+		if (uname==null ||uname=="")
+		{
+			document.getElementById("a").required = true;
+		}
+		else if (upwd==null||upwd=="")
+		{
+			document.getElementById("b").required = true;
+		}
+	}
+	function register_form(){
+		var x;
+		var name=prompt("Please enter your name","Harry Potter");
+		if (name!=null){
+		   x="Hello " + name + "! How are you today?";
+		  alert(x);
+	   }
+	}
+	</script>
+  </head>
+
+  <body>
+
+    <div class="panel-heading">
+            <h2 class="panel-title">Welcome To SaanjhiDrive</h2>
+			<h3 class="panel-subtitle">Saaddi drive, tuhada data!</h3>
+    </div>
+	<div class="all">
+	<div class="login_container">
+		<div class="row">
+			<div class="col-sm-4">
+				<div class="panel panel-default">
+					<div class="panel-body">
+						<form name="signinform" class="form-signin" role="form">
+						<h2 class="form-signin-heading">Sign in</h2><br>
+						<input id = "a" name="usrname" type="username" class="form-control" placeholder="Username"><br><div class="br1"></div>
+						<input id = "b" name="usrpwd" type="password" class="form-control" placeholder="Password" ><div class="br2"></div>
+						<label class="checkbox">
+							<input name="rmbrme" type="checkbox" value="remember-me"> Remember me<br><div class="br1"></div>
+							<a onclick="" class="forgotpwd"><div style="text-align:left; color:white">Forgot Password?</div></a><br>
+						</label>
+						<button class="btn_signin" type="submit" onclick="signin()">Sign in</button>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<br>
+	<div class="container">
+	<a id="modal_trigger" href="#modal" class="btn">Create account</a>
+
+	<div id="modal" class="popupContainer" style="display:none;">
+		<header class="popupHeader">
+			<span class="header_title">Register</span>
+			<span class="modal_close"><i class="fa fa-times"></i></span>
+		</header>
+		
+		<section class="popupBody">
+			<div class="user_register">
+				<form>
+					<input id = "rega" name="regusrname" type="username" class="regform-control" placeholder="Username">
+					<br />
+					<input id= "regemail" name="regemail" type="email" class="regform-control" placeholder="Email address">
+					<br />
+					<input id = "regb" name="regusrpwd" type="password" class="regform-control" placeholder="Password" >
+					<br />
+					<input id = "regreb" name="regreusrpwd" type="password" class="regform-control" placeholder="Re-Enter Password" ><div class="br2"></div>
+					<br><br>
+					<div class="action_btns">
+						<div class="one_half last"><a href="#" class="btn_red">Register</a></div>
+					</div>
+				</form>
+			</div>
+		</section>
+	</div>
+</div>
+<script type="text/javascript">
+	$("#modal_trigger").leanModal({top : 200, overlay : 0.6, closeButton: ".modal_close" });
+
+	$(function(){
+		// Calling Register Form
+		$("#modal_trigger").click(function(){
+			$(".user_register").show();
+			return false;
+		});
+	})
+</script>
+ </body>
+</html>
