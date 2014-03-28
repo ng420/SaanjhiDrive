@@ -27,29 +27,41 @@
 			document.getElementById("b").required = true;
 		}
 	}
-	function signup()
-	{
+	function check_username(){
 		var reguname = document.forms["signup_form"]["regusrname"].value;
-		var regupwd = document.forms["signup_form"]["regusrpwd"].value;
-		var regrepwd = document.forms["signup_form"]["regreusrpwd"].value;
 		if(reguname==null||reguname=="")
 		{
 			document.getElementById("rega").setCustomValidity('Please fill out this field') = true;
 		}
-		else if ( !reguname.match(/^[a-zA-Z0-9]+$/) || reguname.length < 5 || reguname > 12){
-			document.forms["signup_form"]["regusrname"].text("");
+		else if ( !reguname.match(/^[a-zA-Z0-9_]+$/) || reguname.length < 5 || reguname > 12){
 			document.getElementById("rega").setCustomValidity('You can only enter _ or (a-z) or (A-Z) and number of characters should be between 5-12 !!') = true;
 		}
 		else{
 			document.getElementById("rega").setCustomValidity('') = true;
-			if(regupwd==null||regupwd=="")
-			{
-				document.getElementById("regb").setCustomValidity('Please fill out this field') = true;
-			}
-			else if ( regupwd.match(/^[.=><]+$/)){
-			document.getElementById("regb").setCustomValidity('Your password cannot have . or > or < or = !!') = true;
-			}
-			
+		}
+	}
+	function check_userpwd(){
+		var regupwd = document.forms["signup_form"]["regusrpwd"].value;
+		if(regupwd==null||regupwd=="")
+		{
+			document.getElementById("regb").setCustomValidity('Please fill out this field') = true;
+		}
+		else if ( regupwd.match(/^[.<>=+-]+$/) || regupwd.length < 8 || regupwd.length > 12){
+			document.getElementById("regb").setCustomValidity('You can not have . or < or > or = or + or - and number of characters should be between 8-12 !!') = true;
+		}
+		else{
+			document.getElementById("regb").setCustomValidity('') = true;
+		}
+	}
+	function check_userrepwd(){
+		var regupwd = document.forms["signup_form"]["regusrpwd"].value;
+		var regreupwd = document.forms["signup_form"]["regreusrpwd"].value;
+		if(regupwd!=regreupwd)
+		{
+			document.getElementById("regreb").setCustomValidity('This does not match with your password!') = true;
+		}
+		else{
+			document.getElementById("regreb").setCustomValidity('') = true;
 		}
 	}
 	</script>
@@ -95,16 +107,16 @@
 		<section class="popupBody">
 			<div class="user_register">
 				<form name="signup_form" role="form" id="my_form">
-					<input id = "rega" name="regusrname" type="username" class="regform-control" placeholder="Username">
+					<input id = "rega" name="regusrname" type="username" class="regform-control" placeholder="Username" required="true" oninput="check_username()">
 					<br />
-					<input id= "regemail" name="regemail" type="email" class="regform-control" placeholder="Email address">
+					<input id= "regemail" name="regemail" type="email" class="regform-control" placeholder="Email address" required>
 					<br />
-					<input id = "regb" name="regusrpwd" type="password" class="regform-control" placeholder="Password">
+					<input id = "regb" name="regusrpwd" type="password" class="regform-control" placeholder="Password" required="true" oninput="check_userpwd()">
 					<br />
-					<input id = "regreb" name="regreusrpwd" type="password" class="regform-control" placeholder="Re-Enter Password"><div class="br2"></div>
+					<input id = "regreb" name="regreusrpwd" type="password" class="regform-control" placeholder="Re-Enter Password" required="true" oninput="check_userrepwd()"><div class="br2"></div>
 					<br><br>
 					<div class="action_btns">
-						<button class="register_btn" type="submit" onclick="signup()" >Register</button>
+						<button class="register_btn" type="submit" >Register</button>
 					</div>
 				</form>
 			</div>
