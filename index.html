@@ -27,13 +27,30 @@
 			document.getElementById("b").required = true;
 		}
 	}
-	function register_form(){
-		var x;
-		var name=prompt("Please enter your name","Harry Potter");
-		if (name!=null){
-		   x="Hello " + name + "! How are you today?";
-		  alert(x);
-	   }
+	function signup()
+	{
+		var reguname = document.forms["signup_form"]["regusrname"].value;
+		var regupwd = document.forms["signup_form"]["regusrpwd"].value;
+		var regrepwd = document.forms["signup_form"]["regreusrpwd"].value;
+		if(reguname==null||reguname=="")
+		{
+			document.getElementById("rega").setCustomValidity('Please fill out this field') = true;
+		}
+		else if ( !reguname.match(/^[a-zA-Z0-9]+$/) || reguname.length < 5 || reguname > 12){
+			document.forms["signup_form"]["regusrname"].text("");
+			document.getElementById("rega").setCustomValidity('You can only enter _ or (a-z) or (A-Z) and number of characters should be between 5-12 !!') = true;
+		}
+		else{
+			document.getElementById("rega").setCustomValidity('') = true;
+			if(regupwd==null||regupwd=="")
+			{
+				document.getElementById("regb").setCustomValidity('Please fill out this field') = true;
+			}
+			else if ( regupwd.match(/^[.=><]+$/)){
+			document.getElementById("regb").setCustomValidity('Your password cannot have . or > or < or = !!') = true;
+			}
+			
+		}
 	}
 	</script>
   </head>
@@ -56,8 +73,8 @@
 						<input id = "b" name="usrpwd" type="password" class="form-control" placeholder="Password" ><div class="br2"></div>
 						<label class="checkbox">
 							<input name="rmbrme" type="checkbox" value="remember-me"> Remember me<br><div class="br1"></div>
-							<a onclick="" class="forgotpwd"><div style="text-align:left; color:white">Forgot Password?</div></a><br>
 						</label>
+						<a onclick="" class="forgotpwd"><div style="text-align:left; color:white">Forgot Password?</div></a><br>
 						<button class="btn_signin" type="submit" onclick="signin()">Sign in</button>
 						</form>
 					</div>
@@ -77,17 +94,17 @@
 		
 		<section class="popupBody">
 			<div class="user_register">
-				<form>
+				<form name="signup_form" role="form" id="my_form">
 					<input id = "rega" name="regusrname" type="username" class="regform-control" placeholder="Username">
 					<br />
 					<input id= "regemail" name="regemail" type="email" class="regform-control" placeholder="Email address">
 					<br />
-					<input id = "regb" name="regusrpwd" type="password" class="regform-control" placeholder="Password" >
+					<input id = "regb" name="regusrpwd" type="password" class="regform-control" placeholder="Password">
 					<br />
-					<input id = "regreb" name="regreusrpwd" type="password" class="regform-control" placeholder="Re-Enter Password" ><div class="br2"></div>
+					<input id = "regreb" name="regreusrpwd" type="password" class="regform-control" placeholder="Re-Enter Password"><div class="br2"></div>
 					<br><br>
 					<div class="action_btns">
-						<div class="one_half last"><a href="#" class="btn_red">Register</a></div>
+						<button class="register_btn" type="submit" onclick="signup()" >Register</button>
 					</div>
 				</form>
 			</div>
@@ -96,6 +113,7 @@
 </div>
 <script type="text/javascript">
 	$("#modal_trigger").leanModal({top : 200, overlay : 0.6, closeButton: ".modal_close" });
+	
 
 	$(function(){
 		// Calling Register Form

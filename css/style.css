@@ -35,7 +35,7 @@ body {font-family: 'Source Sans Pro', sans-serif; font-size: 14px; color: #666;}
 	text-decoration:underline;
 }
 
-.btn_red {
+.register_btn{
 	-moz-box-shadow:inset 0px 0px 0px 0px #1E90FF;
 	-webkit-box-shadow:inset 0px 0px 0px 0px #1E90FF;
 	background-color:#1E90FF;
@@ -67,7 +67,7 @@ body {font-family: 'Source Sans Pro', sans-serif; font-size: 14px; color: #666;}
 	cursor:pointer;
 }
 
-.btn_red:hover {
+.register_btn:hover {
 	border-color: #0050EF;
 }
 
