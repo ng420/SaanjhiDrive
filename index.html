@@ -14,6 +14,7 @@
 	<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" />
 	<link type="text/css" rel="stylesheet" href="css/style.css" />
 	<script>
+	//checking validation of username and userpassword of form : signinform 
 	function signin()
 	{
 		var uname=document.forms["signinform"]["usrname"].value;
@@ -27,6 +28,7 @@
 			document.getElementById("b").required = true;
 		}
 	}
+	//checking validation of username, emailid, password(both) of signup_form.
 	function check_username(){
 		var reguname = document.forms["signup_form"]["regusrname"].value;
 		if(reguname==null||reguname=="")
@@ -40,6 +42,7 @@
 			document.getElementById("rega").setCustomValidity('') = true;
 		}
 	}
+	//checking validation of password of signup_form.
 	function check_userpwd(){
 		var regupwd = document.forms["signup_form"]["regusrpwd"].value;
 		if(regupwd==null||regupwd=="")
@@ -53,6 +56,7 @@
 			document.getElementById("regb").setCustomValidity('') = true;
 		}
 	}
+	//checking validation of both the passwords of signup_form.
 	function check_userrepwd(){
 		var regupwd = document.forms["signup_form"]["regusrpwd"].value;
 		var regreupwd = document.forms["signup_form"]["regreusrpwd"].value;
@@ -74,6 +78,7 @@
 			<h3 class="panel-subtitle">Saaddi drive, tuhada data!</h3>
     </div>
 	<div class="all">
+	<!--login_container class contains all the elements defined in the main page-->
 	<div class="login_container">
 		<div class="row">
 			<div class="col-sm-4">
@@ -98,12 +103,13 @@
 	<div class="container">
 	<a id="modal_trigger" href="#modal" class="btn">Create account</a>
 
+	<!--class: popupContainer pops out when "Create new account clicked"--->
 	<div id="modal" class="popupContainer" style="display:none;">
 		<header class="popupHeader">
 			<span class="header_title">Register</span>
 			<span class="modal_close"><i class="fa fa-times"></i></span>
 		</header>
-		
+		<!--main popup form that appears-->
 		<section class="popupBody">
 			<div class="user_register">
 				<form name="signup_form" role="form" id="my_form">
@@ -123,10 +129,9 @@
 		</section>
 	</div>
 </div>
+<!--below code to show the signup_form-->
 <script type="text/javascript">
 	$("#modal_trigger").leanModal({top : 200, overlay : 0.6, closeButton: ".modal_close" });
-	
-
 	$(function(){
 		// Calling Register Form
 		$("#modal_trigger").click(function(){
