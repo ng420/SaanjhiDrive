@@ -49,7 +49,7 @@
 		{
 			document.getElementById("regb").setCustomValidity('Please fill out this field') = true;
 		}
-		else if ( regupwd.match(/^[.<>=+-]+$/) || regupwd.length < 8 || regupwd.length > 12){
+		else if ( !regupwd.match(/^[a-zA-Z0-9]+$/) || regupwd.length < 8 || regupwd.length > 12){
 			document.getElementById("regb").setCustomValidity('You can not have . or < or > or = or + or - and number of characters should be between 8-12 !!') = true;
 		}
 		else{
@@ -68,6 +68,7 @@
 			document.getElementById("regreb").setCustomValidity('') = true;
 		}
 	}
+
 	</script>
   </head>
 
