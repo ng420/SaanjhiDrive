@@ -1,11 +1,22 @@
 <!DOCTYPE html>
-<!--This page will be shown once user logs in-->
-<html lang="en">
-    <head>
-        <meta charset="utf-8" />
-        <title></title>
-    </head>
-    <body>
-        
-    </body>
+<html>
+<head>
+	<link href="css/dropdown.css" rel="stylesheet">
+</head>
+<body>
+<ul class="menuH decor1">
+    <li><a class="arrow">Welcome<?php echo $_POST["usrname"];?></a>
+        <ul>
+            <li><a class="arrow">Home</a>
+            </li>
+            <li><a class="arrow">Logout</a>
+            </li>
+            <li><a class="arrow">Help</a>
+            </li>
+        </ul>
+    </li>
+</ul>
+
+</body>
+
 </html>
