@@ -3,13 +3,14 @@
     margin: 0; width: 100%; float:none;
     behavior: url("/horizontal/menuh/cssmenu.htc");
     height: 36px;
-    background: #D4D4D4 url(bg.gif) repeat-x 0 0;
-    border: 1px solid #BBB;
+    background: white;
+    border: none;
     position:relative;/*! for IE htc*/
     z-index:4;/*H2*/
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: Segoe UI Semibold;
     list-style: none;
     padding: 0;
+	cursor: pointer;
 }
 
 .menuH li
@@ -21,23 +22,23 @@
 }
 .menuH li:hover, .menuH li.onhover
 {
-    background: white url(bg.gif) repeat-x 0 -48px;
+    background: white url(bg.gif) no repeat 0 -48px;
 }
 
 ul.menuH a
 {
     padding: 0 30px;
     line-height: 36px; 
-    font-size: 12px;
+    font-size: 20px;
     font-weight: bold;
-    color: black;
-    display: block;
+    color: #1BA1E2;
     outline: 0;
-    text-decoration: none;
+	margin-right:400px;
+    
 }
 .menuH a:hover
 {
-    color: red;
+    color: #00ABA9;
 }
 .menuH a.arrow
 {
@@ -70,11 +71,11 @@ ul.menuH a
         
 ul.menuH ul
 {
-    width:200px;
+    width:100px;
     position: absolute;
     left: -9999px;
     border: 1px solid #DDD;
-    border-top: 0; 
+    border: 1px solid #00ABA9; 
     background: #FFF;    
     text-align: left;
     list-style: none; margin: 0;  
