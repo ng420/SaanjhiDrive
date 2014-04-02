@@ -1,0 +1,39 @@
+﻿@{
+
+}
+
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title></title>
+    </head>
+    <body>
+        @{
+          string name = Request["usrname"];
+          string pass = Request["usrpwd"];
+ var db = Database.Open("db"); 
+ var selectQueryString = "SELECT username, password FROM Users"; 
+ var count=0;
+ foreach(var row in db.Query(selectQueryString))
+ {
+     if (row.username==name && row.password==pass)
+     {count++;}
+    //else
+    //{<p>Sorry, you are not valid user, Please try again.</p>}
+ }  
+ if(count>0)
+ {
+     Response.Redirect("mainpage.html");
+ }
+ else
+ {
+     Response.Redirect("index.html");
+     
+    // <p>Sorry, you are not valid user, Please try again.</p>
+ }
+
+        }
+    </body>
+</html>
