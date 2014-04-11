@@ -21,6 +21,16 @@ body {font-family: Segoe UI Semibold; font-size: 14px; color: #666;}
 	background: #FFF;
 }
 
+.popupContainer1{
+	position:absolute;
+	padding: 15px;
+	width:330px;
+	height: 200px;
+	left:45%;
+	top:80px;
+	background: #FFF;
+}
+
 .btn {
 	color:white;
 	font-size:20px;
@@ -69,6 +79,44 @@ body {font-family: Segoe UI Semibold; font-size: 14px; color: #666;}
 	border-color: #0050EF;
 }
 
+.forgot_btn{
+	-moz-box-shadow:inset 0px 0px 0px 0px #1E90FF;
+	-webkit-box-shadow:inset 0px 0px 0px 0px #1E90FF;
+	background-color:#1E90FF;
+	-webkit-border-top-left-radius:4px;
+	-moz-border-radius-topleft:4px;
+	border-top-left-radius:4px;
+	-webkit-border-top-right-radius:4px;
+	-moz-border-radius-topright:4px;
+	border-top-right-radius:4px;
+	-webkit-border-bottom-right-radius:4px;
+	-moz-border-radius-bottomright:4px;
+	border-bottom-right-radius:4px;
+	-webkit-border-bottom-left-radius:4px;
+	-moz-border-radius-bottomleft:4px;
+	border-bottom-left-radius:4px;
+	text-indent:-6px;
+	border:1px solid #84bbf3;
+	display:inline-block;
+	color:white;
+	font-family:Segoe UI Semibold;
+	font-size:18px;
+	font-weight:bold;
+	font-style:normal;
+	height:41px;
+	line-height:41px;
+	width:193px;
+	text-decoration:none;
+	text-align:center;
+	cursor:pointer;
+}
+
+.forgot_btn:hover {
+	border-color: #0050EF;
+}
+.forgotpwd {
+    text-decoration: :none;
+}
 .one_half {width:50%; display: block; float:left;}
 .one_half.last {width:45%; margin-left:5%;}
 
@@ -83,3 +131,5 @@ body {font-family: Segoe UI Semibold; font-size: 14px; color: #666;}
 /* User Register Form */
 .user_register {display: none; padding:20px;}
 .user_register input[type="username"], .user_register input[type="email"], .user_register input[type="password"], .user_register input[type="password"] {display: block; width:90%; padding: 10px; border:1px solid #DDD; color:#666;}
+
+

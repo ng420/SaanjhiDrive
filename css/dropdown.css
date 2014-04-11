@@ -25,20 +25,20 @@
     background: white url(bg.gif) no repeat 0 -48px;
 }
 
-ul.menuH a
+ul.menuH a /*controls the tag "Abhishek Goyal"*/
 {
     padding: 0 30px;
     line-height: 36px; 
-    font-size: 20px;
+    font-size: 15px;
     font-weight: bold;
     color: #1BA1E2;
     outline: 0;
-	margin-right:400px;
+	margin-right: 300px;
     
 }
 .menuH a:hover
 {
-    color: #00ABA9;
+    color: #60A917;
 }
 .menuH a.arrow
 {
@@ -71,10 +71,9 @@ ul.menuH a
         
 ul.menuH ul
 {
-    width:100px;
+    width:150px;
     position: absolute;
     left: -9999px;
-    border: 1px solid #DDD;
     border: 1px solid #00ABA9; 
     background: #FFF;    
     text-align: left;
@@ -93,7 +92,7 @@ ul.menuH ul
 {
     background:#f7f7f7;
 }
-.menuH ul a
+.menuH ul a /*controls home,logout etc*/
 {
     padding: 0 20px;
     line-height: 26px;
@@ -105,7 +104,7 @@ ul.menuH ul
 
 .menuH ul a:hover
 {
-    color: red;
+    color: #60A917;
 }
 
 .menuH li:hover ul, .menuH li.onhover ul
@@ -168,4 +167,35 @@ ul.menuH ul
     /* Gradient background */
     background: -moz-linear-gradient(top, #FFFFFF, #EEEEEE);
     background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#FFFFFF), to(#EEEEEE)); 
+}
+
+.logo{
+	margin-top:60px;
+	margin-left:15px;
+	margin-left:20px;
+}
+
+.name{
+	margin-left:350px;
+	margin-top:15px;
+	font-family:Segoe UI Semibold;
+	font-size:20px;
+	font-weight:300px;
+	color:#909090;
+}
+
+.search{
+	float:right;
+	height: auto;
+	padding: 3px;
+	font-size: 15px;
+	margin-top:-35px;
+	margin-right:330px;
+	font-family:Segoe UI Semibold;
+	border:1px solid #B0B0B0; 
+	background:url("images/1.png") no-repeat;
+}
+
+::-moz-placeholder {
+    color: #B0B0B0 ;
 }
