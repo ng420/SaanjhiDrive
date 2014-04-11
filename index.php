@@ -91,7 +91,7 @@
 			<div class="col-sm-4">
 				<div class="panel panel-default">
 					<div class="panel-body">
-						<form action="mainpage.php" name="signinform" class="form-signin" role="form" method="post" >
+						<form action="mainpage.php" name="signinform" class="form-signin" role="form" method="POST" >
 						<h2 class="form-signin-heading">Sign in</h2><br>
 						<input id = "a" name="usrname" class="form-control" placeholder="Username"><br><div class="br1"></div>
 						<input id = "b" name="usrpwd" type="password" class="form-control" placeholder="Password" ><div class="br2"></div>
@@ -139,13 +139,13 @@
 			<section class="popupBody">
 				<div class="user_register">
 					<form name="signup_form" role="form" id="my_form" >
-						<input id = "rega" name="regusrname" type="username" class="regform-control" placeholder="Username" required="true" oninput="check_username()">
+						<input id = "rega" name="regusrname" type="text" class="regform-control" placeholder="Username" required oninput="check_username()">
 						<br />
 						<input id= "regemail" name="regemail" type="email" class="regform-control" placeholder="Email address" required>
 						<br />
-						<input id = "regb" name="regusrpwd" type="password" class="regform-control" placeholder="Password" required="true" oninput="check_userpwd()">
+						<input id = "regb" name="regusrpwd" type="password" class="regform-control" placeholder="Password" required oninput="check_userpwd()">
 						<br />
-						<input id = "regreb" name="regreusrpwd" type="password" class="regform-control" placeholder="Re-Enter Password" required="true" oninput="check_userrepwd()"><div class="br2"></div>
+						<input id = "regreb" name="regreusrpwd" type="password" class="regform-control" placeholder="Re-Enter Password" required oninput="check_userrepwd()"><div class="br2"></div>
 						<br><br>
 						<div class="action_btns">
 							<button class="register_btn" type="submit" onclick="check_userrepwd()">Register</button>
@@ -154,7 +154,8 @@
 				</div>
 			</section>
 		</div>
-	</div>	
+	</div>
+        </div>	
 <!--below code to show the signup_form-->
 <script type="text/javascript">
 	$("#modal_trigger").leanModal({top : 200, overlay : 0.6, closeButton: ".modal_close" });
