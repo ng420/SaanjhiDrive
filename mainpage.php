@@ -27,7 +27,7 @@
 				<li>
                 <form action="upload_file.php" name="uploadForm" method="post" enctype="multipart/form-data" id="form">
                 <input type="file" name="file" onchange="this.form.submit();" id="file" style="visibility: hidden; width: 1px; height: 1px" multiple><br>
-                <li><a class="upload" href="#" onclick="document.getElementById('file').click(); return false" >Upload </a>   
+                <li><a class="upload" href="#" onclick="document.getElementById('file').click(); return false" >Upload </a>
                 </form>
                 </li>
 				<li><a href="#">MyDrive</a>
