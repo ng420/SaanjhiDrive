@@ -12,6 +12,8 @@
     <link href="css/dropdown.css" rel="stylesheet">
 	<link href="css/simple-sidebar.css" rel="stylesheet">
     <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet">
+
+
 	</head>
 
 <body>
@@ -22,13 +24,11 @@
          <div id="sidebar-wrapper">
 			<img class="logo" src="images/sanjhalogo.jpg" width="50" height="50">
             <ul class="sidebar-nav">
-				<form action="upload_file.php" method="post" enctype="multipart/form-data">
-                <label for="file">Filename:</label>
-                <input type="file" name="file" id="file"><br>
-                <input type="submit" name="submit" value="Submit">
+				<li>
+                <form action="upload_file.php" name="uploadForm" method="post" enctype="multipart/form-data" id="form">
+                <input type="file" name="file" onchange="this.form.submit();" id="file" style="visibility: hidden; width: 1px; height: 1px" multiple><br>
+                <li><a class="upload" href="#" onclick="document.getElementById('file').click(); return false" >Upload </a>
                 </form>
-                <!--<input type="file" id="upload" name="upload" style="visibility: hidden; width: 1px; height: 1px" multiple />
-				<li><a class="upload" href="#" onclick="document.getElementById('upload').click(); return false">Upload </a>-->
                 </li>
 				<li><a href="#">MyDrive</a>
                 </li>
