@@ -20,7 +20,7 @@
 
     <div id="wrapper">
 
-        <!-- Sidebar -->
+        <!-- Sidebar 
          <div id="sidebar-wrapper">
 			<img class="logo" src="images/sanjhalogo.jpg" width="50" height="50">
             <ul class="sidebar-nav">
@@ -39,7 +39,7 @@
                 <li><a href="#">Install For desktop</a>
                 </li>
             </ul>
-        </div>
+        </div>-->
 
         <!-- Page content 
         <div id="page-content-wrapper">
@@ -102,6 +102,27 @@
         $("#wrapper").toggleClass("active");
     });
     </script>
+    <?php
+        $user = $_POST['usrname'];
+        $query = "SELECT * FROM filesystem WHERE owner='$user'";
+        $con=mysqli_connect("localhost","root","pass","mysql_db");
+        if (mysqli_connect_errno())
+        {
+            echo "Failed to connect to MySQL: " . mysqli_connect_error();
+        }
+
+        $result = mysqli_query($con, $query);
+        if(!$result)
+        {
+            echo "Unable to access database.<br>";
+        }
+        while($row = mysqli_fetch_array($result))
+        {
+            $temp = explode(".", $row['file_name']);
+            $ext = end($temp);
+            echo "<a href='files/'".$row['file_id'].$ext.">".$row['file_name']."</a><br>";
+        }
+    ?>
 </body>
 
 </html>
