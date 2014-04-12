@@ -22,8 +22,13 @@
          <div id="sidebar-wrapper">
 			<img class="logo" src="images/sanjhalogo.jpg" width="50" height="50">
             <ul class="sidebar-nav">
-				<input type="file" id="upload" name="upload" style="visibility: hidden; width: 1px; height: 1px" multiple /> 
-				<li><a class="upload" href="#" onclick="document.getElementById('upload').click(); return false">Upload </a>
+				<form action="upload_file.php" method="post" enctype="multipart/form-data">
+                <label for="file">Filename:</label>
+                <input type="file" name="file" id="file"><br>
+                <input type="submit" name="submit" value="Submit">
+                </form>
+                <!--<input type="file" id="upload" name="upload" style="visibility: hidden; width: 1px; height: 1px" multiple />
+				<li><a class="upload" href="#" onclick="document.getElementById('upload').click(); return false">Upload </a>-->
                 </li>
 				<li><a href="#">MyDrive</a>
                 </li>
