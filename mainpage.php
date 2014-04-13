@@ -64,6 +64,7 @@
                     xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
                 }
                 xmlhttp.onreadystatechange = function () {
+                    //alert("sdfasdfsda");
                     if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
                         alert(xmlhttp.responseText);
                         getFiles();
@@ -73,23 +74,27 @@
                 xmlhttp.send(formData);
             }
             function getFiles() {
-                var xmlhttp;
+                var xmlHttp;
                 
                 if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
-                    xmlhttp = new XMLHttpRequest();
+                    xmlHttp = new XMLHttpRequest();
                 }
                 else {// code for IE6, IE5
-                    xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+                    xmlHttp = new ActiveXObject("Microsoft.XMLHTTP");
                 }
-                xmlhttp.onreadystatechange = function () {
-                    if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                xmlHttp.open("POST", "populate.php", true);
+                xmlHttp.send();
+                xmlHttp.onreadystatechange = function () {
+                    if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
                         //alert('in getFiles()');
-                        document.getElementById('files').innerHTML = xmlhttp.responseText;
+                        document.getElementById('files').innerHTML = xmlHttp.responseText;
                     }
                 }
-                xmlhttp.open("GET", "populate.php", true);
-                xmlhttp.send();
+               
+                
             }
+
+
        </script>
 
         <!-- Page content 
