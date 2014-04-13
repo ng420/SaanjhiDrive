@@ -12,11 +12,13 @@
     <link href="css/dropdown.css" rel="stylesheet">
 	<link href="css/simple-sidebar.css" rel="stylesheet">
     <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet">
-
+    <script>
+        var current_folder = '!';
+    </script>
 
 	</head>
 
-<body onload="getFiles()" >
+<body onload="getFiles('!')" >
     <?php
         session_start();
         $_SESSION['user']=$_POST['usrname'];
@@ -73,9 +75,8 @@
                 xmlhttp.open("POST", "upload_file.php", true);
                 xmlhttp.send(formData);
             }
-            function getFiles() {
+            function getFiles(path) {
                 var xmlHttp;
-                
                 if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
                     xmlHttp = new XMLHttpRequest();
                 }
@@ -83,15 +84,28 @@
                     xmlHttp = new ActiveXObject("Microsoft.XMLHTTP");
                 }
                 xmlHttp.open("POST", "populate.php", true);
-                xmlHttp.send();
+                xmlHttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                xmlHttp.send("folder=" + path);
                 xmlHttp.onreadystatechange = function () {
                     if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
                         //alert('in getFiles()');
                         document.getElementById('files').innerHTML = xmlHttp.responseText;
+                        var res = path.split("!");
+                       
+                        division = "<table><td onclick=\"getFiles(\'!\')\">Home </td>";
+                        for (i = 1; i < res.length - 1; i++) {
+                            division += "  <td onclick=\"getFiles(\'";
+                            for (j = 0; j <= i; j++) {
+                                division += res[j] + '!';
+                            }
+                            division += "\')\"> > " + res[i] + " </td>  ";
+                        }
+                        division += "</table>";
+                        document.getElementById('path').innerHTML = division;
                     }
                 }
-               
-                
+
+
             }
 
 
@@ -146,8 +160,10 @@
 		<li><img src="images/notification.png" style="float:left; margin-right:40px; margin-top:4px;"></li>
 	</ul><br>
 	<div class="name">SaanjhiDrive</div>
-	<input name="srch" type="text" class="search" placeholder="Search">
-    <!-- JavaScript -->
+	<input name="srch" type="text" class="search" placeholder="Search"><br>
+
+    
+    <!-- JavaScript --
     <script src="js/jquery-1.10.2.js"></script>
     <script src="js/bootstrap.js"></script>
 
@@ -158,6 +174,9 @@
         $("#wrapper").toggleClass("active");
     });
     </script>
+    <div id="path">
+        Home
+    </div>
     <div id="files">
     
     </div>

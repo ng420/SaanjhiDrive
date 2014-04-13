@@ -57,7 +57,7 @@
                 if($already_present==0 || $already_present==1)
                 {
 
-                    $query = 'INSERT INTO filesystem (file_id, file_name, owner, file_hash) VALUES '. "('$file_id', '$file_name', '$owner', '$file_hash')";
+                    $query = 'INSERT INTO filesystem (file_id, file_name, owner, file_hash, directory_path) VALUES '. "('$file_id', '$file_name', '$owner', '$file_hash', 'sdasd')";
                     $retval = mysqli_query($con, $query);
                     if(! $retval )
                     {

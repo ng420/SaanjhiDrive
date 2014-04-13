@@ -240,3 +240,8 @@ tr.border_bottom td{
 .data{
     color:grey; 
 }
+
+#path{
+    margin-left:  300px;
+    font-size: large;
+}
