@@ -18,7 +18,7 @@
     {
         $temp = explode(".", $row['file_name']);
         $ext = end($temp);
-        echo "<a href='files/'".$row['file_id'].$ext.">".$row['file_name']."</a><br>";
+        echo "<a href='files/".$row['file_id'].".".$ext."'>".$row['file_name']."</a><br>";
     }
 
 ?>
