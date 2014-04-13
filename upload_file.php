@@ -18,7 +18,7 @@
             $shared_with = "";
             $file_hash = md5_file ($_FILES["file"]["tmp_name"]);
             $query = "SELECT file_hash FROM filesystem";
-            $con=mysqli_connect("localhost","root","uM6bTL55","mysql_db");
+            $con=mysqli_connect("localhost","root","r00tpass","mysql_db");
             // Check connection
             if (mysqli_connect_errno())
                 {

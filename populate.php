@@ -3,7 +3,7 @@
     session_start();
     $user = $_SESSION['user'];
     $query = "SELECT * FROM filesystem WHERE owner='$user'";
-    $con=mysqli_connect("localhost","root","uM6bTL55","mysql_db");
+    $con=mysqli_connect("localhost","root","r00tpass","mysql_db");
     if (mysqli_connect_errno())
     {
         echo "Failed to connect to MySQL: " . mysqli_connect_error();
