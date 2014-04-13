@@ -14,20 +14,26 @@
     {
         echo "Unable to access database.<br>";
     }
-   
+    echo '<div style="margin-top:-10px">';
+     echo '<div class="tablehead">';
+    echo '
+        <table width="100%">
+            <tr>
+            <td width="50%">File Name</td>
+            <td width="20%">Type</td>
+            <td width="30%">Date Modified</td>
+            <tr>
+        </table>
+    ';
+    echo '</div>';
     echo '<div class="tables">';
-    echo '<table border="1px" width="100%">';
-    echo '<tr>
-        <td>File Name</td>
-        <td>Type</td>
-        <td>Date Modified</td>
-    </tr>';
+    echo '<table border="1px" width="100%" cellpadding="10px" class="table">';
     while($row = mysqli_fetch_array($result))
     {
         $temp = explode(".", $row['file_name']);
         $ext = end($temp);
         echo '<tr><td width="50%">'; 
-        echo "<a href='files/".$row['file_id'].".".$ext."'>".$row['file_name']."</a><br>";
+        echo "<a class='contents' href='files/".$row['file_id'].".".$ext."'>".$row['file_name']."</a><br>";
         echo "</td>";
         echo'<td width="20%">';
         echo "image";
@@ -38,6 +44,7 @@
         echo "</tr>";
     }
     echo "</table>";
+    echo '</div>';
     echo '</div>';
 
 ?>

@@ -202,5 +202,22 @@ ul.menuH ul
 /*to display the table contents*/
  .tables{
    margin-left:  300px;
-   margin-top:  100px;
+   margin-top:  0px;
+   height:650px;
+    overflow: scroll;
+    overflow-x:hidden;
+}
+
+.table{
+    height:12px;
+    overflow: scroll;
+    overflow-x:hidden;
+}
+
+.contents{
+    text-decoration: none;
+}
+.tablehead{
+    margin-left:  300px;
+    margin-top:  100px;
 }
