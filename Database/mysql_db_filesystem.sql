@@ -29,8 +29,10 @@ CREATE TABLE `filesystem` (
   `file_name` varchar(50) NOT NULL,
   `owner` varchar(50) NOT NULL,
   `shared_with` text,
-  `file_hash` varchar(50) NOT NULL,
-  PRIMARY KEY (`file_id`,`owner`)
+  `file_hash` varchar(50) DEFAULT NULL,
+  `directory_path` text NOT NULL,
+  `isFolder` varchar(45) NOT NULL,
+  PRIMARY KEY (`file_name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -40,7 +42,7 @@ CREATE TABLE `filesystem` (
 
 LOCK TABLES `filesystem` WRITE;
 /*!40000 ALTER TABLE `filesystem` DISABLE KEYS */;
-INSERT INTO `filesystem` VALUES (1,'Screenshot (1).png','abhishek',NULL,'81e48e671a747ad8411b12db95e599e5'),(2,'Screenshot (2).png','abhishek',NULL,'eba4456863cc453cec9722bcd1cc8533'),(3,'Screenshot (4).png','abhishek',NULL,'eeb31f9092a326ebb5b864fb2e08a2de'),(4,'Screenshot (5).png','abhishek',NULL,'8d6b006dba2ce2c4b51c52528c57544b'),(5,'Screenshot (6).png','abhishek',NULL,'eb9ed40c053ca0852fd7e660429e4f1f'),(6,'Screenshot (7).png','abhishek',NULL,'ddd3ea1e3a999095cb4b71f506b7be37'),(7,'1512821_10152140963247488_309194119_n.jpg','abhishek',NULL,'d22d8bf17fb3287d93f25019bf8d4e49'),(8,'aeNVKWb_700b.jpg','abhishek',NULL,'3f28869f318db01be9788f8a7b179486'),(9,'movie_name.txt','abhishek',NULL,'e37659078b803a2b8920d9b817b4354a'),(10,'USER MANUAL.docx','abhishek',NULL,'6173bb1d82c159483619a4c0a237232b'),(11,'tumblr_mwf75jVbzN1qmdseuo3_500.png','abhishek',NULL,'d45460d025ebf482b654d185c14fc5e6'),(12,'tumblr_mwf75jVbzN1qmdseuo4_500.jpg','abhishek',NULL,'383bddc21134ea5a02160e2dd2ef8f81'),(13,'tumblr_mwf75jVbzN1qmdseuo1_500.jpg','abhishek',NULL,'c0de248691f85f56bb43370badee3658'),(14,'tumblr_mwf75jVbzN1qmdseuo2_500.jpg','abhishek',NULL,'28f4eced7462076606f17aa5fc1ff00b'),(15,'movie_name_simple.txt','abhishek',NULL,'41723927a5ec498a59fcbc8c9fe65249'),(16,'python.pdf','abhishek',NULL,'6207682fecddfc61853e09974f758edd'),(16,'python.pdf','sdafas',NULL,'6207682fecddfc61853e09974f758edd'),(17,'letsMake_participants.pdf','abhishek',NULL,'82247627d6ef2089b52717ebdaab47e4'),(17,'letsMake_participants.pdf','sdafas',NULL,'82247627d6ef2089b52717ebdaab47e4'),(18,'devenv.exe.config','abhishek',NULL,'4fec52a7cc92554b0588144a36a97aff');
+INSERT INTO `filesystem` VALUES (1,'1.jpg','abhishek',NULL,'sadfasdfasdfasdfasd','!','0'),(2,'Chrysanthemum.jpg','abhishek',NULL,'076e3caed758a1c18c91a0e9cae3368f','!a!','0'),(3,'Desert.jpg','abhishek',NULL,'ba45c8f60456a672e003a875e469d0eb','!a!b!','0'),(8,'dwalina','abhishek',NULL,NULL,'!','1'),(9,'dwalinb','abhishek',NULL,NULL,'!a!','1'),(10,'dwalinc','abhishek',NULL,NULL,'!a!','1'),(11,'dwaline','abhishek',NULL,NULL,'!a!c!','1'),(4,'Hydrangeas.jpg','abhishek',NULL,'bdf3bf1da3405725be763540d6601144','!a!c!','0'),(5,'Jellyfish.jpg','abhishek',NULL,'5a44c7ba5bbe4ec867233d67e4806848','!a!c!e!','0'),(6,'Lighthouse.jpg','abhishek',NULL,'8969288f4245120e7c3870287cce0ff3','!','0'),(7,'Penguins.jpg','abhishek',NULL,'9d377b10ce778c4938b3c7e2c63a229a','sdasd','0');
 /*!40000 ALTER TABLE `filesystem` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -53,4 +55,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-04-13 14:45:26
+-- Dump completed on 2014-04-14  3:00:32
