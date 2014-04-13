@@ -5,9 +5,8 @@
     {
         if ($_FILES["file"]["error"] > 0)
         {
-            echo '<script language="javascript">';
-            echo 'alert("Return Code: ".$_FILES["file"]["error"] ")';
-            echo '</script>';
+           
+            echo 'Return Code: ".$_FILES["file"]["error"] "';
         }
         else
         {
@@ -19,10 +18,11 @@
             $shared_with = "";
             $file_hash = md5_file ($_FILES["file"]["tmp_name"]);
             $query = "SELECT file_hash FROM filesystem";
-            $con=mysqli_connect("localhost","root","pass","mysql_db");
+            $con=mysqli_connect("localhost","root","uM6bTL55","mysql_db");
             // Check connection
             if (mysqli_connect_errno())
                 {
+                
                 echo "Failed to connect to MySQL: " . mysqli_connect_error();
                 }
 
@@ -61,37 +61,27 @@
                     $retval = mysqli_query($con, $query);
                     if(! $retval )
                     {
-                        echo '<script language="javascript">';
-                        echo 'alert("Unable to upload. Try again.")';
-                        echo '</script>';
+                        echo 'Unable to upload. Try again.';
                         die();
                     }
                     move_uploaded_file($_FILES["file"]["tmp_name"], "files/" . $file_id_ext);
              
-                    echo '<script language="javascript">';
-                    echo 'alert("Uploaded Successfully")';
-                    echo '</script>';   
+                    echo 'Uploaded Successfully';
                 }
                 elseif($already_present==2)
                 {
-                    echo '<script language="javascript">';
-                    echo 'alert("File already present.")';
-                    echo '</script>';   
+                    echo 'File already present.';
                 }
                 else
                 {
-                    echo '<script language="javascript">';
-                    echo 'alert("Unknown error occured.")';
-                    echo '</script>';   
-                }
+                    echo 'Unknown error occured.';
+                 }
                 #echo "Stored in: " . "upload/" . $_FILES["file"]["name"];
                 mysqli_close($con);
             }
             else
             {
-                echo '<script language="javascript">';
                 echo 'Unable to establish connection with database.';
-                echo '</script>';
             }
         }
     }

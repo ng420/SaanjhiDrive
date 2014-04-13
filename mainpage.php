@@ -16,7 +16,7 @@
 
 	</head>
 
-<body>
+<body onload="getFiles()" >
     <?php
         session_start();
         $_SESSION['user']=$_POST['usrname'];
@@ -25,11 +25,11 @@
 
         <!-- Sidebar--> 
          <div id="sidebar-wrapper">
-			<img class="logo" src="images/sanjhalogo.jpg" width="50" height="50">
+			<img class="logo" src="images/sanjhalogo.jpg" width="50" height="50" alt="logo">
             <ul class="sidebar-nav">
 				<li>
-                <form action="upload_file.php" name="uploadForm" method="post" enctype="multipart/form-data" id="form">
-                <input type="file" name="file" onchange="this.form.submit();" id="file" style="visibility: hidden; width: 1px; height: 1px" multiple><br>
+                <form action="" name="uploadForm" method="post" enctype="multipart/form-data" id="form">
+                <input type="file" name="file" onchange="callUpload()" id="file" style="visibility: hidden; width: 1px; height: 1px" multiple><br>
                 <li><a class="upload" href="#" onclick="document.getElementById('file').click(); return false" >Upload </a>
                 </form>
                 </li>
@@ -43,6 +43,54 @@
                 </li>
             </ul>
         </div>
+        <script type="text/javascript">
+            function callUpload() {
+                var xmlhttp;
+                //alert('in callUpload()');
+                var form = document.getElementById('form');
+                var fileSelect = document.getElementById('file');
+                var files = fileSelect.files;
+                var formData = new FormData();
+                for (var i = 0; i < files.length; i++) {
+                    var file = files[i];
+
+                    // Add the file to the request.
+                    formData.append('file', file, file.name);
+                }
+                if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
+                    xmlhttp = new XMLHttpRequest();
+                }
+                else {// code for IE6, IE5
+                    xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+                }
+                xmlhttp.onreadystatechange = function () {
+                    if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                        alert(xmlhttp.responseText);
+                        getFiles();
+                    }
+                }
+                xmlhttp.open("POST", "upload_file.php", true);
+                xmlhttp.send(formData);
+            }
+            function getFiles() {
+                var xmlhttp;
+                
+                if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
+                    xmlhttp = new XMLHttpRequest();
+                }
+                else {// code for IE6, IE5
+                    xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+                }
+                xmlhttp.onreadystatechange = function () {
+                    if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                        //alert('in getFiles()');
+                        document.getElementById('files').innerHTML = xmlhttp.responseText;
+                    }
+                }
+                xmlhttp.open("GET", "populate.php", true);
+                xmlhttp.send();
+            }
+       </script>
 
         <!-- Page content 
         <div id="page-content-wrapper">
@@ -105,29 +153,9 @@
         $("#wrapper").toggleClass("active");
     });
     </script>
-    <?php
-        
-        $user = $_POST['usrname'];
-        $query = "SELECT * FROM filesystem WHERE owner='$user'";
-        $con=mysqli_connect("localhost","root","pass","mysql_db");
-        if (mysqli_connect_errno())
-        {
-            echo "Failed to connect to MySQL: " . mysqli_connect_error();
-        }
-
-        $result = mysqli_query($con, $query);
-        if(!$result)
-        {
-            echo "Unable to access database.<br>";
-        }
-        while($row = mysqli_fetch_array($result))
-        {
-            $temp = explode(".", $row['file_name']);
-            $ext = end($temp);
-            echo "<a href='files/'".$row['file_id'].$ext.">".$row['file_name']."</a><br>";
-        }
+    <div id="files">
     
-    ?>
+    </div>
 </body>
 
 </html>

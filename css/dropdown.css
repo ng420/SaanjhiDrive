@@ -33,7 +33,7 @@ ul.menuH a /*controls the tag "Abhishek Goyal"*/
     font-weight: bold;
     color: #1BA1E2;
     outline: 0;
-	margin-right: 300px;
+	margin-right: 100px;
     
 }
 .menuH a:hover
@@ -177,7 +177,7 @@ ul.menuH ul
 
 .name{
 	margin-left:350px;
-	margin-top:15px;
+	margin-top:5px;
 	font-family:Segoe UI Semibold;
 	font-size:20px;
 	font-weight:300px;
@@ -189,8 +189,8 @@ ul.menuH ul
 	height: auto;
 	padding: 3px;
 	font-size: 15px;
-	margin-top:-35px;
-	margin-right:330px;
+	margin-top:-25px;
+	margin-right:130px;
 	font-family:Segoe UI Semibold;
 	border:1px solid #B0B0B0; 
 	background:url("images/1.png") no-repeat;

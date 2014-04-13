@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script type="text/javascript">
+
+function CheckEmail()
+{
+    var $email = $("#<%=EmailText.ClientID %>");
+
+    if ($email.val().length) {
+        if (!IsEmailValid($email.val()))
+            $email.val("Please enter a valid email address");
+    }
+    else {
+        $email.val("Please enter some text.");
+    }
+}    
+
+function IsEmailValid(inputvalue) 
+{
+    var pattern=/^([a-zA-Z0-9_.-])+@([a-zA-Z0-9_.-])+\.([a-zA-Z])+([a-zA-Z])+/;
+
+    if(pattern.test(inputvalue)) {
+        return true;
+    } 
+    else {
+        return false;
+    }
+}
+
+</script>
+</head>
+<body>
+	<input  id="EmailText" text="Please enter some text" type="password" />
+	<input type="button" id="SubmitButton" OnClick="CheckEmail()" />
+</body>
+</html>
