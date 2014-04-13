@@ -1,3 +1,7 @@
+body{
+    overflow: hidden;    
+}
+
 .menuH
 {
     margin: 0; width: 100%; float:none;
@@ -176,7 +180,7 @@ ul.menuH ul
 }
 
 .name{
-	margin-left:350px;
+	margin-left:310px;
 	margin-top:5px;
 	font-family:Segoe UI Semibold;
 	font-size:20px;
@@ -192,32 +196,47 @@ ul.menuH ul
 	margin-top:-25px;
 	margin-right:130px;
 	font-family:Segoe UI Semibold;
-	border:1px solid #B0B0B0; 
-	background:url("images/1.png") no-repeat;
+	border:1px solid #B0B0B0;
+    background:url("../images/1.png") no-repeat left;
 }
 
 ::-moz-placeholder {
-    color: #B0B0B0 ;
+    color: #1BA1E2 ;
 }
 /*to display the table contents*/
  .tables{
    margin-left:  300px;
-   margin-top:  0px;
-   height:650px;
-    overflow: scroll;
-    overflow-x:hidden;
+   margin-top:  -20px;
+   height:610px;
+   overflow: scroll;
+   overflow-x:hidden;
 }
 
 .table{
     height:12px;
     overflow: scroll;
     overflow-x:hidden;
+    border-spacing: 0px;
 }
-
+tr.border_bottom td{
+    border-bottom: .1em solid #D8D8D8 ;
+}
 .contents{
     text-decoration: none;
+    color: grey;
 }
+
+.contents:hover{
+    text-decoration: underline;
+}
+
 .tablehead{
     margin-left:  300px;
-    margin-top:  100px;
+    margin-top:  120px;
+    color: grey;
+    font-weight: bold;
+}
+
+.data{
+    color:grey; 
 }
