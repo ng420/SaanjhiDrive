@@ -14,11 +14,13 @@ void Page_Load(object sender, EventArgs e) {
 
     foreach(string f in Request.Files.AllKeys) {
         HttpPostedFile file = Request.Files[f];
-       // file.SaveAs(Server.MapPath("~/Uploads/" + file.FileName));
        file.SaveAs("C:\\Users\\Abhishek Sen\\Documents\\GitHub\\SaanjhiDrive\\DesktopApp\\" + file.FileName);      
     }   
 
-    /*string status;
+    /*private SqlConnection connection;
+    private SqlCommand mySqlCommand;
+
+    string status;
     string inputString;
     using (StreamReader streamReader = File.OpenText("C:\\Users\\Abhishek Sen\\Documents\\GitHub\\SaanjhiDrive\\DesktopApp\\status.txt"))
         inputString = streamReader.ReadLine();
