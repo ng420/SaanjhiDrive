@@ -207,7 +207,7 @@ ul.menuH ul
  .tables{
    margin-left:  300px;
    margin-top:  -20px;
-   height:610px;
+   height:auto;
    overflow: scroll;
    overflow-x:hidden;
 }
@@ -232,7 +232,7 @@ tr.border_bottom td{
 
 .tablehead{
     margin-left:  300px;
-    margin-top:  120px;
+    margin-top:  20px;
     color: grey;
     font-weight: bold;
 }
@@ -241,7 +241,36 @@ tr.border_bottom td{
     color:grey; 
 }
 
-#path{
+.path{
+    margin-top: 50px;
     margin-left:  300px;
     font-size: large;
+}
+
+.delete, .share, .rename, .download, .move{
+    text-decoration: none;
+}
+
+.rename:hover {
+    text-decoration: underline;
+}
+
+.share:hover {
+    text-decoration: underline;
+}
+
+.download:hover {
+    text-decoration: underline;
+}
+
+.delete:hover {
+    text-decoration: underline;
+}
+
+.move:hover {
+    text-decoration: underline;
+}
+
+#uphead1{
+    display: none;
 }

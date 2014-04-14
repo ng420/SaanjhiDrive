@@ -12,7 +12,6 @@
     <link href="css/dropdown.css" rel="stylesheet">
 	<link href="css/simple-sidebar.css" rel="stylesheet">
     <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" media="all" href="css/style2.css">
     <script>
         var current_folder = '!';
     </script>
@@ -92,7 +91,7 @@
                         //alert('in getFiles()');
                         document.getElementById('files').innerHTML = xmlHttp.responseText;
                         var res = path.split("!");
-                       
+
                         division = "<table><td onclick=\"getFiles(\'!\')\">Home </td>";
                         for (i = 1; i < res.length - 1; i++) {
                             division += "  <td onclick=\"getFiles(\'";
@@ -108,6 +107,10 @@
 
 
             }
+            function showopt() {
+                var lTable = document.getElementById("uphead1");
+                lTable.style.display = (lTable.style.display == "table") ? "none" : "table";
+                }
 
 
        </script>
@@ -127,19 +130,7 @@
 		<li><img src="images/notification.png" style="float:left; margin-right:40px; margin-top:4px;"></li>
 	</ul><br>
 	<div class="name">SaanjhiDrive</div>
-	<div id="w">
-    <div id="content">
-    <form id="searchform" name="searchform" method="get">
-      <div class="fieldcontainer">
-        <input type="text" name="s" id="s" class="searchfield" placeholder="Enter keywords here.." tabindex="1" required>
-        <input type="submit" name="searchbtn" id="searchbtn" value=""> 
-      </div><!-- @end .fieldcontainer -->
-    </form>
-    </div><!-- @end #content -->
-  </div><!-- @end #w -->
-
-    
-    <!-- JavaScript --
+	<!-- JavaScript --
     <script src="js/jquery-1.10.2.js"></script>
     <script src="js/bootstrap.js"></script>
 
@@ -150,7 +141,7 @@
         $("#wrapper").toggleClass("active");
     });
     </script>
-    <div id="path">
+    <div class="path">
         Home
     </div>
     <div id="files">

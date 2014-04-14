@@ -1,6 +1,7 @@
 <?php
-    echo '<link rel="stylesheet" href="css/dropdown.css" type="text/css">';
+    
     session_start();
+    echo '<link rel="stylesheet" href="css/dropdown.css" type="text/css">';
     $user = $_SESSION['user'];
     $folder = $_POST['folder'];
     $query = "SELECT * FROM filesystem WHERE owner='$user' AND directory_path = '$folder' ORDER BY isFolder DESC";
@@ -18,13 +19,13 @@
     echo '<div style="margin-top:-10px">';
     echo '<div class="tablehead">';
     echo '
-        <table width="100%" cellpadding="8px" class="uphead">
+        <table width="100%" cellpadding="8px" id="uphead1">
             <tr>
-                <td width="20%">Share</td>
-                <td width="20%">Download</td> 
-                <td width="20%">Delete</td>
-                <td width="20%">Rename</td>
-                <td width="20%">Move</td>
+                <td width="20%"><a class="share" href="#">Share</a></td>
+                <td width="20%"><a class="download" href="#">Download</a></td> 
+                <td width="20%"><a class="delete" href="#">Delete</a></td>
+                <td width="20%"><a class="rename" href="#">Rename</a></td>
+                <td width="20%"><a class="move" href="#">Move</a></td>
             </tr>
         </table> 
     ';
@@ -47,7 +48,7 @@
         {
             $temp = explode(".", $row['file_name']);
             $ext = end($temp);
-            echo '<tr class="border_bottom"><td width="5%" class="data">';
+            echo '<tr class="border_bottom" onclick="showopt()"><td width="5%" class="data">';
             if($ext=="png"||$ext=="jpg"||$ext=="jpeg"||$ext=="gif")
                 echo "<img src='images/picture1.png'>";
              elseif($ext=="doc"||$ext=="pdf"||$ext=="PDF"||$ext=="ppt"||$ext=="pps"||$ext=="pptx"||$ext=="sdf"||$ext=="dat"||$ext=="docx"||$ext=="log"||$ext=="msg"||$ext=="odt"||$ext=="pages"||$ext=="rtf"||$ext=="tex"||$ext=="txt"||$ext=="wpd"||$ext=="wps")
@@ -80,15 +81,15 @@
             echo "</tr>";
         }
         else{
-            $temp = explode(".", $row['file_name']);
+           $temp = explode(".", $row['file_name']);
             $ext = end($temp);
-            echo '<tr><td></td><td width="50%" onclick="getFiles(\''.$folder.substr($name, 6).'!\')">'; 
+            echo '<tr class="border_bottom"><td width="5%" class="data"><img src="images/folder.png" /></td><td class="data" width="50%" onclick="getFiles(\''.$folder.substr($name, 6).'!\')">'; 
             echo substr($name, 6)."<br>";
             echo "</td>";
-            echo'<td width="20%">';
+            echo'<td class="data" width="20%">';
             echo "Folder";
             echo"</td >";
-            echo '<td width="30%">';
+            echo '<td class="data" width="30%">';
             echo "04-04-2014";
             echo"</td>";
             echo "</tr>";
