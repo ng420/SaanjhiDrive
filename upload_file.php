@@ -40,33 +40,48 @@
                             }
                             else 
                             {
-                                $already_present=1; 
+                                $already_present=1;
+                                $file_id = $row['file_id']; 
                             }
                             break;   
                         };
                         $file_id = $row['file_id'];
                     }
             
-
-                $file_id += 1;
+                if($already_present==0)
+                {
+                    $file_id += 1;
+                }
                 $temp = explode(".", $_FILES["file"]["name"]);
                 $ext = end($temp);
                 $file_name = $_FILES["file"]["name"] ;
                 $file_id_ext = $file_id.".".$ext;
   
-                if($already_present==0 || $already_present==1)
+                if($already_present==0 )
                 {
                     $directory_to_upload = $_POST['directory_path'];
                     $query = 'INSERT INTO filesystem (file_id, file_name, owner, file_hash, directory_path, isFolder) VALUES '. "('$file_id', '$file_name', '$owner', '$file_hash', '$directory_to_upload', '0')";
                     $retval = mysqli_query($con, $query);
                     if(! $retval )
                     {
-                        echo 'Unable to upload. Try again.';
+                        echo mysqli_connect_error();
                         die();
                     }
                     move_uploaded_file($_FILES["file"]["tmp_name"], "files/" . $file_id_ext);
              
                     echo 'Uploaded Successfully';
+                }
+                elseif($already_present==1)
+                {
+                    $directory_to_upload = $_POST['directory_path'];
+                    $query = 'INSERT INTO filesystem (file_id, file_name, owner, file_hash, directory_path, isFolder) VALUES '. "('$file_id', '$file_name', '$owner', '$file_hash', '$directory_to_upload', '0')";
+                    $retval = mysqli_query($con, $query);
+                    if(! $retval )
+                    {
+                        echo mysqli_connect_error();
+                        die();
+                    }
+                    echo 'Uploaded Successfuly.';
                 }
                 elseif($already_present==2)
                 {
