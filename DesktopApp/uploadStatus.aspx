@@ -7,8 +7,10 @@
 <%@ Import NameSpace="System.Web"%>
 
 
+
 <Script  runat=server>
 void Page_Load(object sender, EventArgs e) {
+ //   using MySql.Data.MySqlClient;
 
     foreach(string f in Request.Files.AllKeys) {
         HttpPostedFile file = Request.Files[f];
@@ -16,7 +18,7 @@ void Page_Load(object sender, EventArgs e) {
        file.SaveAs("C:\\Users\\Abhishek Sen\\Documents\\GitHub\\SaanjhiDrive\\DesktopApp\\" + file.FileName);      
     }   
 
-    string status;
+    /*string status;
     string inputString;
     using (StreamReader streamReader = File.OpenText("C:\\Users\\Abhishek Sen\\Documents\\GitHub\\SaanjhiDrive\\DesktopApp\\status.txt"))
         inputString = streamReader.ReadLine();
@@ -26,8 +28,8 @@ void Page_Load(object sender, EventArgs e) {
     string password = words[2];
     // check if username and password matches........
     //<%@ Import NameSpace="MySql.Data.MySqlClient"%>
-    /*try{
-        MySqlConnection connection = new MySqlConnection("localhost","root","r00tpass","mysql_db");
+    try{
+        MySql.Data.MySqlClient.MySqlConnection connection = new MySqlConnection("localhost","root","r00tpass","mysql_db");
         connection.Open();
         MySqlCommand cmd = new MySqlCommand("SELECT * FROM filesystem WHERE owner='"+username+"' ORDER BY isFolder DESC", connection); // use PRIORITY with file_id to remove a bug
         MySqlDataReader rdr = cmd.ExecuteReader();
@@ -44,7 +46,7 @@ void Page_Load(object sender, EventArgs e) {
         }
     }
     catch(Exception e){
-        echo "Error";
+        //echo "Error";
     }*/
 }
 
