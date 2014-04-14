@@ -130,6 +130,6 @@ body {font-family: Segoe UI Semibold; font-size: 14px; color: #666;}
 
 /* User Register Form */
 .user_register {display: none; padding:20px;}
-.user_register input[type="username"], .user_register input[type="email"], .user_register input[type="password"], .user_register input[type="password"] {display: block; width:90%; padding: 10px; border:1px solid #DDD; color:#666;}
+.user_register input[type="text"], .user_register input[type="email"], .user_register input[type="password"], .user_register input[type="password"] {display: block; width:90%; padding: 10px; border:1px solid #DDD; color:#666;}
 
 

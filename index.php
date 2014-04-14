@@ -93,7 +93,7 @@
 					<div class="panel-body">
 						<form action="mainpage.php" name="signinform" class="form-signin" role="form" method="POST" >
 						<h2 class="form-signin-heading">Sign in</h2><br>
-						<input id = "a" name="usrname" class="form-control" placeholder="Username"><br><div class="br1"></div>
+						<input id = "a" name="usrname" type="username" class="form-control" placeholder="Username"><br><div class="br1"></div>
 						<input id = "b" name="usrpwd" type="password" class="form-control" placeholder="Password" ><div class="br2"></div>
 						<label class="checkbox">
 							<input name="rmbrme" type="checkbox" value="remember-me"> Remember me<br><div class="br1"></div>
@@ -139,9 +139,9 @@
 			<section class="popupBody">
 				<div class="user_register">
 					<form name="signup_form" role="form" id="my_form" >
-						<input id = "rega" name="regusrname" type="text" class="regform-control" placeholder="Username" required oninput="check_username()">
-						<br />
-						<input id= "regemail" name="regemail" type="email" class="regform-control" placeholder="Email address" required>
+						<input id= "rega" name="regusrname" type="text" class="regform-control" placeholder="Username" required oninput="check_username()">
+                        <br/>
+                        <input id= "regemail" name="regemail" type="email" class="regform-control" placeholder="Email address" required>
 						<br />
 						<input id = "regb" name="regusrpwd" type="password" class="regform-control" placeholder="Password" required oninput="check_userpwd()">
 						<br />

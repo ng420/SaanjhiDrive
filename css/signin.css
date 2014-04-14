@@ -1,7 +1,7 @@
 body {
   padding-top: 40px;
   padding-bottom: 40px;
-  background-color: #6A0197;
+  background-color: #1BA1E2;
 }
 
 
@@ -67,12 +67,13 @@ body {
 
 .forgotpwd{
 	cursor:pointer;
+    color: white;
 	font-family:Segoe UI Semibold;
 	font-size: 16px;
+    text-decoration: none;
 }
 .forgotpwd:hover{
-	text-decoration:underline;
-	border-bottom-color: white;
+	text-decoration: underline;
 }
 
 .panel-title{
