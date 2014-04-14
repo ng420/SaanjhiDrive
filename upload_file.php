@@ -56,8 +56,8 @@
   
                 if($already_present==0 || $already_present==1)
                 {
-
-                    $query = 'INSERT INTO filesystem (file_id, file_name, owner, file_hash, directory_path, isFolder) VALUES '. "('$file_id', '$file_name', '$owner', '$file_hash', 'sdasd', '0')";
+                    $directory_to_upload = $_POST['directory_path'];
+                    $query = 'INSERT INTO filesystem (file_id, file_name, owner, file_hash, directory_path, isFolder) VALUES '. "('$file_id', '$file_name', '$owner', '$file_hash', '$directory_to_upload', '0')";
                     $retval = mysqli_query($con, $query);
                     if(! $retval )
                     {

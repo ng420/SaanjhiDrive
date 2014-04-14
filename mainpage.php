@@ -47,6 +47,22 @@
         </div>
         <script type="text/javascript">
             function callUpload() {
+                var cells = Array.prototype.slice.call(document.getElementById("path").getElementsByTagName("td"));
+                var dir_path = "";
+                for (var i in cells) {
+                    dir_path += cells[i].innerHTML;
+                    if(dir_path[dir_path.length-1]==" "){
+                        dir_path = dir_path.substr(0,dir_path.length-1);
+                    }
+                }
+                dir_path = dir_path.replace('Home', '');
+                while ((dir_path.indexOf('&gt;') != -1)) {
+                    dir_path = dir_path.replace('&gt;', '!');
+
+                }
+                
+                dir_path = dir_path.concat('!');
+                //alert(dir_path);
                 var xmlhttp;
                 //alert('in callUpload()');
                 var form = document.getElementById('form');
@@ -69,10 +85,11 @@
                     //alert("sdfasdfsda");
                     if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
                         alert(xmlhttp.responseText);
-                        getFiles('!');
+                        getFiles(dir_path);
                     }
                 }
                 xmlhttp.open("POST", "upload_file.php", true);
+                formData.append("directory_path", dir_path);
                 xmlhttp.send(formData);
             }
             function getFiles(path) {
@@ -98,7 +115,7 @@
                             for (j = 0; j <= i; j++) {
                                 division += res[j] + '!';
                             }
-                            division += "\')\"> > " + res[i] + " </td>  ";
+                            division += "\')\">>" + res[i] + " </td>  ";
                         }
                         division += "</table>";
                         document.getElementById('path').innerHTML = division;
