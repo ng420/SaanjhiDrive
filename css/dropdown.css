@@ -35,7 +35,7 @@ ul.menuH a /*controls the tag "Abhishek Goyal"*/
     line-height: 36px; 
     font-size: 15px;
     font-weight: bold;
-    color: #1BA1E2;
+      color: #1BA1E2;
     outline: 0;
 	margin-right: 100px;
     
@@ -102,7 +102,7 @@ ul.menuH ul
     line-height: 26px;
     font-size: 0.9em;
     font-weight: normal;
-    color: #0066CC;
+     color: #1BA1E2;
     text-align: left;
 }
 
@@ -183,7 +183,7 @@ ul.menuH ul
 	margin-left:310px;
 	margin-top:5px;
 	font-family:Segoe UI Semibold;
-	font-size:20px;
+	font-size:25px;
 	font-weight:300px;
 	color:#909090;
 }
@@ -243,9 +243,14 @@ tr.border_bottom td{
 
 .path{
     margin-top: 50px;
-    margin-left:  300px;
-    font-size: large;
+    margin-left:  305px;
+    font-family: Segoe UI Semibold;
+    color: #1BA1E2;
+    cursor: pointer;
+    font-size: 20px;
+    font-weight: normal;
 }
+
 
 .delete, .share, .rename, .download, .move{
     text-decoration: none;

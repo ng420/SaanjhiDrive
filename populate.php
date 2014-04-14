@@ -30,9 +30,9 @@
         </table> 
     ';
     echo '
-        <table width="100%" cellpadding="8px">
+        <table width="79%" cellpadding="8px">
             <tr class="border_bottom">
-            <td width="54%">File Name</td>
+            <td width="55%">File Name</td>
             <td width="20%">Type</td>
             <td >Date Modified</td>
             <tr>
@@ -40,7 +40,7 @@
     ';
     echo '</div>';
     echo '<div class="tables">';
-    echo '<table width="100%"  cellpadding="10px" class="table">';
+    echo '<table width="80%" cellpadding="10px" class="table">';
     while($row = mysqli_fetch_array($result))
     {
         $name = $row['file_name'];
@@ -79,7 +79,7 @@
             else
                 echo 'Miscellaneous';
             echo"</td >";
-            echo '<td width="25%" class="data">';
+            echo '<td class="data">';
             echo "04-04-2014";
             echo"</td>";
             echo "</tr>";
