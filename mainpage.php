@@ -12,11 +12,13 @@
     <link href="css/dropdown.css" rel="stylesheet">
 	<link href="css/simple-sidebar.css" rel="stylesheet">
     <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet">
-
+    <script>
+        var current_folder = '!';
+    </script>
 
 	</head>
 
-<body>
+<body onload="getFiles('!')" >
     <?php
         session_start();
         $_SESSION['user']=$_POST['usrname'];
@@ -25,14 +27,14 @@
 
         <!-- Sidebar--> 
          <div id="sidebar-wrapper">
-			<img class="logo" src="images/sanjhalogo.jpg" width="50" height="50">
+			<img class="logo" src="images/sanjhalogo.jpg" width="50" height="50" alt="logo">
             <ul class="sidebar-nav">
 				<li>
-                <form action="upload_file.php" name="uploadForm" method="post" enctype="multipart/form-data" id="form">
-                <input type="file" name="file" onchange="this.form.submit();" id="file" style="visibility: hidden; width: 1px; height: 1px" multiple><br>
-                <li><a class="upload" href="#" onclick="document.getElementById('file').click(); return false" >Upload </a>
+                <form action="" name="uploadForm" method="post" enctype="multipart/form-data" id="form">
+                <input type="file" name="file" onchange="callUpload()" id="file" style="visibility: hidden; width: 1px; height: 1px" multiple><br>
+                <li><a class="upload" href="#" onclick="document.getElementById('file').click(); return false" >Upload </a> </li>
                 </form>
-                </li>
+               
 				<li><a href="#">MyDrive</a>
                 </li>
                 <li><a href="#">Recent</a>
@@ -43,6 +45,71 @@
                 </li>
             </ul>
         </div>
+        <script type="text/javascript">
+            function callUpload() {
+                var xmlhttp;
+                //alert('in callUpload()');
+                var form = document.getElementById('form');
+                var fileSelect = document.getElementById('file');
+                var files = fileSelect.files;
+                var formData = new FormData();
+                for (var i = 0; i < files.length; i++) {
+                    var file = files[i];
+
+                    // Add the file to the request.
+                    formData.append('file', file, file.name);
+                }
+                if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
+                    xmlhttp = new XMLHttpRequest();
+                }
+                else {// code for IE6, IE5
+                    xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+                }
+                xmlhttp.onreadystatechange = function () {
+                    //alert("sdfasdfsda");
+                    if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                        alert(xmlhttp.responseText);
+                        getFiles();
+                    }
+                }
+                xmlhttp.open("POST", "upload_file.php", true);
+                xmlhttp.send(formData);
+            }
+            function getFiles(path) {
+                var xmlHttp;
+                if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
+                    xmlHttp = new XMLHttpRequest();
+                }
+                else {// code for IE6, IE5
+                    xmlHttp = new ActiveXObject("Microsoft.XMLHTTP");
+                }
+                xmlHttp.open("POST", "populate.php", true);
+                xmlHttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                xmlHttp.send("folder=" + path);
+                xmlHttp.onreadystatechange = function () {
+                    if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
+                        //alert('in getFiles()');
+                        document.getElementById('files').innerHTML = xmlHttp.responseText;
+                        var res = path.split("!");
+                       
+                        division = "<table><td onclick=\"getFiles(\'!\')\">Home </td>";
+                        for (i = 1; i < res.length - 1; i++) {
+                            division += "  <td onclick=\"getFiles(\'";
+                            for (j = 0; j <= i; j++) {
+                                division += res[j] + '!';
+                            }
+                            division += "\')\"> > " + res[i] + " </td>  ";
+                        }
+                        division += "</table>";
+                        document.getElementById('path').innerHTML = division;
+                    }
+                }
+
+
+            }
+
+
+       </script>
 
         <!-- Page content 
         <div id="page-content-wrapper">
@@ -93,8 +160,10 @@
 		<li><img src="images/notification.png" style="float:left; margin-right:40px; margin-top:4px;"></li>
 	</ul><br>
 	<div class="name">SaanjhiDrive</div>
-	<input name="srch" type="text" class="search" placeholder="Search">
-    <!-- JavaScript -->
+	<input name="srch" type="text" class="search" placeholder="Search"><br>
+
+    
+    <!-- JavaScript --
     <script src="js/jquery-1.10.2.js"></script>
     <script src="js/bootstrap.js"></script>
 
@@ -105,29 +174,12 @@
         $("#wrapper").toggleClass("active");
     });
     </script>
-    <?php
-        
-        $user = $_POST['usrname'];
-        $query = "SELECT * FROM filesystem WHERE owner='$user'";
-        $con=mysqli_connect("localhost","root","pass","mysql_db");
-        if (mysqli_connect_errno())
-        {
-            echo "Failed to connect to MySQL: " . mysqli_connect_error();
-        }
-
-        $result = mysqli_query($con, $query);
-        if(!$result)
-        {
-            echo "Unable to access database.<br>";
-        }
-        while($row = mysqli_fetch_array($result))
-        {
-            $temp = explode(".", $row['file_name']);
-            $ext = end($temp);
-            echo "<a href='files/'".$row['file_id'].$ext.">".$row['file_name']."</a><br>";
-        }
+    <div id="path">
+        Home
+    </div>
+    <div id="files">
     
-    ?>
+    </div>
 </body>
 
 </html>
