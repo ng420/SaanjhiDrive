@@ -1,6 +1,4 @@
 ﻿<%@ Page Language="C#" %>
-
-
 <%@ Import Namespace="System"%>
 <%@ Import Namespace="System.IO"%>
 <%@ Import Namespace="System.Net"%>
@@ -9,16 +7,17 @@
 <Script  runat=server>
 void Page_Load(object sender, EventArgs e) {
 
-    foreach(string f in Request.Files.AllKeys) {
-        HttpPostedFile file = Request.Files[f];
-       // file.SaveAs(Server.MapPath("~/Uploads/" + file.FileName));
-       file.SaveAs("C:\\Users\\Abhishek Sen\\Documents\\GitHub\\SaanjhiDrive\\upload\\" + file.FileName);
-      
-    }   
+   var dataFile = Server.MapPath("/filesToDeleteFromServer.txt");
+   Array userData = File.ReadAllLines(dataFile);
+   foreach (string fileName in userData) 
+    {
+        // Extract filename from this and add users directory etc to it wrt the server directory system...........
+        if ((System.IO.File.Exists(fileName)))
+        System.IO.File.Delete(fileName);
+    }
 }
-
+    // We have not checked if it works or not....... :P
 </Script>
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -27,12 +26,9 @@ void Page_Load(object sender, EventArgs e) {
         <title></title>
     </head>
     <body>
-        dsfjkl
-        sdaklf
-        sadf
         <form id="form1" runat="server">
         <div>
-            <p> Upload complete.  </p>
+            
         </div>
         </form>
     </body>
