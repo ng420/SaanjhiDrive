@@ -60,12 +60,16 @@
             else
                  echo "<img src='images/exec1.png'>";
             echo"</td>";
-            if($ext=="png"||$ext=="jpg"||$ext=="jpeg"||$ext=="gif")
+            /*if($ext=="png"||$ext=="jpg"||$ext=="jpeg"||$ext=="gif")
                 echo '<td width="50%" onclick="displayIFrame(\'files/'.$row['file_id'].'.'.$ext.'\')">';
             else{
                 echo '<td width="50%" onclick="displayOther(\'files/'.$row['file_id'].'.'.$ext.'\')">';
+            }*/
+            if($ext=="png"||$ext=="jpg"||$ext=="jpeg"||$ext=="gif")
+                echo '<td width="50%"><a class="contents" onclick="displayIFrame(\'files/'.$row['file_id'].'.'.$ext.'\');">'.$row['file_name']."</a>";
+            else{
+                echo '<td width="50%"><a class="contents" onclick="displayOther(\'files/'.$row['file_id'].'.'.$ext.'\');">'.$row['file_name']."</a>";
             }
-            echo "<a class='contents' href='files/".$row['file_id'].".".$ext."'>".$row['file_name']."</a><br>";
             echo "</td>";
             echo'<td width="20%" class="data">';
             if($ext=="png"||$ext=="jpg"||$ext=="jpeg"||$ext=="gif")
