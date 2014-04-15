@@ -51,8 +51,8 @@
                 var dir_path = "";
                 for (var i in cells) {
                     dir_path += cells[i].innerHTML;
-                    if(dir_path[dir_path.length-1]==" "){
-                        dir_path = dir_path.substr(0,dir_path.length-1);
+                    if (dir_path[dir_path.length - 1] == " ") {
+                        dir_path = dir_path.substr(0, dir_path.length - 1);
                     }
                 }
                 dir_path = dir_path.replace('Home', '');
@@ -60,7 +60,7 @@
                     dir_path = dir_path.replace('&gt;', '!');
 
                 }
-                
+
                 dir_path = dir_path.concat('!');
                 //alert(dir_path);
                 var xmlhttp;
@@ -176,6 +176,40 @@
                     }
                 }
             }
+            function search() {
+                var xmlHttp;
+                if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
+                    xmlHttp = new XMLHttpRequest();
+                }
+                else {// code for IE6, IE5
+                    xmlHttp = new ActiveXObject("Microsoft.XMLHTTP");
+                }
+                var keyword = document.getElementById('search').value;
+                //alert(keyword);
+                xmlHttp.open("POST", "search.php", true);
+                xmlHttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                xmlHttp.send("key=" + keyword);
+                xmlHttp.onreadystatechange = function () {
+                    alert(xmlHttp.status);
+                    if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
+                        //alert('in getFiles()');
+                        alert('asdas');
+                        document.getElementById('files').innerHTML = xmlHttp.responseText;
+                        //var res = path.split("!");
+
+                        /*division = "<table><td onclick=\"getFiles(\'!\')\">Home </td>";
+                        for (i = 1; i < res.length - 1; i++) {
+                        division += "  <td onclick=\"getFiles(\'";
+                        for (j = 0; j <= i; j++) {
+                        division += res[j] + '!';
+                        }
+                        division += "\')\">>" + res[i] + " </td>  ";
+                        }
+                        division += "</table>";
+                        document.getElementById('path').innerHTML = division;*/
+                    }
+                }
+            }
        </script>
     </div>
 	<ul class="menuH decor1">
@@ -192,7 +226,8 @@
 		</li>
 		<li><img src="images/notification.png" style="float:left; margin-right:40px; margin-top:4px;"></li>
 	</ul><br>
-	<div class="name">SaanjhiDrive</div>
+	<div class="name">SaanjhiDrive</div>    
+	<input type="text" onkeyup="search()" id ="search" class="name"/>
 	<!-- JavaScript --
     <script src="js/jquery-1.10.2.js"></script>
     <script src="js/bootstrap.js"></script>
