@@ -9,7 +9,7 @@
 
 <Script  runat=server>
 void Page_Load(object sender, EventArgs e) {
-    //string user_name = Session["username"]; //                                    Change this later !!
+    //string user_name = Session["username"];
     string user_name = "abhishek";
     foreach(string f in Request.Files.AllKeys) {
         HttpPostedFile file = Request.Files[f];

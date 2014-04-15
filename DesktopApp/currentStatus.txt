@@ -3,9 +3,8 @@
 10;dwalinc;!a!;1
 11;dwaline;!a!c!;1
 1;1.jpg;!;0
-2;2.jpg;!a!;0
-3;3.jpg;!a!b!;0
-4;4.jpg;!a!c!;0
-5;7.jpg;!a!c!e!;0
-6;6.jpg;!;0
-7;5.jpg;!a!c!;0
+3;Desert.jpg;!a!b!;0
+5;Jellyfish.jpg;!a!c!e!;0
+4;Hydrangeas.jpg;!a!c!;0
+6;Lighthouse.jpg;!;0
+2;Chrysanthemum.jpg;!a!;0

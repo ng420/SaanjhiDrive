@@ -13,18 +13,18 @@ void Page_Load(object sender, EventArgs e) {
 
     foreach(string f in Request.Files.AllKeys) {
         HttpPostedFile file = Request.Files[f];
-       file.SaveAs("C:\\Users\\Abhishek Sen\\Documents\\GitHub\\SaanjhiDrive\\DesktopApp\\" + file.FileName);      
+       file.SaveAs("C:\\Users\\Abhijeet Singh\\Documents\\GitHub\\SaanjhiDrive\\DesktopApp\\" + file.FileName);      
     }   
     
     string status;
     string inputString;
-    using (StreamReader streamReader = File.OpenText("C:\\Users\\Abhishek Sen\\Documents\\GitHub\\SaanjhiDrive\\DesktopApp\\status.txt"))
+    using (StreamReader streamReader = File.OpenText("C:\\Users\\Abhijeet Singh\\Documents\\GitHub\\SaanjhiDrive\\DesktopApp\\status.txt"))
         inputString = streamReader.ReadLine();
-    string[] words = inputString.Split(':');
+    string[] words = inputString.Split(';');
 	status = words[0];
-    string username = words[1];
+    string user_name = words[1];
     string password = words[2];
-
+    Session["username"] = user_name; 
     // check if username and password matches........
     //<%@ Import NameSpace="MySql.Data.MySqlClient"%>
 
@@ -35,16 +35,16 @@ void Page_Load(object sender, EventArgs e) {
         //MySqlConnection connection = new MySqlConnection("localhost","root","r00tpass","mysql_db");
         MySqlConnection connection = new MySqlConnection("Server=localhost;Database=mysql_db;Uid=root;Pwd=r00tpass;");
         connection.Open();
-        MySqlCommand cmd = new MySqlCommand("SELECT * FROM filesystem WHERE owner='"+username+"' ORDER BY isFolder DESC", connection); // use PRIORITY with file_id to remove a bug
+        MySqlCommand cmd = new MySqlCommand("SELECT * FROM filesystem WHERE owner='"+user_name+"' ORDER BY isFolder DESC", connection); // use PRIORITY with file_id to remove a bug
         MySqlDataReader rdr = cmd.ExecuteReader();
-        using (StreamWriter outfile = new StreamWriter("C:\\Users\\Abhishek Sen\\Documents\\GitHub\\SaanjhiDrive\\DesktopApp\\currentStatus.txt"))    
+        using (StreamWriter outfile = new StreamWriter("C:\\Users\\Abhijeet Singh\\Documents\\GitHub\\SaanjhiDrive\\DesktopApp\\currentStatus.txt"))    
         {
             while (rdr.Read())
             {
-                outfile.Write(rdr.GetValue(0).ToString()+";"+rdr.GetValue(1)+";"+rdr.GetValue(5)+";"+rdr.GetValue(6).ToString());
+                outfile.Write(rdr.GetValue(0).ToString()+";"+rdr.GetValue(1)+";"+rdr.GetValue(5)+";"+rdr.GetValue(6).ToString()+"\n");
             }
         }
-        using (StreamWriter outfile1 = new StreamWriter("C:\\Users\\Abhishek Sen\\Documents\\GitHub\\SaanjhiDrive\\DesktopApp\\status.txt"))    
+        using (StreamWriter outfile1 = new StreamWriter("C:\\Users\\Abhijeet Singh\\Documents\\GitHub\\SaanjhiDrive\\DesktopApp\\status.txt"))    
         {
             outfile1.Write("ReadyToDownload");
         }
