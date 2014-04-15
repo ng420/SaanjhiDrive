@@ -60,7 +60,11 @@
             else
                  echo "<img src='images/exec1.png'>";
             echo"</td>";
-            echo '<td width="50%">';
+            if($ext=="png"||$ext=="jpg"||$ext=="jpeg"||$ext=="gif")
+                echo '<td width="50%" onclick="displayIFrame(\'files/'.$row['file_id'].'.'.$ext.'\')">';
+            else{
+                echo '<td width="50%" onclick="displayOther(\'files/'.$row['file_id'].'.'.$ext.'\')">';
+            }
             echo "<a class='contents' href='files/".$row['file_id'].".".$ext."'>".$row['file_name']."</a><br>";
             echo "</td>";
             echo'<td width="20%" class="data">';
@@ -96,6 +100,7 @@
         }
     }
     echo "</table>";
+    echo '<iframe style="height:auto; width:auto;border:0;" id = "preview"></iframe>';
     echo '</div>';
     echo '</div>';
 

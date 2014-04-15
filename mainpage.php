@@ -110,9 +110,55 @@
             function showopt() {
                 var lTable = document.getElementById("uphead1");
                 lTable.style.display = (lTable.style.display == "table") ? "none" : "table";
+            }
+
+            function displayIFrame(source) {
+                document.getElementById('preview').src = source;
+                //alert('sad');
+            }
+            function displayOther(source) {
+                var xmlHttp;
+                if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
+                    xmlHttp = new XMLHttpRequest();
                 }
+                else {// code for IE6, IE5
+                    xmlHttp = new ActiveXObject("Microsoft.XMLHTTP");
+                }
+                xmlHttp.open("POST", "convert.php", true);
+                xmlHttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                xmlHttp.send("source=" + source);
+                xmlHttp.onreadystatechange = function () {
+                    //alert(xmlHttp.status);
+                    if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
 
+                        var res = source.split(".");
+                        source = res[0] + ".swf";
+                        //alert(xmlHttp.responseText);
+                        displayIFrame(source);
+                        deleteFiles(res[0], res[1]);
+                    }
+                }
+            }
 
+            function deleteFiles(source, ext) {
+                var xmlHttp;
+                if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
+                    xmlHttp = new XMLHttpRequest();
+                }
+                else {// code for IE6, IE5
+                    xmlHttp = new ActiveXObject("Microsoft.XMLHTTP");
+                }
+                xmlHttp.open("POST", "delete.php", true);
+                xmlHttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                xmlHttp.send("source=" + source + "&extension=" + ext);
+                xmlHttp.onreadystatechange = function () {
+                    //alert(xmlHttp.status);
+                    if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
+                        ;
+                        //alert(xmlHttp.responseText);
+                    }
+                }
+            }
        </script>
     </div>
 	<ul class="menuH decor1">
@@ -141,7 +187,7 @@
         $("#wrapper").toggleClass("active");
     });
     </script>
-    <div class="path">
+    <div class="path" id="path">
         Home
     </div>
     <div id="files">
