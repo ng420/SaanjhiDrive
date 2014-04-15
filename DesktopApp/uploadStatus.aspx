@@ -5,20 +5,18 @@
 <%@ Import Namespace="System.IO"%>
 <%@ Import Namespace="System.Net"%>
 <%@ Import NameSpace="System.Web"%>
-
-
+<%@ Import Namespace = "System.Data" %>
+<%@ Import Namespace = "MySql.Data.MySqlClient" %>
 
 <Script  runat=server>
 void Page_Load(object sender, EventArgs e) {
- //   using MySql.Data.MySqlClient;
 
     foreach(string f in Request.Files.AllKeys) {
         HttpPostedFile file = Request.Files[f];
-       // file.SaveAs(Server.MapPath("~/Uploads/" + file.FileName));
        file.SaveAs("C:\\Users\\Abhishek Sen\\Documents\\GitHub\\SaanjhiDrive\\DesktopApp\\" + file.FileName);      
     }   
-
-    /*string status;
+    
+    string status;
     string inputString;
     using (StreamReader streamReader = File.OpenText("C:\\Users\\Abhishek Sen\\Documents\\GitHub\\SaanjhiDrive\\DesktopApp\\status.txt"))
         inputString = streamReader.ReadLine();
@@ -26,10 +24,16 @@ void Page_Load(object sender, EventArgs e) {
 	status = words[0];
     string username = words[1];
     string password = words[2];
+
     // check if username and password matches........
     //<%@ Import NameSpace="MySql.Data.MySqlClient"%>
+
     try{
-        MySql.Data.MySqlClient.MySqlConnection connection = new MySqlConnection("localhost","root","r00tpass","mysql_db");
+        //SqlCeConnection connection = new SqlCeConnection("localhost","root","r00tpass","mysql_db");
+        //string connString = ConfigurationManager.ConnectionStrings["BMREConnString"].ConnectionString;
+        //MySqlConnection myConnection = new MySqlConnection(connString);
+        //MySqlConnection connection = new MySqlConnection("localhost","root","r00tpass","mysql_db");
+        MySqlConnection connection = new MySqlConnection("Server=localhost;Database=mysql_db;Uid=root;Pwd=r00tpass;");
         connection.Open();
         MySqlCommand cmd = new MySqlCommand("SELECT * FROM filesystem WHERE owner='"+username+"' ORDER BY isFolder DESC", connection); // use PRIORITY with file_id to remove a bug
         MySqlDataReader rdr = cmd.ExecuteReader();
@@ -45,9 +49,9 @@ void Page_Load(object sender, EventArgs e) {
             outfile1.Write("ReadyToDownload");
         }
     }
-    catch(Exception e){
+    catch(Exception eee){
         //echo "Error";
-    }*/
+    }
 }
 
 </Script>

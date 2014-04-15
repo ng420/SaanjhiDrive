@@ -1,6 +1,4 @@
 ﻿<%@ Page Language="C#" %>
-
-
 <%@ Import Namespace="System"%>
 <%@ Import Namespace="System.IO"%>
 <%@ Import Namespace="System.Net"%>
@@ -9,17 +7,19 @@
 <Script  runat=server>
 void Page_Load(object sender, EventArgs e) {
 
-    //UPLOAD FILES FROM CLIENT TO SERVER
+    //UPLOAD TEXTFILE FROM CLIENT CONTAINING NAME OF NEW FOLDERS TO BE CREATED
 
     foreach(string f in Request.Files.AllKeys) {
-        HttpPostedFile file = Request.Files[f];
-       // file.SaveAs(Server.MapPath("~/Uploads/" + file.FileName));
-       file.SaveAs("C:\\Users\\Abhishek Sen\\Documents\\GitHub\\SaanjhiDrive\\upload\\" + file.FileName);
+        HttpPostedFile file = Request.Files[f];  //always a text file
+       file.SaveAs("C:\\Users\\Abhishek Sen\\Documents\\GitHub\\SaanjhiDrive\\DesktopApp\\" + file.FileName);
+
+        //sql Query for inserting for new folders to database
       
     }   
 }
 
 </Script>
+
 
 
 <!DOCTYPE html>
@@ -29,12 +29,9 @@ void Page_Load(object sender, EventArgs e) {
         <title></title>
     </head>
     <body>
-        dsfjkl
-        sdaklf
-        sadf
         <form id="form1" runat="server">
         <div>
-            <p> Upload complete.  </p>
+            AMen!
         </div>
         </form>
     </body>
