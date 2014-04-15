@@ -11,7 +11,19 @@
     <!-- Add custom CSS here -->
     <link href="css/dropdown.css" rel="stylesheet">
 	<link href="css/simple-sidebar.css" rel="stylesheet">
+    <link href="css/bootstrap.css" rel="stylesheet">
+	<link href="css/bootstrap.min.css" rel="stylesheet">
+	<link href="css/bootstrap-theme.css" rel="stylesheet">
+	<link href="css/bootstrap-theme.min.css" rel="stylesheet">
     <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet">
+
+    <script type="text/javascript" src="js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="js/jquery-1.10.2.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.js"></script>
+     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
+    <script type="text/javascript" src="js/jquery.leanModal.min.js"></script>
+
     <script>
         var current_folder = '!';
     </script>
@@ -170,10 +182,11 @@
 
 
             }
-            function showopt() {
+            /*function showopt() {
                 var lTable = document.getElementById("uphead1");
                 lTable.style.display = (lTable.style.display == "table") ? "none" : "table";
             }
+            */
 
             function displayIFrame(source) {
                 document.getElementById('preview').src = source;
@@ -265,7 +278,7 @@
     </div>
 	<ul class="menuH decor1">
 		
-		<li><a class="arrow"><?php echo $_POST['usrname']; ?></a>
+		<li><a class="arrow"><?php echo $_SESSION['user']; ?></a>
 			<ul>
 				<li><a class="arrow">Home</a>
 				</li>
@@ -275,11 +288,16 @@
 				</li>
 			</ul>
 		</li>
-		<li><img src="images/notification.png" style="float:left; margin-right:40px; margin-top:4px;"></li>
+		<li><img src="images/notification.png" style="float:left; margin-right:40px; margin-top:4px; margin-left: "></li>
 	</ul><br>
-	<div class="name">SaanjhiDrive</div>    
-	<input type="text" onkeyup="search()" id ="search" class="name"/>
-	<!-- JavaScript --
+    <div class="sanjhacontainer">
+	<div class="name">SaanjhiDrive</div> 
+	    <div class="input-group">
+            <span class="input-group-addon"><span class="glyphicon glyphicon-search"></span></span>       
+            <input type="text" onkeyup="search()" id ="search" class="form-control">
+        </div>
+    </div>
+    <!-- JavaScript --
     <script src="js/jquery-1.10.2.js"></script>
     <script src="js/bootstrap.js"></script>
 
@@ -295,6 +313,20 @@
     </div>
     <div id="files">
     
+    </div>
+    <script>
+            function run_leanmodal(source) {
+                $(".go").leanModal({ top: 150, overlay: 0.6, closeButton: ".modal_close" });
+                document.getElementById("ifrm").src = source;
+
+            }
+            function run_leanmodalOther(source) {
+                $(".go").leanModal({ top: 150, overlay: 0.6, closeButton: ".modal_close" });
+            }
+        </script> 
+
+    <div id="register">
+        <iframe  id="ifrm" width="800px" height="600px" frameborder="0"  scrolling="no"></iframe>
     </div>
 </body>
 

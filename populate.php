@@ -44,7 +44,7 @@
 
     //File parameter table.
     echo '
-        <table width="79%" cellpadding="8px">
+        <table width="79%" cellpadding="8px" class="heading">
             <tr class="border_bottom">
             <td width="55%">File Name</td>
             <td width="20%">Type</td>
@@ -55,7 +55,6 @@
     echo '</div>';
     echo '<div class="tables">';
     echo '<table width="80%" cellpadding="10px" class="table">';
-
     //Traverse through query results.
     while($row = mysqli_fetch_array($result))
     {
@@ -80,10 +79,12 @@
             echo"</td>";
             
             //Provide preview.
-            if($ext=="png"||$ext=="jpg"||$ext=="jpeg"||$ext=="gif")
-                echo '<td width="50%"><a class="contents" onclick="displayIFrame(\'files/'.$row['file_id'].'.'.$ext.'\');">'.$row['file_name']."</a>";
+           if($ext=="png"||$ext=="jpg"||$ext=="jpeg"||$ext=="gif")
+            {
+                echo '<td width="50%"><a class="go" id ="fo" href="#register" onclick="run_leanmodal(\'files/'.$row['file_id'].'.'.$ext.'\');">'.$row['file_name']."</a>";
+            }
             else{
-                echo '<td width="50%"><a class="contents" onclick="displayOther(\'files/'.$row['file_id'].'.'.$ext.'\');">'.$row['file_name']."</a>";
+                 echo '<td width="50%"><a  class="go" id ="fo" href="#register" onclick="run_leanmodalOther(\'files/'.$row['file_id'].'.'.$ext.'\');" >'.$row['file_name']."</a>";
             }
 
             echo "</td>";

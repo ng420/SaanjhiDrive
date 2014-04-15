@@ -3154,12 +3154,13 @@ input[type="button"].btn-block {
   margin-left: -5px;
 }
 .btn-toolbar .btn-group,
-.btn-toolbar .input-group {
+.btn-toolbar {
   float: left;
 }
+
 .btn-toolbar > .btn,
 .btn-toolbar > .btn-group,
-.btn-toolbar > .input-group {
+{
   margin-left: 5px;
 }
 .btn-group > .btn:not(:first-child):not(:last-child):not(.dropdown-toggle) {
@@ -3303,16 +3304,17 @@ input[type="button"].btn-block {
   display: none;
 }
 .input-group {
-  position: relative;
+  float: right;
+  margin-right: 100px;
   display: table;
   border-collapse: separate;
+  width: 250px;
 }
 .input-group[class*="col-"] {
-  float: none;
   padding-right: 0;
   padding-left: 0;
 }
-.input-group .form-control {
+.form-control {
   float: left;
   width: 100%;
   margin-bottom: 0;
@@ -5825,7 +5827,20 @@ td.visible-print {
   tr.hidden-print,
   th.hidden-print,
   td.hidden-print {
-    display: none !important;
+  display: none !important;
   }
 }
+
+.sanjhacontainer{
+    margin-left:300px;
+	margin-top:30px;
+	font-family:Segoe UI Semibold;
+	font-size:25px;
+	color:#909090;
+}
+
+.name{
+    float: left;
+}
+
 /*# sourceMappingURL=bootstrap.css.map */
