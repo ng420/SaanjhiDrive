@@ -21,7 +21,7 @@
 <body onload="getFiles('!')" >
     <?php
         session_start();
-        $_SESSION['user']=$_POST['usrname'];
+        //_SESSION['user']=$_POST['usrname'];
     ?>
     <div id="wrapper">
 
@@ -37,7 +37,7 @@
                
 				<li><a href="#">MyDrive</a>
                 </li>
-                <li><a href="#">Recent</a>
+                <li><a href="#" onclick="upload_folder()">Create Folder</a>
                 </li>
                 <li><a href="#">Shared With Me</a>
                 </li>
@@ -92,6 +92,50 @@
                 formData.append("directory_path", dir_path);
                 xmlhttp.send(formData);
             }
+            function upload_folder() {
+                var folder_name = "";
+                while (folder_name.length == 0) {
+                    folder_name = prompt("Enter folder name?");
+                }
+                var cells = Array.prototype.slice.call(document.getElementById("path").getElementsByTagName("td"));
+                var dir_path = "";
+                for (var i in cells) {
+                    dir_path += cells[i].innerHTML;
+                    if (dir_path[dir_path.length - 1] == " ") {
+                        dir_path = dir_path.substr(0, dir_path.length - 1);
+                    }
+                }
+                dir_path = dir_path.replace('Home', '');
+                while ((dir_path.indexOf('&gt;') != -1)) {
+                    dir_path = dir_path.replace('&gt;', '!');
+
+                }
+
+                dir_path = dir_path.concat('!');
+                //alert(dir_path);
+                var xmlhttp;
+                var form_data = new FormData();
+                //alert('in callUpload()');
+                if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
+                    xmlhttp = new XMLHttpRequest();
+                }
+                else {// code for IE6, IE5
+                    xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+                }
+                xmlhttp.onreadystatechange = function () {
+                    //alert("sdfasdfsda");
+                    if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                        alert(xmlhttp.responseText);
+                        getFiles(dir_path);
+                    }
+                    //alert(xmlhttp.status);
+                }
+                xmlhttp.open("POST", "create_folder.php", true);
+                //xmlHttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                form_data.append("folder_name", folder_name);
+                form_data.append("directory_path", dir_path);
+                xmlhttp.send(form_data);
+            }
             function getFiles(path) {
                 var xmlHttp;
                 if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
@@ -108,7 +152,9 @@
                         //alert('in getFiles()');
                         document.getElementById('files').innerHTML = xmlHttp.responseText;
                         var res = path.split("!");
-
+                        for (i = 1; i < res.length - 1; i++) {
+                            res[i] = res[i].replace(/_/g, " ");
+                        }
                         division = "<table><td onclick=\"getFiles(\'!\')\">Home </td>";
                         for (i = 1; i < res.length - 1; i++) {
                             division += "  <td onclick=\"getFiles(\'";

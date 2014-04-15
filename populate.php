@@ -91,8 +91,10 @@
         else{
            $temp = explode(".", $row['file_name']);
             $ext = end($temp);
+            $folder_name = substr($name, 6) ;
+            $folder_name = str_replace("_", " ", $folder_name);
             echo '<tr class="border_bottom"><td width="5%" class="data"><img src="images/folder.png" /></td><td class="data" width="50%" onclick="getFiles(\''.$folder.substr($name, 6).'!\')">'; 
-            echo substr($name, 6)."<br>";
+            echo $folder_name."<br>";
             echo "</td>";
             echo'<td class="data" width="20%">';
             echo "Folder";
