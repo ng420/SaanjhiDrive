@@ -1,7 +1,8 @@
 <?php
-    session_start();
-
-    if (!empty($_FILES))
+    
+    session_start(); //Session started for accessing session variables.
+    
+    if (!empty($_FILES))  // Check if input was provided.
     {
         if ($_FILES["file"]["error"] > 0)
         {
@@ -10,59 +11,67 @@
         }
         else
         {
+            //Define variables to access tables.
 
             $already_present=0;
             $file_id = 0;
             $file_name = "";
             $owner = $_SESSION['user'];
             $shared_with = "";
-            $file_hash = md5_file ($_FILES["file"]["tmp_name"]);
+            $file_hash = md5_file ($_FILES["file"]["tmp_name"]); //File hashed
+            
+            //Establish connection.
             $query = "SELECT file_hash FROM filesystem";
             $con=mysqli_connect("localhost","root","r00tpass","mysql_db");
             // Check connection
+            
             if (mysqli_connect_errno())
                 {
-                
-                echo "Failed to connect to MySQL: " . mysqli_connect_error();
+                    echo "Failed to connect to MySQL: " . mysqli_connect_error(); //Terminate if connectin not established.
                 }
 
-            $result = mysqli_query($con,"SELECT file_id, file_hash, owner FROM filesystem ORDER BY file_id");
+            $result = mysqli_query($con,"SELECT file_id, file_hash, owner FROM filesystem ORDER BY file_id"); // Perform query.
 
             if($result)
             {
+                //Traverse through each row.
                 while($row = mysqli_fetch_array($result))
                     {
-                        //echo $row['owner'];
+                        //Check if same file exists or not.
                         if($row['file_hash']==$file_hash)
                         {
-                            //echo $row['file_hash']."  ".$row['file_id']."   ".$row['owner'];
+                            //Check if same user has it or not.
                             if($row['owner']==$owner)
                             {
-                                //echo $row['owner'];
+                                
                                 $already_present = 2;
                                 
                             }
                             else 
                             {
-                                //echo $row['owner'];
+                                
                                 $already_present=1;
                                 $file_id = $row['file_id']; 
                             }
                             break;   
                         };
-                        $file_id = $row['file_id'];
+                        
+                        $file_id = $row['file_id']; //Set file_id
                     }
-                //echo $already_present;
+
+                
                 if($already_present==0)
                 {
                     $file_id += 1;
                 }
 
+                //Perform manipulation on file name to store.
                 $temp = explode(".", $_FILES["file"]["name"]);
                 $ext = end($temp);
                 $file_name = $_FILES["file"]["name"] ;
                 $file_id_ext = $file_id.".".$ext;
   
+                //File is new.
                 if($already_present==0 )
                 {
                     $directory_to_upload = $_POST['directory_path'];
@@ -70,16 +79,20 @@
                     if($result_new)
                     {
                       
-                        //echo $row1['file_id']."   ".$row1['owner']."   ".$row1['directory_path'];
+                        
                         while($row1=mysqli_fetch_array($result_new))
                         {
+                            //Check if file of same name is present at same directory.
                             if($row1['file_name']==$file_name && $row1['directory_path']==$directory_to_upload)
                             {
                                 echo "File of same name already present.";
                                 die();
                             }
                         }
+
                     }
+
+                    //Insert entry.
                     $query = 'INSERT INTO filesystem (file_id, file_name, owner, file_hash, directory_path, isFolder) VALUES '. "('$file_id', '$file_name', '$owner', '$file_hash', '$directory_to_upload', '0')";
                     $retval = mysqli_query($con, $query);
                     if(! $retval )
@@ -87,10 +100,13 @@
                         echo mysqli_connect_error();
                         die();
                     }
+
+                    //Move file
                     move_uploaded_file($_FILES["file"]["tmp_name"], "files/" . $file_id_ext);
-             
                     echo 'Uploaded Successfully';
                 }
+
+                
                 elseif($already_present==1)
                 {
                     $directory_to_upload = $_POST['directory_path'];
@@ -98,7 +114,7 @@
                     if($result_new)
                     {
                       
-                        //echo $row1['file_id']."   ".$row1['owner']."   ".$row1['directory_path'];
+                        //Check if same user has same file at same directory path.
                         while($row1=mysqli_fetch_array($result_new))
                         {
                             if($row1['owner']==$owner && $row1['directory_path']==$directory_to_upload)
@@ -109,6 +125,7 @@
                         }
                     }
    
+                    //Insert file entry into database.
                     $query = 'INSERT INTO filesystem (file_id, file_name, owner, file_hash, directory_path, isFolder) VALUES '. "('$file_id', '$file_name', '$owner', '$file_hash', '$directory_to_upload', '0')";
                     $retval = mysqli_query($con, $query);
                     if(! $retval )
@@ -120,6 +137,8 @@
                     echo 'Uploaded Successfuly.';
                     
                 }
+
+                //If same user has same file.
                 elseif($already_present==2)
                 {
                     echo 'File already present.';
@@ -128,9 +147,11 @@
                 {
                     echo 'Unknown error occured.';
                  }
-                #echo "Stored in: " . "upload/" . $_FILES["file"]["name"];
+                
                 mysqli_close($con);
             }
+
+            //Unable to establish connection.
             else
             {
                 echo 'Unable to establish connection with database.';
