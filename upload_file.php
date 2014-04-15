@@ -66,6 +66,20 @@
                 if($already_present==0 )
                 {
                     $directory_to_upload = $_POST['directory_path'];
+                    $result_new = mysqli_query($con,"SELECT * FROM filesystem WHERE owner = '$owner' AND directory_path = '$directory_to_upload' ORDER BY file_name");
+                    if($result_new)
+                    {
+                      
+                        //echo $row1['file_id']."   ".$row1['owner']."   ".$row1['directory_path'];
+                        while($row1=mysqli_fetch_array($result_new))
+                        {
+                            if($row1['file_name']==$file_name && $row1['directory_path']==$directory_to_upload)
+                            {
+                                echo "File of same name already present.";
+                                die();
+                            }
+                        }
+                    }
                     $query = 'INSERT INTO filesystem (file_id, file_name, owner, file_hash, directory_path, isFolder) VALUES '. "('$file_id', '$file_name', '$owner', '$file_hash', '$directory_to_upload', '0')";
                     $retval = mysqli_query($con, $query);
                     if(! $retval )
@@ -84,7 +98,7 @@
                     if($result_new)
                     {
                       
-                        echo $row1['file_id']."   ".$row1['owner']."   ".$row1['directory_path'];
+                        //echo $row1['file_id']."   ".$row1['owner']."   ".$row1['directory_path'];
                         while($row1=mysqli_fetch_array($result_new))
                         {
                             if($row1['owner']==$owner && $row1['directory_path']==$directory_to_upload)
