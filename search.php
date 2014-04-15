@@ -1,8 +1,8 @@
 
 <?php
-    //session_start();
+    session_start();
     echo '<link rel="stylesheet" href="css/dropdown.css" type="text/css">';
-    $user = "abhishek";$_SESSION['user'];
+    $user = $_SESSION['user'];
     $key = $_GET['key'];
     echo $key;
     $query = "SELECT * FROM filesystem WHERE owner='$user' ORDER BY isFolder DESC";
@@ -49,6 +49,8 @@
         $cond1 = $cond2  = FALSE;
         $name = strtolower($row['file_name']);
         $key = strtolower($key);
+        if((substr($name, 0, 6) == "dwalin"))
+            $name = substr($name, 6);
         //echo $name;
         $cond1 = strpos($name,$key);
         if($cond1 !== FALSE)
@@ -59,6 +61,7 @@
             //echo 'files/'.$row['file_id'].'.txt';
             $cond2 = search('files/'.$row['file_id'].'.txt',$key);
         }
+        $name = $row['file_name'];
         if($cond1 === TRUE or $cond2 === TRUE ){
             if(!(substr($name, 0, 6) == "dwalin")) 
             {
