@@ -186,27 +186,32 @@
                 }
                 var keyword = document.getElementById('search').value;
                 //alert(keyword);
-                xmlHttp.open("POST", "search.php", true);
-                xmlHttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-                xmlHttp.send("key=" + keyword);
-                xmlHttp.onreadystatechange = function () {
-                    alert(xmlHttp.status);
-                    if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
-                        //alert('in getFiles()');
-                        alert('asdas');
-                        document.getElementById('files').innerHTML = xmlHttp.responseText;
-                        //var res = path.split("!");
+                if (keyword == "") {
+                    getFiles("!");
+                }
+                else {
+                    xmlHttp.open("GET", "search.php?key=" + keyword, true);
+                    //xmlHttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                    xmlHttp.send();
+                    xmlHttp.onreadystatechange = function () {
+                        //alert(xmlHttp.status);
+                        if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
+                            //alert('in getFiles()');
+                            //alert('asdas');
+                            document.getElementById('files').innerHTML = xmlHttp.responseText;
+                            //var res = path.split("!");
 
-                        /*division = "<table><td onclick=\"getFiles(\'!\')\">Home </td>";
-                        for (i = 1; i < res.length - 1; i++) {
-                        division += "  <td onclick=\"getFiles(\'";
-                        for (j = 0; j <= i; j++) {
-                        division += res[j] + '!';
+                            /*division = "<table><td onclick=\"getFiles(\'!\')\">Home </td>";
+                            for (i = 1; i < res.length - 1; i++) {
+                            division += "  <td onclick=\"getFiles(\'";
+                            for (j = 0; j <= i; j++) {
+                            division += res[j] + '!';
+                            }
+                            division += "\')\">>" + res[i] + " </td>  ";
+                            }
+                            division += "</table>";
+                            document.getElementById('path').innerHTML = division;*/
                         }
-                        division += "\')\">>" + res[i] + " </td>  ";
-                        }
-                        division += "</table>";
-                        document.getElementById('path').innerHTML = division;*/
                     }
                 }
             }
