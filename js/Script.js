@@ -174,8 +174,8 @@ function showopt(id) {
         filenameModified = res[0].substring(0, 7) + "........." + res[0].substring(res[0].length - 7) + "."+res[1];
     }
                 var division = '<table width="85%" cellpadding="8px" id="uphead1"><tr><td width="20%">' + filenameModified + '</td>';
-                division += '<td width="12%"><span class="glyphicon glyphicon-link"></span><a class="share" onclick="share(\'' + id + '\')">   Share</a></td>';
-                division += '<td width="12%"><span class="glyphicon glyphicon-download-alt"></span><a class="download" onclick="download(\'' + id + '\')">   Download</a></td>';
+                division += '<td width="12%"><span class="glyphicon glyphicon-link"></span><a class="share" onclick="share_file(\'' + id + '\')">   Share</a></td>';
+                division += '<td width="12%"><span class="glyphicon glyphicon-download-alt"></span><a class="download" onclick="download_file(\'' + id + '\')">   Download</a></td>';
                 division += '<td width="12%"><span class="glyphicon glyphicon-trash"></span><a class="delete" onclick="Delete(\'' + id + '\')">   Delete</a></td>';
                 division += '<td width="12%"><span class="glyphicon glyphicon-edit"></span><a class="rename" onclick="rename(\'' + id + '\')">   Rename</a></td>';
                 division += '<td width="12%"><span class="glyphicon glyphicon-share"></span><a class="move" onclick="move(\'' + id + '\')">   Move</a></td>';
