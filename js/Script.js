@@ -179,6 +179,12 @@ function showopt(id) {
     document.getElementById("options").innerHTML = division;
 }
 
+var downloadURL = function downloadURL(url) {
+
+            window.location.href = 'request_file.php?url='.concat(url);
+
+};
+
 function download_file(file_name) {
     //Extract directory path.
     var cells = Array.prototype.slice.call(document.getElementById("path").getElementsByTagName("td"));
@@ -214,9 +220,7 @@ function download_file(file_name) {
             var string_result = String(xmlhttp.responseText);
             if (string_result.indexOf('files') != -1) {
                             
-                string_result = 'http://localhost:58514/'.concat(string_result);
-                //alert(string_result)
-                window.open(string_result);
+                downloadURL(string_result);
 
             }
             else {
@@ -232,6 +236,7 @@ function download_file(file_name) {
     form_data.append("dir_path", dir_path);
     xmlhttp.send(form_data);
 }
+
 function Delete(id) {
     //delete
     var cells = Array.prototype.slice.call(document.getElementById("path").getElementsByTagName("td"));
