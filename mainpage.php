@@ -41,7 +41,7 @@
                 <li><a class="upload" href="#" onclick="document.getElementById('file').click(); return false" >Upload </a> </li>
                 </form>
                
-				<li><a href="#">MyDrive</a>
+				<li><a href="#" onclick="getFiles('!');">MyDrive</a>
                 </li>
                 <li><a href="#" onclick="upload_folder()">Create Folder</a>
                 </li>
@@ -57,7 +57,7 @@
 		
 		<li><a class="arrow"><?php echo $_SESSION['user']; ?></a>
 			<ul>
-				<li><a class="arrow">Home</a>
+				<li><a class="arrow" onclick="getFiles('!');">Home</a>
 				</li>
 				<li><a class="arrow" href="logout.php">Logout</a>
 				</li>

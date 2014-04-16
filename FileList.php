@@ -46,6 +46,7 @@
             else
                 echo 'Miscellaneous';
             echo"</td >";
+            echo'<td width="20%" class="data">';
             if($row['shared_by'])
             {
                 echo $row['shared_by'];
