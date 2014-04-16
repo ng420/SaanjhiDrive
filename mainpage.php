@@ -182,12 +182,123 @@
 
 
             }
-            /*function showopt() {
-                var lTable = document.getElementById("uphead1");
-                lTable.style.display = (lTable.style.display == "table") ? "none" : "table";
+            function showopt(id) {
+                var lTable = document.getElementById("options").innerHTML;
+                var division = '<table width="100%" cellpadding="8px" id="uphead1"><tr><td width="10%">' + id + '</td>';
+                division += '<td width="15%"><a class="share" onclick="share(\'' + id + '\')">Share</a></td>';
+                division += '<td width="15%"><a class="download" onclick="download(\'' + id + '\')">Download</a></td>';
+                division += '<td width="15%"><a class="delete" onclick="Delete(\'' + id + '\')">Delete</a></td>';
+                division += '<td width="15%"><a class="rename" onclick="rename(\'' + id + '\')">Rename</a></td>';
+                division += '<td width="15%"><a class="move" onclick="move(\'' + id + '\')">Move</a></td>';
+                division += '</tr>';
+                division += '</table> ';
+                document.getElementById("options").innerHTML = division;
             }
-            */
+            function share(id) {
+                //share
+            }
 
+            function download(id) {
+                //download
+            }
+            function Delete(id) {
+                //delete
+                var cells = Array.prototype.slice.call(document.getElementById("path").getElementsByTagName("td"));
+                var dir_path = "";
+                for (var i in cells) {
+                    dir_path += cells[i].innerHTML;
+                    if (dir_path[dir_path.length - 1] == " ") {
+                        dir_path = dir_path.substr(0, dir_path.length - 1);
+                    }
+                }
+                dir_path = dir_path.replace('Home', '');
+                while ((dir_path.indexOf('&gt;') != -1)) {
+                    dir_path = dir_path.replace('&gt;', '!');
+
+                }
+
+                dir_path = dir_path.concat('!');
+
+
+                //alert(text);
+
+                var xmlHttp;
+                if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
+                    xmlHttp = new XMLHttpRequest();
+                }
+                else {// code for IE6, IE5
+                    xmlHttp = new ActiveXObject("Microsoft.XMLHTTP");
+                }
+                xmlHttp.open("POST", "remove.php", true);
+                xmlHttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                xmlHttp.send("filename=" + id + "&current_dir=" + dir_path);
+                xmlHttp.onreadystatechange = function () {
+                    //alert(xmlHttp.status);
+                    if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
+                        //alert(xmlHttp.responseText); //.getElementsByTagName(tr);
+                        //alert(row.length);
+                        //var text = row[1].getElementsByTagName("*");
+                        //var row = document.getElementById(filename).cells;
+                        //row[1].innerHTML = '<a class="contents" onclick="displayIFrame(\'files/'+text+'\');">'+text+'</a>';
+                        getFiles(dir_path);
+                    }
+                }
+            }
+            function rename(id) {
+                //rename
+                var row = document.getElementById(id).cells; //.getElementsByTagName(tr);
+                var anchor = row[1].getElementsByTagName("*");
+                anchor = anchor[0];
+                //alert(anchor.innerHTML);
+                row[1].innerHTML = "<input type='text' onblur='changeRename(this,\"" + id + "\")' style='color:grey;' value ='" + anchor.innerHTML + "' autofocus  />";
+
+            }
+            function changeRename(input, filename) {
+                text = input.value;
+                var cells = Array.prototype.slice.call(document.getElementById("path").getElementsByTagName("td"));
+                var dir_path = "";
+                for (var i in cells) {
+                    dir_path += cells[i].innerHTML;
+                    if (dir_path[dir_path.length - 1] == " ") {
+                        dir_path = dir_path.substr(0, dir_path.length - 1);
+                    }
+                }
+                dir_path = dir_path.replace('Home', '');
+                while ((dir_path.indexOf('&gt;') != -1)) {
+                    dir_path = dir_path.replace('&gt;', '!');
+
+                }
+
+                dir_path = dir_path.concat('!');
+
+
+                //alert(text);
+
+                var xmlHttp;
+                if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
+                    xmlHttp = new XMLHttpRequest();
+                }
+                else {// code for IE6, IE5
+                    xmlHttp = new ActiveXObject("Microsoft.XMLHTTP");
+                }
+                xmlHttp.open("POST", "rename.php", true);
+                xmlHttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                xmlHttp.send("input=" + text + "&filename=" + filename + "&current_dir=" + dir_path);
+                xmlHttp.onreadystatechange = function () {
+                    //alert(xmlHttp.status);
+                    if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
+                        //alert(xmlHttp.responseText);
+                        var row = document.getElementById(filename).cells; //.getElementsByTagName(tr);
+                        //alert(row.length);
+                        //var text = row[1].getElementsByTagName("*");
+                        row[1].innerHTML = '<a class="contents" onclick="displayIFrame(\'files/' + text + '\');">' + text + '</a>';
+
+                    }
+                }
+            }
+            function move(id) {
+                //move
+            }
             function displayIFrame(source) {
                 document.getElementById('preview').src = source;
                 //alert('sad');

@@ -30,17 +30,7 @@
     //Create options table.
     echo '<div style="margin-top:-10px">';
     echo '<div class="tablehead">';
-    echo '
-        <table width="100%" cellpadding="8px" id="uphead1">
-            <tr>
-                <td width="20%"><a class="share" href="#">Share</a></td>
-                <td width="20%"><a class="download" href="#">Download</a></td> 
-                <td width="20%"><a class="delete" href="#">Delete</a></td>
-                <td width="20%"><a class="rename" href="#">Rename</a></td>
-                <td width="20%"><a class="move" href="#">Move</a></td>
-            </tr>
-        </table> 
-    ';
+    echo '<div id = "options"></div>';
 
     //File parameter table.
     echo '
@@ -65,10 +55,11 @@
         {
             $temp = explode(".", $row['file_name']);
             $ext = end($temp);  //Extension of file obtained.
-            echo '<tr class="border_bottom" onclick="showopt()"><td width="5%" class="data">';
+            $ext = strtolower($ext);
+            echo '<tr class="border_bottom" id="'.$row['file_name'].'" onclick="showopt(\''.$row['file_name'].'\')"><td width="5%" class="data">';
             if($ext=="png"||$ext=="jpg"||$ext=="jpeg"||$ext=="gif")
                 echo "<img src='images/picture1.png'>";
-             elseif($ext=="doc"||$ext=="pdf"||$ext=="PDF"||$ext=="ppt"||$ext=="pps"||$ext=="pptx"||$ext=="sdf"||$ext=="dat"||$ext=="docx"||$ext=="log"||$ext=="msg"||$ext=="odt"||$ext=="pages"||$ext=="rtf"||$ext=="tex"||$ext=="txt"||$ext=="wpd"||$ext=="wps")
+             elseif($ext=="doc"|| $ext == "txt" || $ext=="pdf"||$ext=="PDF"||$ext=="ppt"||$ext=="pps"||$ext=="pptx"||$ext=="sdf"||$ext=="dat"||$ext=="docx"||$ext=="log"||$ext=="msg"||$ext=="odt"||$ext=="pages"||$ext=="rtf"||$ext=="tex"||$ext=="txt"||$ext=="wpd"||$ext=="wps")
                  echo "<img src='images/document2.png'>";
              elseif($ext=="exe"||$ext=="exe.config")
                  echo "<img src='images/exec1.png'>";
@@ -93,7 +84,7 @@
             //Show file types.
             if($ext=="png"||$ext=="jpg"||$ext=="jpeg"||$ext=="gif")
                 echo 'Image';
-            elseif($ext=="doc"||$ext=="pdf"||$ext=="PDF"||$ext=="ppt"||$ext=="pps"||$ext=="pptx"||$ext=="sdf"||$ext=="dat"||$ext=="docx"||$ext=="log"||$ext=="msg"||$ext=="odt"||$ext=="pages"||$ext=="rtf"||$ext=="tex"||$ext=="txt"||$ext=="wpd"||$ext=="wps")
+            elseif($ext=="doc"||$ext == "txt"||$ext=="pdf"||$ext=="PDF"||$ext=="ppt"||$ext=="pps"||$ext=="pptx"||$ext=="sdf"||$ext=="dat"||$ext=="docx"||$ext=="log"||$ext=="msg"||$ext=="odt"||$ext=="pages"||$ext=="rtf"||$ext=="tex"||$ext=="txt"||$ext=="wpd"||$ext=="wps")
                 echo 'Document';
             elseif($ext=="exe"||$ext=="exe.config")
                 echo 'Executable';
