@@ -17,7 +17,7 @@
     }
     $dest = $dest . '.swf';
     $query = '"C:\Program Files (x86)\LibreOffice 4\program\python" cgi-bin\DocumentConverter.py '.$source.' '.$dest;
-    //echo $query;
+    echo $query;
     $result = exec($query);
 
     //echo  " ".$result;
