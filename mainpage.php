@@ -59,7 +59,7 @@
 			<ul>
 				<li><a class="arrow">Home</a>
 				</li>
-				<li><a class="arrow">Logout</a>
+				<li><a class="arrow" href="logout.php">Logout</a>
 				</li>
 				<li><a class="arrow">Help</a>
 				</li>
@@ -109,12 +109,13 @@
     </div>
 
 </body>
+   
     <script type="text/javascript" src="js/jquery-1.11.0.min.js"></script>
     <script type="text/javascript" src="js/script.js"></script>
     <script type="text/javascript" src="js/jquery-1.10.2.js"></script>
     <script type="text/javascript" src="js/bootstrap.min.js"></script>
     <script type="text/javascript" src="js/bootstrap.js"></script>
-     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
     <script type="text/javascript" src="js/jquery.leanModal.min.js"></script>
 
 </html>

@@ -39,7 +39,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES ('abhinav','123','abhi@nav.com','goyal'),('abhishek','123','abhi@shek.com','mittal');
+INSERT INTO `users` VALUES ('abhinav','123','abhi@nav.com','goyal'),('abhishek','123','abhi@shek.com','mittal'),('vikram','34','qw@aws.as',NULL);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -52,4 +52,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-04-15 14:13:16
+-- Dump completed on 2014-04-16 17:51:09
