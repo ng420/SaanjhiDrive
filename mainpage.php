@@ -405,7 +405,7 @@
 	<div class="name">SaanjhiDrive</div> 
 	    <div class="input-group">
             <span class="input-group-addon"><span class="glyphicon glyphicon-search"></span></span>       
-            <input type="text" onkeyup="search()" id ="search" class="form-control">
+            <input type="text" onkeyup="search()" id ="search" class="form-control" placeholder="Search here..">
         </div>
     </div>
     <!-- JavaScript --

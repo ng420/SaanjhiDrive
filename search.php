@@ -2,6 +2,24 @@
 <?php
     session_start();
     echo '<link rel="stylesheet" href="css/dropdown.css" type="text/css">';
+
+    echo '
+            <link href="css/bootstrap.css" rel="stylesheet">
+	        <link href="css/bootstrap.min.css" rel="stylesheet">
+	        <link href="css/bootstrap-theme.css" rel="stylesheet">
+	        <link href="css/bootstrap-theme.min.css" rel="stylesheet">
+            <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet">
+
+            <script type="text/javascript" src="js/jquery-1.11.0.min.js"></script>
+            <script type="text/javascript" src="js/jquery-1.10.2.js"></script>
+            <script type="text/javascript" src="js/bootstrap.min.js"></script>
+            <script type="text/javascript" src="js/bootstrap.js"></script>
+            <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
+            <script type="text/javascript" src="js/jquery.leanModal.min.js"></script>
+
+    ';
+
+
     $user = $_SESSION['user'];
     $key = $_GET['key'];
     echo $key;
@@ -22,11 +40,11 @@
     echo '
         <table width="100%" cellpadding="8px" id="uphead1">
             <tr>
-                <td width="20%"><a class="share" href="#">Share</a></td>
-                <td width="20%"><a class="download" href="#">Download</a></td> 
-                <td width="20%"><a class="delete" href="#">Delete</a></td>
-                <td width="20%"><a class="rename" href="#">Rename</a></td>
-                <td width="20%"><a class="move" href="#">Move</a></td>
+                <td width="20%"><span class="glyphicon glyphicon-link"></span><a class="share" href="#">   Share</a></td>
+                <td width="20%"><span class="glyphicon glyphicon-download-alt"></span><a class="download" href="#">   Download</a></td> 
+                <td width="20%"><span class="glyphicon glyphicon-trash"></span><a class="delete" href="#">   Delete</a></td>
+                <td width="20%"><span class="glyphicon glyphicon-edit"></span><a class="rename" href="#">   Rename</a></td>
+                <td width="20%"><span class="glyphicon glyphicon-share"></span><a class="move" href="#">   Move</a></td>
             </tr>
         </table> 
     ';

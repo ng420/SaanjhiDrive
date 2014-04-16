@@ -2459,6 +2459,7 @@ input[type="button"].btn-block {
 }
 .glyphicon-trash:before {
   content: "\e020";
+  color: #1BA1E2;
 }
 .glyphicon-home:before {
   content: "\e021";
@@ -2474,6 +2475,7 @@ input[type="button"].btn-block {
 }
 .glyphicon-download-alt:before {
   content: "\e025";
+  color: #1BA1E2;
 }
 .glyphicon-download:before {
   content: "\e026";
@@ -2591,9 +2593,11 @@ input[type="button"].btn-block {
 }
 .glyphicon-edit:before {
   content: "\e065";
+  color: #1BA1E2;
 }
 .glyphicon-share:before {
   content: "\e066";
+  color: #1BA1E2;
 }
 .glyphicon-check:before {
   content: "\e067";
@@ -2819,6 +2823,7 @@ input[type="button"].btn-block {
 }
 .glyphicon-link:before {
   content: "\e144";
+  color: #1BA1E2;
 }
 .glyphicon-phone:before {
   content: "\e145";
