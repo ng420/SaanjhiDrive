@@ -121,7 +121,7 @@
 
                 dir_path = dir_path.concat('!');
                 var user_to_share_with = prompt("Enter user name");
-                
+
                 //AJAX request.
                 var xmlhttp;
                 var form_data = new FormData();
@@ -238,8 +238,58 @@
                 document.getElementById("options").innerHTML = division;
             }
 
-            function download(id) {
-                //download
+            function download_file(file_name) {
+                //Extract directory path.
+                var cells = Array.prototype.slice.call(document.getElementById("path").getElementsByTagName("td"));
+                var dir_path = "";
+                for (var i in cells) {
+                    dir_path += cells[i].innerHTML;
+                    if (dir_path[dir_path.length - 1] == " ") {
+                        dir_path = dir_path.substr(0, dir_path.length - 1);
+                    }
+                }
+                dir_path = dir_path.replace('Home', '');
+                while ((dir_path.indexOf('&gt;') != -1)) {
+                    dir_path = dir_path.replace('&gt;', '!');
+
+                }
+
+                dir_path = dir_path.concat('!');
+
+                //AJAX request.
+                var xmlhttp;
+                var form_data = new FormData();
+                //alert('in callUpload()');
+                if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
+                    xmlhttp = new XMLHttpRequest();
+                }
+                else {// code for IE6, IE5
+                    xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+                }
+                xmlhttp.onreadystatechange = function () {
+                    //alert("sdfasdfsda");
+                    //alert(xmlhttp.status);
+                    if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                        var string_result = String(xmlhttp.responseText);
+                        if (string_result.indexOf('files') != -1) {
+                            
+                            string_result = 'http://localhost:58514/'.concat(string_result);
+                            //alert(string_result)
+                            window.open(string_result);
+
+                        }
+                        else {
+                            alert("File not present.");
+                        }
+                        getFiles(dir_path);
+                    }
+                    //alert(xmlhttp.status);
+                }
+                xmlhttp.open("POST", "download_file.php", true);
+                //xmlHttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                form_data.append("file_name", file_name);
+                form_data.append("dir_path", dir_path);
+                xmlhttp.send(form_data);
             }
             function Delete(id) {
                 //delete
@@ -462,23 +512,26 @@
     <div class="path" id="path">
         Home
     </div>
+    
     <div id="files">
     
     </div>
+    
     <script>
-            function run_leanmodal(source) {
-                $(".go").leanModal({ top: 150, overlay: 0.6, closeButton: ".modal_close" });
-                document.getElementById("ifrm").src = source;
+        function run_leanmodal(source) {
+            $(".go").leanModal({ top: 150, overlay: 0.6, closeButton: ".modal_close" });
+            document.getElementById("ifrm").src = source;
 
-            }
-            function run_leanmodalOther(source) {
-                $(".go").leanModal({ top: 150, overlay: 0.6, closeButton: ".modal_close" });
-            }
-        </script> 
+        }
+        function run_leanmodalOther(source) {
+            $(".go").leanModal({ top: 150, overlay: 0.6, closeButton: ".modal_close" });
+        }
+    </script> 
 
     <div id="register">
-        <iframe  id="ifrm" width="800px" height="600px" frameborder="0"  scrolling="no"></iframe>
+        <iframe  id="ifrm" width="800px" height="600px" frameborder="0"  scrolling="no" ></iframe>
     </div>
+
 </body>
 
 </html>
