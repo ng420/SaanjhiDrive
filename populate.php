@@ -38,7 +38,7 @@
             <tr class="border_bottom">
             <td width="55%">File Name</td>
             <td width="20%">Type</td>
-            <td >Date Modified</td>
+            <td >Shared By</td>
             <tr>
         </table><br>
     ';
@@ -94,7 +94,15 @@
                 echo 'Miscellaneous';
             echo"</td >";
             echo '<td class="data">';
-            echo "04-04-2014";
+
+            if($row['shared_by'])
+            {
+                echo $row['shared_by'];
+            }
+            else 
+            {
+                echo "--";
+            }
             echo"</td>";
             echo "</tr>";
         }
@@ -112,7 +120,14 @@
             echo "Folder";
             echo"</td >";
             echo '<td class="data" width="30%">';
-            echo "04-04-2014";
+            if($row['shared_by'])
+            {
+                echo $row['shared_by'];
+            }
+            else 
+            {
+                echo "--";
+            }
             echo"</td>";
             echo "</tr>";
         }

@@ -104,6 +104,49 @@
                 formData.append("directory_path", dir_path);
                 xmlhttp.send(formData);
             }
+            function share_file(file_name) {
+                var cells = Array.prototype.slice.call(document.getElementById("path").getElementsByTagName("td"));
+                var dir_path = "";
+                for (var i in cells) {
+                    dir_path += cells[i].innerHTML;
+                    if (dir_path[dir_path.length - 1] == " ") {
+                        dir_path = dir_path.substr(0, dir_path.length - 1);
+                    }
+                }
+                dir_path = dir_path.replace('Home', '');
+                while ((dir_path.indexOf('&gt;') != -1)) {
+                    dir_path = dir_path.replace('&gt;', '!');
+
+                }
+
+                dir_path = dir_path.concat('!');
+                var user_to_share_with = prompt("Enter user name");
+                
+                //AJAX request.
+                var xmlhttp;
+                var form_data = new FormData();
+                //alert('in callUpload()');
+                if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
+                    xmlhttp = new XMLHttpRequest();
+                }
+                else {// code for IE6, IE5
+                    xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+                }
+                xmlhttp.onreadystatechange = function () {
+                    //alert("sdfasdfsda");
+                    if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                        alert(xmlhttp.responseText);
+                        getFiles(dir_path);
+                    }
+                    //alert(xmlhttp.status);
+                }
+                xmlhttp.open("POST", "share.php", true);
+                //xmlHttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                form_data.append("file_name", file_name);
+                form_data.append("dir_path", dir_path);
+                form_data.append("user_to_share_with", user_to_share_with);
+                xmlhttp.send(form_data);
+            }
             function upload_folder() {
                 var folder_name = "";
                 while (folder_name.length == 0) {
@@ -185,17 +228,14 @@
             function showopt(id) {
                 var lTable = document.getElementById("options").innerHTML;
                 var division = '<table width="100%" cellpadding="8px" id="uphead1"><tr><td width="10%">' + id + '</td>';
-                division += '<td width="15%"><a class="share" onclick="share(\'' + id + '\')">Share</a></td>';
-                division += '<td width="15%"><a class="download" onclick="download(\'' + id + '\')">Download</a></td>';
+                division += '<td width="15%"><a class="share" onclick="share_file(\'' + id + '\')">Share</a></td>';
+                division += '<td width="15%"><a class="download" onclick="download_file(\'' + id + '\')">Download</a></td>';
                 division += '<td width="15%"><a class="delete" onclick="Delete(\'' + id + '\')">Delete</a></td>';
                 division += '<td width="15%"><a class="rename" onclick="rename(\'' + id + '\')">Rename</a></td>';
                 division += '<td width="15%"><a class="move" onclick="move(\'' + id + '\')">Move</a></td>';
                 division += '</tr>';
                 division += '</table> ';
                 document.getElementById("options").innerHTML = division;
-            }
-            function share(id) {
-                //share
             }
 
             function download(id) {
