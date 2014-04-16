@@ -16,7 +16,7 @@
 	<link href="css/bootstrap-theme.css" rel="stylesheet">
 	<link href="css/bootstrap-theme.min.css" rel="stylesheet">
     <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet">
-
+    <link rel="stylesheet" href="css/lightbox.css">
     
     <script>
         var current_folder = '!';
@@ -61,8 +61,8 @@
 				</li>
 				<li><a class="arrow" href="logout.php">Logout</a>
 				</li>
-				<li><a class="arrow">Help</a>
-				</li>
+				<li><a class="help" href="img/demopage/image-1.jpg" data-lightbox="example-1">Help</a>
+			    </li>
 			</ul>
 		</li>
 		<li><img src="images/notification.png" style="float:left; margin-right:40px; margin-top:4px; margin-left: "></li>
@@ -84,6 +84,8 @@
         e.preventDefault();
         $("#wrapper").toggleClass("active");
     });
+        })
+
     </script>
     <div class="path" id="path">
         Home
@@ -107,9 +109,6 @@
     <div id="register">
         <iframe  id="ifrm" width="800px" height="600px" frameborder="0"  scrolling="no" ></iframe>
     </div>
-
-</body>
-   
     <script type="text/javascript" src="js/jquery-1.11.0.min.js"></script>
     <script type="text/javascript" src="js/script.js"></script>
     <script type="text/javascript" src="js/jquery-1.10.2.js"></script>
@@ -118,4 +117,20 @@
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
     <script type="text/javascript" src="js/jquery.leanModal.min.js"></script>
 
+    <script src="js/lightbox2.js"></script>
+	<script src="js/lightbox.js"></script>
+
+	<script>
+	var _gaq = _gaq || [];
+	_gaq.push(['_setAccount', 'UA-2196019-1']);
+	_gaq.push(['_trackPageview']);
+
+	(function() {
+		var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+		ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	})();
+	</script>
+
+</body>
 </html>

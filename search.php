@@ -35,7 +35,7 @@
     //File parameter table.
     echo '
         <table width="79%" cellpadding="8px" class="heading">
-            <tr class="border_bottom">
+            <tr id="row_id" class="border_bottom">
             <td width="55%">File Name</td>
             <td width="20%">Type</td>
             <td >Shared By</td>
