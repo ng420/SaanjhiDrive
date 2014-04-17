@@ -2,7 +2,7 @@
     
     //Start session to access session variables.
     session_start();
-
+    
     //Set variables for performing query.
     $owner = $_SESSION['user'];
     $directory_path_initial = $_POST['dir_path'];

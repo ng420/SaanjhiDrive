@@ -213,9 +213,11 @@ function showopt(id) {
 
 }
 
-var downloadURL = function downloadURL(url) {
-
-            window.location.href = 'request_file.php?url='.concat(url);
+var downloadURL = function downloadURL(url, file_name) {
+    //alert(file_name);
+    query_string = 'request_file.php?url='.concat(url);
+    query_string = query_string.concat('&file_name='.concat(file_name));
+    window.location.href = query_string;
 
 };
 
@@ -254,7 +256,7 @@ function download_file(file_name) {
             var string_result = String(xmlhttp.responseText);
             if (string_result.indexOf('files') != -1) {
                             
-                downloadURL(string_result);
+                downloadURL(string_result, file_name);
 
             }
             else {
