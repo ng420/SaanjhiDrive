@@ -45,6 +45,30 @@ function callUpload() {
     formData.append("directory_path", dir_path);
     xmlhttp.send(formData);
 }
+
+function shared_with_me() {
+    //AJAX request.
+    var xmlhttp;
+    if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
+        xmlhttp = new XMLHttpRequest();
+    }
+    else {// code for IE6, IE5
+        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+    }
+    xmlhttp.onreadystatechange = function () {
+        //alert("sdfasdfsda");
+        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+            document.getElementById('files').innerHTML = xmlhttp.responseText;
+ 
+        }
+        //alert(xmlhttp.status);
+    }
+    xmlhttp.open("POST", "shared_with_me.php", true);
+    //xmlHttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    
+    xmlhttp.send();
+}
+
 function share_file(file_name) {
     var cells = Array.prototype.slice.call(document.getElementById("path").getElementsByTagName("td"));
     var dir_path = "";

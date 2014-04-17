@@ -45,7 +45,7 @@
                 </li>
                 <li><a href="#" onclick="upload_folder()">Create Folder</a>
                 </li>
-                <li><a href="#">Shared With Me</a>
+                <li><a href="#" onclick="shared_with_me();">Shared With Me</a>
                 </li>
                 <li><a href="#">Install For desktop</a>
                 </li>
@@ -65,7 +65,7 @@
 			    </li>
 			</ul>
 		</li>
-		<li><img src="images/notification.png" style="float:left; margin-right:40px; margin-top:4px; margin-left: "></li>
+		<li><img src="images/notification.png" style="float:left; margin-right:40px; margin-top:4px;"></li>
 	</ul><br>
     <div class="sanjhacontainer">
 	<div class="name">SaanjhiDrive</div> 
@@ -84,7 +84,7 @@
         e.preventDefault();
         $("#wrapper").toggleClass("active");
     });
-        })
+        
 
     </script>
     <div class="path" id="path">
@@ -107,8 +107,9 @@
     </script> 
 
     <div id="register">
-        <iframe  id="ifrm" width="800px" height="600px" frameborder="0"  scrolling="no" ></iframe>
+        <!--<iframe  id="ifrm" width="800px" height="600px" frameborder="0"  scrolling="no" ></iframe>-->
     </div>
+
     <script type="text/javascript" src="js/jquery-1.11.0.min.js"></script>
     <script type="text/javascript" src="js/script.js"></script>
     <script type="text/javascript" src="js/jquery-1.10.2.js"></script>
