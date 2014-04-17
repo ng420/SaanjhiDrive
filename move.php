@@ -44,6 +44,14 @@
     echo '</div>';
     echo '<div class="tables">';
     echo '<table width="80%" cellpadding="10px" class="table">';
+    echo '<tr class="border_bottom"><td width="5%" class="data"><img src="images/folder.png" /></td><td class="data" width="50%" onclick="DestDirMove(\''.$filename.'\',\''.$currDir.'\',\''.'!'.'\')">'; 
+    echo "Home<br>";
+    echo "</td>";
+    echo'<td class="data" width="45%">';
+    echo "";
+    echo"</td >";
+            
+    echo "</tr>";
     //Traverse through query results.
     while($row = mysqli_fetch_array($result))
     {   
@@ -51,7 +59,7 @@
             $folder_name = substr($name, 6) ; //Remove dwalin tag.
             $folder_name = str_replace("_", " ", $folder_name); //Replace underscore by blank spaces.
             $path = str_replace('!'," \ ",$row["directory_path"]);
-            $path = substr($path,1);
+            $path = substr($path,3);
             if($path == ""){
                 $path = "Home";
             }

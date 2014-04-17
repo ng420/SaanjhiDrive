@@ -10,14 +10,21 @@
     $con=mysqli_connect("localhost","root","r00tpass","mysql_db");
     if (mysqli_connect_errno())
     {
-        echo "Failed to connect to MySQL: " . mysqli_connect_error();
+        ;//echo "Failed to connect to MySQL: " . mysqli_connect_error();
     }
     
     if($result = mysqli_query($con, $query)){
-        echo "Success";
+        $query = "SELECT * FROM filesystem  WHERE owner='$user' AND directory_path = '$currDir' AND file_name = '$newName'";
+        
+        if($result = mysqli_query($con, $query)){
+            while($row = mysqli_fetch_array($result)){ 
+                echo $row['file_id'];
+            }
+        }
+    
     }
     else {
-        echo 'Fail';
+        ;//echo 'Fail';
     }
  
 ?>
