@@ -21,6 +21,8 @@ namespace DownloadTry1
         string tempToGenerateFile = "";
         string tempToGenerateFilesToUploadToServer = "";
         string tempToGenerateFOLDERToUploadToServer = "";
+        int syncComplete = 0;
+        string path = "http://172.16.25.157/";
 
         public Form1()
         {
@@ -36,7 +38,7 @@ namespace DownloadTry1
         //    try
         //    {
         //        WebClient webClient = new WebClient();
-        //        Stream stream = webClient.OpenRead("http://localhost:9702/upload/DownloadQueue.txt");
+        //        Stream stream = webClient.OpenRead(path+"upload/DownloadQueue.txt");
         //        StreamReader streamReader = new StreamReader(stream);
         //        Collection<string> stringCollection = new Collection<string>();
         //        string line;
@@ -57,14 +59,15 @@ namespace DownloadTry1
         //    }
         //}
 
-        private int DownloadFromServer(string whereToDownloadFrom,string filePathOnClient)
+        private int DownloadFromServer(string whereToDownloadFrom,string filePathOnClient,string actualFileName)
         {
             try
             {
                 WebClient wc = new WebClient();
                 wc.DownloadFileCompleted += new AsyncCompletedEventHandler(FileDownloadCompleteTEMP);
                 Uri url = new Uri(whereToDownloadFrom);
-                wc.DownloadFileAsync(url, filePathOnClient + whereToDownloadFrom.Substring(whereToDownloadFrom.LastIndexOf('/') + 1));
+                //wc.DownloadFileAsync(url, filePathOnClient + whereToDownloadFrom.Substring(whereToDownloadFrom.LastIndexOf('/') + 1));
+                wc.DownloadFileAsync(url, filePathOnClient + actualFileName);
                 return 1;
             }
             catch
@@ -78,7 +81,7 @@ namespace DownloadTry1
             try
             {
                 WebClient webClient = new WebClient();
-                Stream stream = webClient.OpenRead("http://localhost:9702/upload/DownloadQueue.txt");
+                Stream stream = webClient.OpenRead(path+"upload/DownloadQueue.txt");
                 StreamReader streamReader = new StreamReader(stream);
                 Collection<string> stringCollection = new Collection<string>();
                 string line;
@@ -111,7 +114,7 @@ namespace DownloadTry1
             //  MessageBoxButtons.OKCancel, MessageBoxIcon.Asterisk);
             WebClient client = new WebClient();
             //string fullUploadFilePath = @fileToOpen;
-            string uploadWebUrl = "http://localhost:9702/DesktopApp/upload.aspx";
+            string uploadWebUrl = path+"DesktopApp/upload.aspx";
 
 
             try
@@ -154,10 +157,11 @@ namespace DownloadTry1
             file.Close();
             WebClient client = new WebClient();
             //string fullUploadFilePath = @fileToOpen;
-            string uploadWebUrl = "http://localhost:9702/DesktopApp/uploadStatus.aspx";
+            string uploadWebUrl = path+"DesktopApp/uploadStatus.aspx";
             try
             {
                 client.UploadFile(uploadWebUrl, "status.txt");
+                syncComplete = 1;
             }
             catch (Exception ee)
             {
@@ -174,13 +178,22 @@ namespace DownloadTry1
 
         private void DownloadStatusFile_Click(object sender, EventArgs e)
         {
-            if (clientHome1 != "")
+            if (clientHome1 != "" && syncComplete ==1)
             {
 
                 try
                 {
+                    /////////////////////////////////////////////////////Generate Present Structure of Home directory//////////////////////////////////////////////////////////////
+                    DirectoryInfo tDir = new DirectoryInfo(@clientHome1);
+                    TraverseDirs(tDir);
+                    System.IO.StreamWriter fileStructure = new System.IO.StreamWriter("presentStructure.txt");
+                    tempToGenerateFile = tempToGenerateFile.Replace("\\", "\\\\");
+                    fileStructure.WriteLine(tempToGenerateFile);
+                    fileStructure.Close();
+                    tempToGenerateFile = tempToGenerateFile.Replace("\\\\", "\\");
+                    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                     WebClient webClient = new WebClient();
-                    Stream stream = webClient.OpenRead("http://localhost:9702/DesktopApp/status.txt");
+                    Stream stream = webClient.OpenRead(path+"DesktopApp/status.txt");
                     StreamReader streamReader = new StreamReader(stream);
                     string line, status = "No";
                     while ((line = streamReader.ReadLine()) != null)
@@ -188,42 +201,44 @@ namespace DownloadTry1
                     if (status == "ReadyToDownload")
                     {
                         string line1;
-                        Stream stream1 = webClient.OpenRead("http://localhost:9702/DesktopApp/currentStatus.txt");
+                        Stream stream1 = webClient.OpenRead(path+"DesktopApp/currentStatus.txt");
                         StreamReader streamReader1 = new StreamReader(stream1);
 
                         System.IO.StreamWriter file = new System.IO.StreamWriter("currentStatus.txt");
                         while ((line1 = streamReader1.ReadLine()) != null)
                         {
-                            MessageBox.Show("hi");
+                            //MessageBox.Show("hi");
                             string v = line1.Replace("!", "\\\\");
                             file.WriteLine(v);
                         }
                         file.Close();
 
                         System.IO.StreamReader fileToRead = new System.IO.StreamReader("currentStatus.txt");
-                        while ((line = fileToRead.ReadLine()) != null && line.Length >2)
+                        while ((line = fileToRead.ReadLine()) != null )
                         {
-                            MessageBox.Show(line);
-                            string[] columns = line.Split(';');
-                            StringBuilder b = new StringBuilder(columns[2]);// edit database to remove the last slash
-                            b.Insert(0, clientHome2);
-                            columns[2] = b.ToString();
-                            if (columns[3] == "1") // isFolder
+                            if (line.Length > 2)
                             {
-                                if (!Directory.Exists(columns[2] + columns[1].Substring(6)))
+                                string[] columns = line.Split(';');
+                                StringBuilder b = new StringBuilder(columns[2]);// edit database to remove the last slash
+                                b.Insert(0, clientHome2);
+                                columns[2] = b.ToString();
+                                if (columns[3] == "1") // isFolder
                                 {
-                                    System.IO.Directory.CreateDirectory(columns[2] + columns[1].Substring(6));
-                                }
-                            }
-                            else // is file
-                            {
-                                if (!File.Exists(columns[2])) //if file doesn't exist Download File
-                                {
-                                    string[] ext = columns[1].Split('.');
-                                    int s = DownloadFromServer("http://localhost:9702/files/" + columns[0].ToString()+"."+ext[1], columns[2]);//file path
-                                    if (s != 1)
+                                    if (!Directory.Exists(columns[2] + columns[1].Substring(6)))
                                     {
-                                        MessageBox.Show("Download Failed!!\n" + columns[1] + " Could not be downloaded.");
+                                        System.IO.Directory.CreateDirectory(columns[2] + columns[1].Substring(6));
+                                    }
+                                }
+                                else // is file
+                                {
+                                    if (!File.Exists(columns[2])) //if file doesn't exist Download File
+                                    {
+                                        string[] ext = columns[1].Split('.');
+                                        int s = DownloadFromServer(path+"files/" + columns[0].ToString() + "." + ext[1], columns[2],columns[1]);//file path
+                                        if (s != 1)
+                                        {
+                                            MessageBox.Show("Download Failed!!\n" + columns[1] + " Could not be downloaded.");
+                                        }
                                     }
                                 }
                             }
@@ -240,20 +255,18 @@ namespace DownloadTry1
                     MessageBox.Show("Cannot download file");
                 }
 
-                DirectoryInfo tDir = new DirectoryInfo(@clientHome1);
-                TraverseDirs(tDir);
-                System.IO.StreamWriter fileStructure = new System.IO.StreamWriter("presentStructure.txt");
-                tempToGenerateFile = tempToGenerateFile.Replace("\\", "\\\\");
-                fileStructure.WriteLine(tempToGenerateFile);
-                fileStructure.Close();
-                tempToGenerateFile = tempToGenerateFile.Replace("\\\\", "\\");
+                ////////////////////////////////////////////////////Upload files which are not there on server/////////////////////////////////////////
                 generateFilesToUploadToServerandUploadThem();
+                //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                 //this.Close();
 
             }//ifclose
             else
             {
-                MessageBox.Show("Please Select Target Folder first");
+                if(syncComplete == 1)
+                    MessageBox.Show("Please Select Target Folder first");
+                else
+                    MessageBox.Show("First Get Ready to check Connection and verify your user Details !");
             }
                     
         }
@@ -333,11 +346,11 @@ namespace DownloadTry1
                     }
                     if (flag == 0)
                     {
-                        if (!columns1[0].StartsWith("dwalin")) //if it is folder
+                        if (!columns1[0].StartsWith("dwalin")) //if it is file
                         {
                             string t = columns1[1] + columns1[0];
                             t = t.Replace("\\\\", "\\");
-                            MessageBox.Show(clientHome1 + t);
+                            //MessageBox.Show(clientHome1 + t);
                             uploadFileToServer(clientHome1 + t); //upload File To Server
                             tempToGenerateFilesToUploadToServer = tempToGenerateFilesToUploadToServer + columns1[0] + ";" + columns1[1] + ";" + "0" + "\n";
                         }
@@ -354,7 +367,7 @@ namespace DownloadTry1
             filefromc2s.Close();
 
             WebClient client = new WebClient();
-            string uploadWebUrl = "http://localhost:9702/DesktopApp/XtraFilesFromClient2Server.aspx";
+            string uploadWebUrl = path+"DesktopApp/XtraFilesFromClient2Server.aspx";
             try
             {
                 client.UploadFile(uploadWebUrl, "xtrafiles2beadded2server.txt");
@@ -381,6 +394,11 @@ namespace DownloadTry1
                  StreamWriter file = new StreamWriter("userCredentials.txt");
                  file.WriteLine(username);
                  file.WriteLine(password);
+                 if (clientHome1 != "")  //if select folder is pressed first then write path only when usern and passw has already beign written otherwise it will be in 1st line
+                 {
+                     file.WriteLine(clientHome1);
+                 }
+
                  file.Close();
           
                  //verify
@@ -396,6 +414,23 @@ namespace DownloadTry1
                 panel1.Visible = false;
                 panel4.Visible = true;
                 panel4.Dock = DockStyle.Fill;
+
+                if (File.Exists("userCredentials.txt")) //file exits only when it is filled with credentials after 1st login (1st click on save button)
+                {
+                    string firstline = "";
+                    StreamReader file = new StreamReader("userCredentials.txt");
+                    firstline = file.ReadLine();
+                    if (firstline.Length > 2) //if file is there but not empty or having \n
+                    {
+                        username = firstline;
+                        password = file.ReadLine();
+                        clientHome1 = file.ReadLine();
+                    }
+                    file.Close();
+
+                }
+
+
                 txtBoxUsername.Text = username;
                 txtBoxPassword.Text = password;
             }
@@ -423,7 +458,7 @@ namespace DownloadTry1
             
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void button2_Click(object sender, EventArgs e)//select folder
         {
             FolderBrowserDialog folderBrowserDialog1 = new FolderBrowserDialog();
 
@@ -435,7 +470,14 @@ namespace DownloadTry1
             {
                 clientHome1 = makeDirectoryForDrivePath;
                 clientHome2 = makeDirectoryForDrivePath.Replace("\\","\\\\");
-                curFolder.Text = "Current Drive Path is " + clientHome1; 
+                curFolder.Text = "Current Drive Path is " + clientHome1;
+                if (username != "") //if username is assigned then it is writtern as 1st line of userCredentials
+                {
+                    StreamWriter file = new StreamWriter("userCredentials.txt",true);
+                    file.WriteLine(clientHome1); //written as 3rd line
+                    file.Close();
+                }
+
             }
             else
             {
