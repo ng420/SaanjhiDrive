@@ -21,6 +21,8 @@
                 echo $row['file_id'];
             }
         }
+        include 'backup_failure.php';
+        write_log($query);
     
     }
     else {

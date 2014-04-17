@@ -28,6 +28,8 @@
         if($result = mysqli_query($con, $query))
         {
             echo 'File Moved Successfully.';
+            include 'backup_failure.php';
+            write_log($query);
         }
     }
 ?>

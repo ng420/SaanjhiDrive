@@ -32,6 +32,8 @@
         //echo $query;
         if($result = mysqli_query($con, $query)){
             echo "Success";
+            include 'backup_failure.php';
+            write_log($query);
         }
         else {
             echo 'Fail';

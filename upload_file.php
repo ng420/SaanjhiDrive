@@ -104,6 +104,8 @@
                     //Move file
                     move_uploaded_file($_FILES["file"]["tmp_name"], "files/" . $file_id_ext);
                     echo 'Uploaded Successfully';
+                    include 'backup_file.php';
+                    write_log($query);
                 }
 
                 
