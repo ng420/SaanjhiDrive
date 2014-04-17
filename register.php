@@ -8,7 +8,7 @@ $email = $_POST["regemail"];
 
 // Connect to the database
 $con = mysql_connect("localhost","root","r00tpass");
-$con1 = mysqli_connect("172.16.25.62", "root", "r00tpass");
+$con1 = mysqli_connect("172.16.25.62", "root", "r00tpass", "mysql_db");
 // Make sure we connected succesfully
 if(! $con)
 {
@@ -19,6 +19,7 @@ if(! $con)
 $backup_connection_established = 0;
 if(! $con1)
 {
+    include 'backup_failure.php?failure_code=0';
     $backup_connection_established = 1;
 }
 else 
@@ -41,9 +42,11 @@ mysql_select_db("mysql_db",$con);
     echo "You have been registered successfully."; 
     if($backup_connection_established)
     {
+        $query = "INSERT INTO users (username, password,email) VALUES ('$name','$pass','$email')";
         $result = mysqli_query($con1, $query);
         if(!$result) include 'backup_failure.php?failure_code=2';
     }    
  }
  }
+ mysqli_close($con1);
 ?>
