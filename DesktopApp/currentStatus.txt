@@ -3,11 +3,14 @@
 10;dwalinc;!a!;1
 11;dwaline;!a!c!;1
 20;dwalinback up;!;1
+23;dwalinhello;!;1
 7;Penguins.jpg;sdasd;0
-13;python.pdf;!;0
-14;Database1.pdf;!;0
-14;Database1.pdf;!a!c!;0
 14;Database1.pdf;!a!c!e!;0
+14;Database12.pdf;!a!c!;0
 15;database.sql;!;0
 16;College Management System(user manual).pdf;!;0
+19;1013123_495221697227400_1884795761_n.jpg;!;0
 21;LoginCheck.ucase.violet.html;!back up!;0
+24;readme.cpp;!hello!;0
+25;Capture.PNG;!;0
+26;JEE(Main)_AcknowledgementPage.pdf;!;0

@@ -179,20 +179,13 @@ namespace DownloadTry1
 
         private void DownloadStatusFile_Click(object sender, EventArgs e)
         {
+            Sync_Click(sender, e);
             if (clientHome1 != "" && syncComplete ==1)
             {
                 string status = "No";
                 try
                 {
-                    /////////////////////////////////////////////////////Generate Present Structure of Home directory//////////////////////////////////////////////////////////////
-                    DirectoryInfo tDir = new DirectoryInfo(@clientHome1);
-                    TraverseDirs(tDir);
-                    System.IO.StreamWriter fileStructure = new System.IO.StreamWriter("presentStructure.txt");
-                    tempToGenerateFile = tempToGenerateFile.Replace("\\", "\\\\");
-                    fileStructure.WriteLine(tempToGenerateFile);
-                    fileStructure.Close();
-                    tempToGenerateFile = tempToGenerateFile.Replace("\\\\", "\\");
-                    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
                     WebClient webClient = new WebClient();
                     Stream stream = webClient.OpenRead(path+"DesktopApp/status.txt");
                     
@@ -249,6 +242,7 @@ namespace DownloadTry1
                             }
 
                         }
+                        fileToRead.Close();
                     }
                     else if (status == "failed") 
                     {
@@ -259,18 +253,37 @@ namespace DownloadTry1
                         MessageBox.Show("Network Problem....Try again !!");
                     }
                 }
-                catch
+                catch(Exception qws)
                 {
-                    MessageBox.Show("Cannot download file");
+                    MessageBox.Show("Cannot download file" + qws.Message);
                 }
                 if (status == "ReadyToDownload")
                 {
-                    ////////////////////////////////////////////////////Upload files which are not there on server/////////////////////////////////////////
-                    generateFilesToUploadToServerandUploadThem();
-                    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-                    //this.Close();
+                    try
+                    {
+                        ///////////////////////////////////////////////////Delete Files which are not there on server but are in client's desktop///////////////
+                        //DirectoryInfo tDir1 = new DirectoryInfo(@clientHome1);
+                        //TraverseDirsTODelete(tDir1);
+                        /////////////////////////////////////////////////////Generate Present Structure of Home directory//////////////////////////////////////////////////////////////
+                        DirectoryInfo tDir = new DirectoryInfo(@clientHome1);
+                        TraverseDirs(tDir);
+                        System.IO.StreamWriter fileStructure = new System.IO.StreamWriter("presentStructure.txt");
+                        tempToGenerateFile = tempToGenerateFile.Replace("\\", "\\\\");
+                        fileStructure.WriteLine(tempToGenerateFile);
+                        fileStructure.Close();
+                        tempToGenerateFile = tempToGenerateFile.Replace("\\\\", "\\");
+                        //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                        ////////////////////////////////////////////////////Upload files which are not there on server/////////////////////////////////////////
+                        generateFilesToUploadToServerandUploadThem();
 
+                        //////////this.Close();
+                    }
+                    catch (Exception erygytf)
+                    {
+                        MessageBox.Show(erygytf.Message);
+                    }
                 }
+            
                 else if (status == "failed") ;
                 else
                 {
@@ -332,6 +345,92 @@ namespace DownloadTry1
             }
         }
 
+        private void TraverseDirsTODelete(DirectoryInfo dir)
+        {
+
+            // Subdirs
+            try         // Avoid errors such as "Access Denied"
+            {
+                foreach (DirectoryInfo iInfo in dir.GetDirectories())
+                {
+                    string dirPath = iInfo.FullName;
+                    string withoutInitialHeader = iInfo.FullName.Substring(clientHome1.Length);
+                    dirPath = dirPath.Replace("\\", "\\\\");
+                    string nameOfFolder = "dwalin" + dirPath.Substring(dirPath.LastIndexOf('\\') + 1); //1 because to exclude '\'
+                    string afterHeaderWithoutName = withoutInitialHeader.Substring(0, withoutInitialHeader.Length - (nameOfFolder.Length - 6)); //to eliminate dwalin
+                    //tempToGenerateFile = tempToGenerateFile + nameOfFolder + ";" + afterHeaderWithoutName + "\r\n"; //eg. name;pathafterdropboxhomefolder
+                    string line, tt = afterHeaderWithoutName.Replace("\\", "\\\\");
+                    System.IO.StreamReader fileToRead = new System.IO.StreamReader("currentStatus.txt");
+                    int flagToDelete =0;
+                    while ((line = fileToRead.ReadLine()) != null)
+                    {
+                        if (line.Length > 2)
+                        {
+                            string[] columns = line.Split(';');
+                            if(nameOfFolder == columns[1] && afterHeaderWithoutName == columns[2])
+                            {
+                                flagToDelete = 1;
+                                break;
+                            }
+                        }
+                    }
+                    fileToRead.Close();
+                    if (flagToDelete == 0)
+                    {
+                        //dir.Delete(true); // true => recursive delete
+                        //delete;
+                    }
+                    //else
+                        //TraverseDirs(iInfo);
+                }
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Traverse Dir Error");
+            }
+
+            // Subfiles
+            try         // Avoid errors such as "Access Denied"
+            {
+                foreach (FileInfo iInfo in dir.GetFiles())
+                {
+                    string dirPath = iInfo.FullName;
+                    string withoutInitialHeader = iInfo.FullName.Substring(clientHome1.Length);
+                    dirPath = dirPath.Replace("\\", "\\\\");
+                    string nameOfFile = dirPath.Substring(dirPath.LastIndexOf('\\') + 1);
+                    string afterHeaderWithoutName = withoutInitialHeader.Substring(0, withoutInitialHeader.Length - nameOfFile.Length);
+                    //tempToGenerateFile = tempToGenerateFile + nameOfFile + ";" + afterHeaderWithoutName + "\r\n";
+                    string line,tt = afterHeaderWithoutName.Replace("\\","\\\\");
+                    System.IO.StreamReader fileToRead = new System.IO.StreamReader("currentStatus.txt");
+                    int flagToDelete = 0;
+                    while ((line = fileToRead.ReadLine()) != null)
+                    {
+                        if (line.Length > 2)
+                        {
+                            //MessageBox.Show(line + "\n"+ nameOfFile + "\n" + afterHeaderWithoutName);
+                            string[] columns = line.Split(';');
+                            if (nameOfFile == columns[1] && tt == (columns[2]))
+                            {
+                                flagToDelete = 1;
+                                break;
+                            }
+                        }
+                    }
+                    fileToRead.Close();
+                    if (flagToDelete == 0)
+                    {
+                        int r = DeleteFileOnDesktop(iInfo.FullName);
+                        if (r != 1) MessageBox.Show("Could not delete");
+                        //else { MessageBox.Show("Deleted"); }
+                        //delete;
+                    }
+                }
+            }
+            catch (Exception)
+            {
+            }
+        }
+
         private void generateFilesToUploadToServerandUploadThem()
         {
             string line1,line2;
@@ -370,9 +469,11 @@ namespace DownloadTry1
                         else
                             tempToGenerateFOLDERToUploadToServer = tempToGenerateFOLDERToUploadToServer + columns1[0] + ";" + columns1[1] + ";" + "1" + "\n";
                     }
+                    readPresent.Close();
                 }
             }
-
+            
+            readCurrent.Close();
             StreamWriter filefromc2s = new StreamWriter("xtrafiles2beadded2server.txt");
             filefromc2s.WriteLine(tempToGenerateFilesToUploadToServer); // one extra \n
             filefromc2s.WriteLine("`");
@@ -399,12 +500,13 @@ namespace DownloadTry1
         {
              username = txtBoxUsername.Text;
              password = txtBoxPassword.Text;
-             if (username == "" || password == "")
+             if (username == "" || password == "" || textBox1.Text == "")
              {
                  MessageBox.Show("Please Fill Proper credentials");
              }
              else
              {
+
                  StreamWriter file = new StreamWriter("userCredentials.txt");
                  file.WriteLine(username);
                  file.WriteLine(password);
@@ -412,9 +514,18 @@ namespace DownloadTry1
                  {
                      file.WriteLine(clientHome1);
                  }
-
+                 if (textBox1.Text.Length > 5)
+                 {
+                     file.WriteLine(textBox1.Text);
+                     path = textBox1.Text;
+                 }
                  file.Close();
-          
+
+                 MessageBox.Show("Saved");
+                 lblSettings.Text = "Connection Settings";
+                 panel4.Visible = false;
+                 panel1.Visible = true;
+                 panel1.Dock = DockStyle.Fill;
                  //verify
                 // curUser.Text = username + " is Logged In";
              }
@@ -440,6 +551,7 @@ namespace DownloadTry1
                         password = file.ReadLine();
                         clientHome1 = file.ReadLine();
                         clientHome2 = clientHome1.Replace("\\","\\\\");
+                        path = file.ReadLine();
                     }
                     file.Close();
 
@@ -448,6 +560,7 @@ namespace DownloadTry1
 
                 txtBoxUsername.Text = username;
                 txtBoxPassword.Text = password;
+                textBox1.Text = path;
             }
             else
             {
@@ -492,6 +605,7 @@ namespace DownloadTry1
                     file.WriteLine(username);
                     file.WriteLine(password);
                     file.WriteLine(clientHome1); //written as 3rd line
+                    file.WriteLine(path);
                     file.Close();
                 }
 
@@ -522,6 +636,7 @@ namespace DownloadTry1
                         password = file.ReadLine();
                         clientHome1 = file.ReadLine();
                         clientHome2 = clientHome1.Replace("\\", "\\\\");
+                        path = file.ReadLine();
                     }
                     file.Close();
 
