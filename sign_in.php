@@ -25,5 +25,6 @@ if($row["username"]==$name && $row["password"]==$pass)
         header("Location: mainpage.php");
     }
 else
-    echo"Sorry, you are not valid user, Please try again.";
+    $response = 3;
+    header("Location: "."index.php?response=3");
 ?>

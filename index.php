@@ -117,7 +117,12 @@
               }
               elseif($_GET['response']==2){
                   echo '<script language="javascript">';
-                  echo "Unable to connect to database.";
+                  echo 'alert("Unable to connect to database.")';
+                  echo '</script>';
+              }
+              elseif($_GET['response']==3){
+                  echo '<script language="javascript">';
+                  echo 'alert("Username-Password combination was incorrect.")';
                   echo '</script>';
               }
           }
