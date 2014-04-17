@@ -9,18 +9,18 @@
 
 <Script  runat=server>
 void Page_Load(object sender, EventArgs e) {
-
+    string path = Server.MapPath("/");
     //string user_name = (string)Session["username"]; //                                    Change this later !!
     //string user_name = "abhishek";
     string user_name;
-    using (StreamReader streamReader = File.OpenText("C:\\Users\\Abhijeet Singh\\Documents\\GitHub\\SaanjhiDrive\\DesktopApp\\currentUsersUsername.txt"))
+    using (StreamReader streamReader = File.OpenText(path+"DesktopApp\\currentUsersUsername.txt"))
         user_name = streamReader.ReadLine();
 
     //UPLOAD TEXTFILE FROM CLIENT CONTAINING NAME OF NEW FOLDERS TO BE CREATED
 
     foreach(string f in Request.Files.AllKeys) {
         HttpPostedFile file = Request.Files[f];  //always a text file
-       file.SaveAs("C:\\Users\\Abhijeet Singh\\Documents\\GitHub\\SaanjhiDrive\\DesktopApp\\" + file.FileName);
+       file.SaveAs(path+"DesktopApp\\" + file.FileName);
     }
     
      ////////////////////////////////////////////////Declare Variables and set up connection/////////////////////////////////////////////////////////
@@ -47,7 +47,7 @@ void Page_Load(object sender, EventArgs e) {
           }
        //////////////////////////////////////////////////////Get the file list to be uploaded to the server///////////////////////////////////////////
        try{
-       using (StreamReader streamReader = File.OpenText("C:\\Users\\Abhijeet Singh\\Documents\\GitHub\\SaanjhiDrive\\DesktopApp\\xtrafiles2beadded2server.txt"))
+       using (StreamReader streamReader = File.OpenText(path+"DesktopApp\\xtrafiles2beadded2server.txt"))
            line = streamReader.ReadToEnd();
        fileListFolder = line.Split('`');
        ///Directories
@@ -92,7 +92,7 @@ void Page_Load(object sender, EventArgs e) {
                already_present =0;
                string[] file_i = files[i].Split(';');
                ///////////////////////////////////////////Compute MD5 Hash//////////////////////////////////////////////
-               byte[] computedHash = new MD5CryptoServiceProvider().ComputeHash(File.ReadAllBytes("C:\\Users\\Abhijeet Singh\\Documents\\GitHub\\SaanjhiDrive\\DesktopApp\\TestingDesktopApp\\" + user_name +file_i[0]));
+               byte[] computedHash = new MD5CryptoServiceProvider().ComputeHash(File.ReadAllBytes(path+"DesktopApp\\TestingDesktopApp\\" + user_name +file_i[0]));
                 var sBuilder = new StringBuilder();
                 Response.Write("hiiiii\n");
                 foreach (byte b in computedHash)
@@ -130,9 +130,9 @@ void Page_Load(object sender, EventArgs e) {
                       //insert into database
                       //string[] ext = file_i[0].Split('.');
                       string ext = file_i[0].Substring(file_i[0].LastIndexOf('.')+1);
-                      FileInfo fi = new FileInfo("C:\\Users\\Abhijeet Singh\\Documents\\GitHub\\SaanjhiDrive\\DesktopApp\\TestingDesktopApp\\" + user_name +file_i[0]);
+                      FileInfo fi = new FileInfo(path+"DesktopApp\\TestingDesktopApp\\" + user_name +file_i[0]);
                       if (fi.Exists)
-                            fi.MoveTo("C:\\Users\\Abhijeet Singh\\Documents\\GitHub\\SaanjhiDrive\\DesktopApp\\TestingDesktopApp\\" + next_file_id.ToString() +"."+ext);
+                            fi.MoveTo(path+"DesktopApp\\TestingDesktopApp\\" + next_file_id.ToString() +"."+ext);
                       //rename this file..
                   }
                   else if(already_present ==1)
@@ -142,14 +142,14 @@ void Page_Load(object sender, EventArgs e) {
                       MySqlCommand cmd3 = new MySqlCommand(insertQuery, connection);
                       cmd3.ExecuteNonQuery();
                       //insert into database......with same file id as found above
-                      if ((System.IO.File.Exists("C:\\Users\\Abhijeet Singh\\Documents\\GitHub\\SaanjhiDrive\\DesktopApp\\TestingDesktopApp\\" + user_name +file_i[0])))
-                            System.IO.File.Delete("C:\\Users\\Abhijeet Singh\\Documents\\GitHub\\SaanjhiDrive\\DesktopApp\\TestingDesktopApp\\" + user_name +file_i[0]);
+                      if ((System.IO.File.Exists(path+"DesktopApp\\TestingDesktopApp\\" + user_name +file_i[0])))
+                            System.IO.File.Delete(path+"DesktopApp\\TestingDesktopApp\\" + user_name +file_i[0]);
                       // delete file_i[0]
                   }
                   else
                   {
-                      if ((System.IO.File.Exists("C:\\Users\\Abhijeet Singh\\Documents\\GitHub\\SaanjhiDrive\\DesktopApp\\TestingDesktopApp\\" + user_name +file_i[0])))
-                            System.IO.File.Delete("C:\\Users\\Abhijeet Singh\\Documents\\GitHub\\SaanjhiDrive\\DesktopApp\\TestingDesktopApp\\" + user_name +file_i[0]);
+                      if ((System.IO.File.Exists(path+"DesktopApp\\TestingDesktopApp\\" + user_name +file_i[0])))
+                            System.IO.File.Delete(path+"DesktopApp\\TestingDesktopApp\\" + user_name +file_i[0]);
                       // delete file_i[0]
                   }
              

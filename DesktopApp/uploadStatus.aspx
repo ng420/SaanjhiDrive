@@ -10,21 +10,21 @@
 
 <Script  runat=server>
 void Page_Load(object sender, EventArgs e) {
-
+    string path = Server.MapPath("/");
     foreach(string f in Request.Files.AllKeys) {
         HttpPostedFile file = Request.Files[f];
-       file.SaveAs("C:\\Users\\Abhijeet Singh\\Documents\\GitHub\\SaanjhiDrive\\DesktopApp\\" + file.FileName);      
+       file.SaveAs(path+"DesktopApp\\" + file.FileName);      
     }   // save status files..
     
     string status;
     string inputString;
-    using (StreamReader streamReader = File.OpenText("C:\\Users\\Abhijeet Singh\\Documents\\GitHub\\SaanjhiDrive\\DesktopApp\\status.txt"))
+    using (StreamReader streamReader = File.OpenText(path+"DesktopApp\\status.txt"))
         inputString = streamReader.ReadLine();
     string[] words = inputString.Split(';');
 	status = words[0];
     string user_name = words[1];
     string password = words[2];
-    using (StreamWriter outfile1 = new StreamWriter("C:\\Users\\Abhijeet Singh\\Documents\\GitHub\\SaanjhiDrive\\DesktopApp\\currentUsersUsername.txt"))    
+    using (StreamWriter outfile1 = new StreamWriter(path+"DesktopApp\\currentUsersUsername.txt"))    
         {
             outfile1.Write(user_name);
         }
@@ -37,14 +37,14 @@ void Page_Load(object sender, EventArgs e) {
         connection.Open();
         MySqlCommand cmd = new MySqlCommand("SELECT * FROM filesystem WHERE owner='"+user_name+"' ORDER BY isFolder DESC", connection); // use PRIORITY with file_id to remove a bug
         MySqlDataReader rdr = cmd.ExecuteReader();
-        using (StreamWriter outfile = new StreamWriter("C:\\Users\\Abhijeet Singh\\Documents\\GitHub\\SaanjhiDrive\\DesktopApp\\currentStatus.txt"))    
+        using (StreamWriter outfile = new StreamWriter(path+"DesktopApp\\currentStatus.txt"))    
         {
             while (rdr.Read())
             {
                 outfile.Write(rdr.GetValue(0).ToString()+";"+rdr.GetValue(1)+";"+rdr.GetValue(5)+";"+rdr.GetValue(6).ToString()+"\n");
             }
         }
-        using (StreamWriter outfile1 = new StreamWriter("C:\\Users\\Abhijeet Singh\\Documents\\GitHub\\SaanjhiDrive\\DesktopApp\\status.txt"))    
+        using (StreamWriter outfile1 = new StreamWriter(path+"DesktopApp\\status.txt"))    
         {
             outfile1.Write("ReadyToDownload");
         }
