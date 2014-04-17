@@ -1,5 +1,6 @@
 <?php
-    function write_log($failure_code)
+    function write_log($failure_code) 
+    {
         if($failure_code==1)
         {
             $log_file_name = "log.txt";

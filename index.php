@@ -107,6 +107,21 @@
 	</div>
         </div>	
 <!--below code to show the signup_form-->
+      <?php
+          if(isset($_GET) && !empty($_GET['response']))
+          {
+              if($_GET['response']==1){
+                  echo '<script language="javascript">';
+                  echo 'alert("User name already taken.")'; 
+                  echo '</script>';
+              }
+              elseif($_GET['response']==2){
+                  echo '<script language="javascript">';
+                  echo "Unable to connect to database.";
+                  echo '</script>';
+              }
+          }
+      ?>
 <script type="text/javascript">
 	$("#modal_trigger").leanModal({top : 200, overlay : 0.6, closeButton: ".modal_close" });
 	$(function(){
@@ -126,58 +141,59 @@
 	})
 </script>
       	<script type="text/javascript">
-     //checking validation of username and userpassword of form : signinform 
-     function signin() {
-         var uname = document.getElementById("a").value;
-         var upwd = document.getElementById("b").value;
-         if (uname == null || uname == "") {
-             document.getElementById("a").required = true;
-         }
-         else if (upwd == null || upwd == "") {
-             document.getElementById("b").required = true;
-         }
-          
-     }
-     //checking validation of username, emailid, password(both) of signup_form.
-     function check_username() {
-         var reguname = document.getElementById('rega').value;
-         if (reguname == null || reguname == "") {
-             document.getElementById("rega").setCustomValidity('Please fill out this field') = true;
-         }
-         else if (!reguname.match(/^[a-zA-Z0-9_]+$/) || reguname.length < 5 || reguname > 12) {
-             document.getElementById("rega").setCustomValidity('You can only enter _ or (a-z) or (A-Z) and number of characters should be between 5-12 !!') = true;
-         }
-         else {
-             document.getElementById("rega").setCustomValidity('') = true;
-         }
-     }
-     //checking validation of password of signup_form.
-     function check_userpwd() {
-         var regupwd = document.getElementById('regb').value;
-         if (regupwd == null || regupwd == "") {
-             document.getElementById("regb").setCustomValidity('Please fill out this field') = true;
-         }
-         else if (regupwd.length < 8 || regupwd.length > 12) {
-             document.getElementById("regb").setCustomValidity('You password lenght should be between 8-12 !!') = true;
-         }
-         else {
-             document.getElementById("regb").setCustomValidity('') = true;
-         }
 
-     }
-     //checking validation of both the passwords of signup_form.
-     function check_userrepwd() {
-         var regupwd = document.getElementById('regb').value;
-         var regreupwd = document.getElementById('regreb').value;
-         if (regupwd != regreupwd) {
-             document.getElementById("regreb").setCustomValidity('This does not match with your password!') = true;
-             return false;
-         }
-         else {
-             document.getElementById("regreb").setCustomValidity('') = true;
-             return true;
-         }
-     }
+           //checking validation of username and userpassword of form : signinform 
+           function signin() {
+               var uname = document.getElementById("a").value;
+               var upwd = document.getElementById("b").value;
+               if (uname == null || uname == "") {
+                   document.getElementById("a").required = true;
+               }
+               else if (upwd == null || upwd == "") {
+                   document.getElementById("b").required = true;
+               }
+
+           }
+           //checking validation of username, emailid, password(both) of signup_form.
+           function check_username() {
+               var reguname = document.getElementById('rega').value;
+               if (reguname == null || reguname == "") {
+                   document.getElementById("rega").setCustomValidity('Please fill out this field') = true;
+               }
+               else if (!reguname.match(/^[a-zA-Z0-9_]+$/) || reguname.length < 5 || reguname > 12) {
+                   document.getElementById("rega").setCustomValidity('You can only enter _ or (a-z) or (A-Z) and number of characters should be between 5-12 !!') = true;
+               }
+               else {
+                   document.getElementById("rega").setCustomValidity('') = true;
+               }
+           }
+           //checking validation of password of signup_form.
+           function check_userpwd() {
+               var regupwd = document.getElementById('regb').value;
+               if (regupwd == null || regupwd == "") {
+                   document.getElementById("regb").setCustomValidity('Please fill out this field') = true;
+               }
+               else if (regupwd.length < 8 || regupwd.length > 12) {
+                   document.getElementById("regb").setCustomValidity('You password lenght should be between 8-12 !!') = true;
+               }
+               else {
+                   document.getElementById("regb").setCustomValidity('') = true;
+               }
+
+           }
+           //checking validation of both the passwords of signup_form.
+           function check_userrepwd() {
+               var regupwd = document.getElementById('regb').value;
+               var regreupwd = document.getElementById('regreb').value;
+               if (regupwd != regreupwd) {
+                   document.getElementById("regreb").setCustomValidity('This does not match with your password!') = true;
+                   return false;
+               }
+               else {
+                   document.getElementById("regreb").setCustomValidity('') = true;
+                   return true;
+               }
+           }
 
 	</script>
  </body>

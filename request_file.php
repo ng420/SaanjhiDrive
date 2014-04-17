@@ -18,5 +18,8 @@
         flush();
         readfile($_GET['url']); 
     }
-
+    else 
+    {
+        header ("Location: "."index.php");
+    }
 ?>
