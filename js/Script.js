@@ -327,6 +327,7 @@ function changeRename(input, filename) {
             var row = document.getElementById(filename).cells; //.getElementsByTagName(tr);
             //alert(row.length);
             //var text = row[1].getElementsByTagName("*");
+            ///////////////////////////////extension manage
             row[1].innerHTML = '<a class="contents" onclick="displayIFrame(\'files/' + text + '\');">' + text + '</a>';
 
         }
@@ -334,6 +335,43 @@ function changeRename(input, filename) {
 }
 function move(id) {
     //move
+        var cells = Array.prototype.slice.call(document.getElementById("path").getElementsByTagName("td"));
+    var dir_path = "";
+    for (var i in cells) {
+        dir_path += cells[i].innerHTML;
+        if (dir_path[dir_path.length - 1] == " ") {
+            dir_path = dir_path.substr(0, dir_path.length - 1);
+        }
+    }
+    dir_path = dir_path.replace('Home', '');
+    while ((dir_path.indexOf('&gt;') != -1)) {
+        dir_path = dir_path.replace('&gt;', '!');
+
+    }
+
+    dir_path = dir_path.concat('!');
+    var xmlHttp;
+    if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
+        xmlHttp = new XMLHttpRequest();
+    }
+    else {// code for IE6, IE5
+        xmlHttp = new ActiveXObject("Microsoft.XMLHTTP");
+    }
+    xmlHttp.open("POST", "move.php", true);
+    xmlHttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xmlHttp.send("filename=" + id + "&current_dir=" + dir_path);
+    xmlHttp.onreadystatechange = function () {
+        //alert(xmlHttp.status);
+        if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
+            //alert(xmlHttp.responseText); //.getElementsByTagName(tr);
+            //alert(id );
+            //var text = row[1].getElementsByTagName("*");
+            //var row = document.getElementById(filename).cells;
+            //row[1].innerHTML = '<a class="contents" onclick="displayIFrame(\'files/'+text+'\');">'+text+'</a>';
+            //getFiles(dir_path);
+            document.getElementById('files').innerHTML = xmlHttp.responseText;
+        }
+    }
 }
 function displayIFrame(source) {
     document.getElementById('preview').src = source;
@@ -421,3 +459,24 @@ function search() {
         }
     }
 }
+function DestDirMove(filename,initialPath,finalPath){
+    var xmlHttp;
+    if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
+        xmlHttp = new XMLHttpRequest();
+    }
+    else {// code for IE6, IE5
+        xmlHttp = new ActiveXObject("Microsoft.XMLHTTP");
+    }
+        xmlHttp.open("POST", "updatePath.php", true);
+        xmlHttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        xmlHttp.send("finalPath=" + finalPath + "&filename=" + filename + "&initialPath=" + initialPath );
+        xmlHttp.onreadystatechange = function () {
+            //alert(xmlHttp.status);
+            if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
+                alert(xmlHttp.responseText);
+                //alert('asdas');
+                getFiles(finalPath);
+                //document.getElementById('files').innerHTML = xmlHttp.responseText;
+            }
+        }
+    }
