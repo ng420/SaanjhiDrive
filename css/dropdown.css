@@ -249,7 +249,7 @@ ul.menuH ul
 
 .delete, .share, .rename, .download, .move{
     text-decoration: none;
-    color: #1BA1E2;
+    color: #004953;
 }
 
 .rename:hover {
@@ -341,4 +341,8 @@ ul.menuH ul
 .help {
     float: left;
     margin-left:  0px;
+}
+
+.opt{
+    color: #004953;
 }

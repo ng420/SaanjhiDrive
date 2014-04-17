@@ -36,15 +36,15 @@
     echo '
         <table width="79%" cellpadding="8px" class="heading">
             <tr class="border_bottom">
-            <td width="55%">Folder Name</td>
-            <td width="45%">Path</td>
+            <td width="59%">Folder Name</td>
+            <td >Path</td>
             <tr>
         </table><br>
     ';
     echo '</div>';
     echo '<div class="tables">';
     echo '<table width="80%" cellpadding="10px" class="table">';
-    echo '<tr class="border_bottom"><td width="5%" class="data"><img src="images/folder.png" /></td><td class="data" width="50%" onclick="DestDirMove(\''.$filename.'\',\''.$currDir.'\',\''.'!'.'\')">'; 
+    echo '<tr class="border_bottom"><td width="5%" class="data"><span class="glyphicon glyphicon-folder-open"></span></td><td class="data" width="50%" onclick="DestDirMove(\''.$filename.'\',\''.$currDir.'\',\''.'!'.'\')">'; 
     echo "Home<br>";
     echo "</td>";
     echo'<td class="data" width="45%">';
@@ -66,7 +66,7 @@
             else{
                 $path = "Home ".$path;
             }
-            echo '<tr class="border_bottom"><td width="5%" class="data"><img src="images/folder.png" /></td><td class="data" width="50%" onclick="DestDirMove(\''.$filename.'\',\''.$currDir.'\',\''.$row['directory_path'].$folder_name.'!'.'\')">'; 
+            echo '<tr class="border_bottom"><td width="5%" class="data"><span class="glyphicon glyphicon-folder-open"></span></td><td class="data" width="50%" onclick="DestDirMove(\''.$filename.'\',\''.$currDir.'\',\''.$row['directory_path'].$folder_name.'!'.'\')">'; 
             echo $folder_name."<br>";
             echo "</td>";
             echo'<td class="data" width="45%">';

@@ -13,7 +13,7 @@
             if($ext=="png"||$ext=="jpg"||$ext=="jpeg"||$ext=="gif")
                 echo '<span class="glyphicon glyphicon-picture"></span>';
              elseif($ext=="doc"|| $ext == "txt" || $ext=="pdf"||$ext=="PDF"||$ext=="ppt"||$ext=="pps"||$ext=="pptx"||$ext=="sdf"||$ext=="dat"||$ext=="docx"||$ext=="log"||$ext=="msg"||$ext=="odt"||$ext=="pages"||$ext=="rtf"||$ext=="tex"||$ext=="txt"||$ext=="wpd"||$ext=="wps")
-                 echo '<span class="glyphicon glyphicon-list-alt"></span>';
+                 echo '<span class="glyphicon glyphicon-file"></span>';
              elseif($ext=="exe"||$ext=="exe.config")
                  echo "<img src='images/exec1.png'>";
              elseif($ext=="tar"||$ext=="zip"||$ext=="tar2012"||$ext=="7z"||$ext=="rar")
@@ -23,7 +23,7 @@
                 elseif($ext=="mp4"||$ext=="flv"||$ext=="mkv"||$ext=="avi"||$ext=="wmv")
                 echo '<span class="glyphicon glyphicon-film"></span>';
                 else
-                 echo "<img src='images/exec1.png'>";
+                  echo '<span class="glyphicon glyphicon-list-alt"></span>';
             echo"</td>";
             
             //Provide preview.
