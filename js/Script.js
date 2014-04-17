@@ -296,12 +296,15 @@ function rename(id) {
     var row = document.getElementById(id).cells; //.getElementsByTagName(tr);
     var anchor = row[1].getElementsByTagName("*");
     anchor = anchor[0];
+    anchor = anchor.innerHTML;
     //alert(anchor.innerHTML);
-    row[1].innerHTML = "<input type='text' onblur='changeRename(this,\"" + id + "\")' style='color:grey;' value ='" + anchor.innerHTML + "' autofocus  />";
+    var res = anchor.split('.');
+
+    row[1].innerHTML = "<input type='text' onblur='changeRename(this,\"" + id + "\",\""+res[1]+"\")' style='color:grey;' value ='" + res[0] + "' autofocus  />";
 
 }
-function changeRename(input, filename) {
-    text = input.value;
+function changeRename(input, filename,extension) {
+    text = input.value + "." + extension;
     var cells = Array.prototype.slice.call(document.getElementById("path").getElementsByTagName("td"));
     var dir_path = "";
     for (var i in cells) {
@@ -339,7 +342,20 @@ function changeRename(input, filename) {
             //alert(row.length);
             //var text = row[1].getElementsByTagName("*");
             ///////////////////////////////extension manage
-            row[1].innerHTML = '<a class="contents" onclick="displayIFrame(\'files/' + text + '\');">' + text + '</a>';
+            var ext = extension;
+            ext = ext.toLowerCase();
+            var file_id = xmlHttp.responseText;
+            //alert(ext);
+            var s;
+            if (ext == "png" || ext == "jpg" || ext == "jpeg" || ext == "gif") {
+                s = '<a class="go" id ="fo" href="files/' + file_id + '.' + ext + '" data-lightbox="example-1">' + text + "</a>";
+                //alert(s);
+            }
+            else {
+                s = '<a  class="go" id ="fo" href="#register" onclick="run_leanmodalOther(\'files/' + file_id + '.' + ext + '\');" >' + text + "</a>";
+                //alert(s);
+            }
+            row[1].innerHTML = s; //'<a class="contents" onclick="displayIFrame(\'files/' + text + '\');">' + text + '</a>';
 
         }
     }
