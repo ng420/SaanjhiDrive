@@ -39,7 +39,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES ('abhinav','123','abhi@nav.com','goyal'),('abhishek','123','abhi@shek.com','mittal'),('vikram','34','qw@aws.as',NULL);
+INSERT INTO `users` VALUES ('abhinav','123','abhi@nav.com','goyal'),('abhishek','123','abhi@shek.com','mittal'),('abhishekgoyalbti','12345678','abhishekgoyalbti@gmail.com',NULL),('fasdfss','asdf','asfs@sadfsa.com',NULL),('fasdfssfddffdf','asadf','asfs@sadfsa.com',NULL),('fasdfssfddffdfa','asdf','asfs@sadfsa.com',NULL),('hidimi','headfirst','he@df',NULL),('johdsfasdfa','asdfghjk','sadf@gm',NULL),('john','asdf','john@wayne.com',NULL),('johna','a','john@wayne.com',NULL),('johnab','as','john@wayne.com',NULL),('johnaba','a','john@wayne.com',NULL),('johnny','123456789','johnny@gmail.com',NULL),('ranu','asdf','ranu@vikram.com',NULL),('vikram','34','qw@aws.as',NULL);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -52,4 +52,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-04-16 19:32:54
+-- Dump completed on 2014-04-18  2:48:18
