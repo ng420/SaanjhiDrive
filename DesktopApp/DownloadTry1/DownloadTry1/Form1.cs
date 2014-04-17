@@ -22,7 +22,8 @@ namespace DownloadTry1
         string tempToGenerateFilesToUploadToServer = "";
         string tempToGenerateFOLDERToUploadToServer = "";
         int syncComplete = 0;
-        string path = "http://172.16.25.157/";
+        //string path = "http://172.16.25.157/";
+        string path = "http://localhost:24667/";
 
         public Form1()
         {
@@ -125,7 +126,7 @@ namespace DownloadTry1
             }
             catch (Exception e)
             {
-                MessageBox.Show(fullUploadFilePath);
+                //MessageBox.Show(fullUploadFilePath);
                 MessageBox.Show("Error in upload File to Server\n"+e.Message, "My Application",
                 MessageBoxButtons.OKCancel, MessageBoxIcon.Asterisk);
                 return -1;
@@ -180,7 +181,7 @@ namespace DownloadTry1
         {
             if (clientHome1 != "" && syncComplete ==1)
             {
-
+                string status = "No";
                 try
                 {
                     /////////////////////////////////////////////////////Generate Present Structure of Home directory//////////////////////////////////////////////////////////////
@@ -194,12 +195,15 @@ namespace DownloadTry1
                     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                     WebClient webClient = new WebClient();
                     Stream stream = webClient.OpenRead(path+"DesktopApp/status.txt");
+                    
                     StreamReader streamReader = new StreamReader(stream);
-                    string line, status = "No";
+                    string line ;
                     while ((line = streamReader.ReadLine()) != null)
                         status = line;
+                    
                     if (status == "ReadyToDownload")
                     {
+                        
                         string line1;
                         Stream stream1 = webClient.OpenRead(path+"DesktopApp/currentStatus.txt");
                         StreamReader streamReader1 = new StreamReader(stream1);
@@ -212,7 +216,7 @@ namespace DownloadTry1
                             file.WriteLine(v);
                         }
                         file.Close();
-
+                        
                         System.IO.StreamReader fileToRead = new System.IO.StreamReader("currentStatus.txt");
                         while ((line = fileToRead.ReadLine()) != null )
                         {
@@ -221,20 +225,21 @@ namespace DownloadTry1
                                 string[] columns = line.Split(';');
                                 StringBuilder b = new StringBuilder(columns[2]);// edit database to remove the last slash
                                 b.Insert(0, clientHome2);
-                                columns[2] = b.ToString();
+                                columns[2] = b.ToString(); 
                                 if (columns[3] == "1") // isFolder
                                 {
+                                    
                                     if (!Directory.Exists(columns[2] + columns[1].Substring(6)))
-                                    {
-                                        System.IO.Directory.CreateDirectory(columns[2] + columns[1].Substring(6));
-                                    }
+                                    {                                        
+                                        System.IO.Directory.CreateDirectory(columns[2] + columns[1].Substring(6)); 
+                                    } 
                                 }
                                 else // is file
                                 {
                                     if (!File.Exists(columns[2])) //if file doesn't exist Download File
                                     {
-                                        string[] ext = columns[1].Split('.');
-                                        int s = DownloadFromServer(path+"files/" + columns[0].ToString() + "." + ext[1], columns[2],columns[1]);//file path
+                                        string ext = columns[1].Substring(columns[1].LastIndexOf('.') + 1);
+                                        int s = DownloadFromServer(path+"files/" + columns[0].ToString() + "." + ext, columns[2],columns[1]);//file path
                                         if (s != 1)
                                         {
                                             MessageBox.Show("Download Failed!!\n" + columns[1] + " Could not be downloaded.");
@@ -245,6 +250,10 @@ namespace DownloadTry1
 
                         }
                     }
+                    else if (status == "failed") 
+                    {
+                        MessageBox.Show("Incorrect Username or Password !!");
+                    }
                     else
                     {
                         MessageBox.Show("Network Problem....Try again !!");
@@ -254,20 +263,24 @@ namespace DownloadTry1
                 {
                     MessageBox.Show("Cannot download file");
                 }
+                if (status == "ReadyToDownload")
+                {
+                    ////////////////////////////////////////////////////Upload files which are not there on server/////////////////////////////////////////
+                    generateFilesToUploadToServerandUploadThem();
+                    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                    //this.Close();
 
-                ////////////////////////////////////////////////////Upload files which are not there on server/////////////////////////////////////////
-                generateFilesToUploadToServerandUploadThem();
-                //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-                //this.Close();
-
-            }//ifclose
-            else
-            {
-                if(syncComplete == 1)
-                    MessageBox.Show("Please Select Target Folder first");
+                }
+                else if (status == "failed") ;
                 else
-                    MessageBox.Show("First Get Ready to check Connection and verify your user Details !");
-            }
+                {
+                    if (syncComplete == 1)
+                        MessageBox.Show("Please Select Target Folder first");
+                    else
+                        MessageBox.Show("First Get Ready to check Connection and verify your user Details !");
+                }
+                }
+                
                     
         }
 
@@ -371,6 +384,7 @@ namespace DownloadTry1
             try
             {
                 client.UploadFile(uploadWebUrl, "xtrafiles2beadded2server.txt");
+                MessageBox.Show("Synced");
             }
             catch (Exception )
             {
@@ -425,6 +439,7 @@ namespace DownloadTry1
                         username = firstline;
                         password = file.ReadLine();
                         clientHome1 = file.ReadLine();
+                        clientHome2 = clientHome1.Replace("\\","\\\\");
                     }
                     file.Close();
 
@@ -473,7 +488,9 @@ namespace DownloadTry1
                 curFolder.Text = "Current Drive Path is " + clientHome1;
                 if (username != "") //if username is assigned then it is writtern as 1st line of userCredentials
                 {
-                    StreamWriter file = new StreamWriter("userCredentials.txt",true);
+                    StreamWriter file = new StreamWriter("userCredentials.txt");
+                    file.WriteLine(username);
+                    file.WriteLine(password);
                     file.WriteLine(clientHome1); //written as 3rd line
                     file.Close();
                 }
@@ -492,6 +509,29 @@ namespace DownloadTry1
             panel1.Dock = DockStyle.Fill;
             panel4.Visible = false;
             panel4.Dock = DockStyle.None;
+            try
+            {
+                if (File.Exists("userCredentials.txt")) //file exits only when it is filled with credentials after 1st login (1st click on save button)
+                {
+                    string firstline = "";
+                    StreamReader file = new StreamReader("userCredentials.txt");
+                    firstline = file.ReadLine();
+                    if (firstline.Length > 2) //if file is there but not empty or having \n
+                    {
+                        username = firstline;
+                        password = file.ReadLine();
+                        clientHome1 = file.ReadLine();
+                        clientHome2 = clientHome1.Replace("\\", "\\\\");
+                    }
+                    file.Close();
+
+                }
+            }
+            catch (Exception dufbeui)
+            {
+                MessageBox.Show("Error reading user credentials. Enter your details together with Target Folder again");
+            }
+           
         }
 
         private void panel4_Paint(object sender, PaintEventArgs e)

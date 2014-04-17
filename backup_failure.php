@@ -1,7 +1,6 @@
 <?php
-    if(isset($_GET) && !(empty($_GET['failure_code'])))
-    {
-        if($_GET['failure_code']==1)
+    function write_log($failure_code)
+        if($failure_code==1)
         {
             $log_file_name = "log.txt";
             $file_handle = fopen($log_file_name, 'a') or die();
@@ -9,15 +8,15 @@
             fwrite($file_handle, $string_data);
             fclose($file_handle);
         }
-        elseif($_GET['failure_code']==0)
+        elseif($failure_code==0)
         {
             $log_file_name = "log.txt";
             $file_handle = fopen($log_file_name, 'a') or die();
-            $string_data = "Connected with backup database.\n";
+            $string_data = "Query performed successfuly.\n";
             fwrite($file_handle, $string_data);
             fclose($file_handle);
         }
-        elseif($_GET['failure_code']==1)
+        elseif($failure_code==2)
         {
             $log_file_name = "log.txt";
             $file_handle = fopen($log_file_name, 'a') or die();
@@ -34,7 +33,7 @@
             fclose($file_handle);
         }
     }
-    else die();
-?>
+    
+ ?>
 
 

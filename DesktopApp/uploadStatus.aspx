@@ -24,6 +24,7 @@ void Page_Load(object sender, EventArgs e) {
 	status = words[0];
     string user_name = words[1];
     string password = words[2];
+ 
     using (StreamWriter outfile1 = new StreamWriter(path+"DesktopApp\\currentUsersUsername.txt"))    
         {
             outfile1.Write(user_name);
@@ -32,10 +33,26 @@ void Page_Load(object sender, EventArgs e) {
 
     // Check Username and password.....
 
+
+
+
+    int i = -1;
     try{
         MySqlConnection connection = new MySqlConnection("Server=localhost;Database=mysql_db;Uid=root;Pwd=r00tpass;");
-        connection.Open();
-        MySqlCommand cmd = new MySqlCommand("SELECT * FROM filesystem WHERE owner='"+user_name+"' ORDER BY isFolder DESC", connection); // use PRIORITY with file_id to remove a bug
+       // connection.Open();
+        // MySqlCommand cmd1 = new MySqlCommand("SELECT count(*)  FROM mysql_db.users where username = '"+user_name+"' and '"+password+"' = "qaz";",connection);
+         //MySqlDataReader rdr1 = cmd1.ExecuteReader();///
+
+
+         using (MySqlCommand cmd1 = new MySqlCommand("SELECT count(*)  FROM mysql_db.users where username = '"+user_name+"' and password = '"+password+"';",connection))
+{
+    connection.Open();
+     i= Convert.ToInt32(cmd1.ExecuteScalar());
+}
+    if(i==1)//only one user
+
+    {
+         MySqlCommand cmd = new MySqlCommand("SELECT * FROM filesystem WHERE owner='"+user_name+"' ORDER BY isFolder DESC", connection); // use PRIORITY with file_id to remove a bug
         MySqlDataReader rdr = cmd.ExecuteReader();
         using (StreamWriter outfile = new StreamWriter(path+"DesktopApp\\currentStatus.txt"))    
         {
@@ -48,6 +65,17 @@ void Page_Load(object sender, EventArgs e) {
         {
             outfile1.Write("ReadyToDownload");
         }
+    
+    }
+    else
+    {
+       using (StreamWriter outfile1 = new StreamWriter(path+"DesktopApp\\status.txt"))    
+        {
+            outfile1.Write("failed");
+        }
+
+
+      }//else
     }
     catch(Exception eee){
         Response.Write("Error in database operations or reading!");
