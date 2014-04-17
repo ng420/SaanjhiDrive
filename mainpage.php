@@ -47,10 +47,11 @@
                
 				<li><a href="#" onclick="getFiles('!');">MyDrive</a>
                 </li>
-                <li><a href="#" onclick="upload_folder()">Create Folder</a>
-                </li>
                 <li><a href="#" onclick="shared_with_me();">Shared With Me</a>
                 </li>
+                <li><a href="#" onclick="upload_folder()">Create Folder</a>
+                </li>
+                
                 <li><a href="#">Install For desktop</a>
                 </li>
             </ul>
