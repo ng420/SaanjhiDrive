@@ -18,7 +18,8 @@ void Page_Load(object sender, EventArgs e) {
 
     foreach(string f in Request.Files.AllKeys) {
         HttpPostedFile file = Request.Files[f];
-       file.SaveAs(path+"DesktopApp\\TestingDesktopApp\\" + user_name + file.FileName); 
+       //file.SaveAs(path+"DesktopApp\\TestingDesktopApp\\" + user_name + file.FileName); 
+       file.SaveAs(path+"files\\" + user_name + file.FileName); 
        } // Saving files....
       
 }   

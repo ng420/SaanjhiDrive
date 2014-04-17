@@ -92,7 +92,8 @@ void Page_Load(object sender, EventArgs e) {
                already_present =0;
                string[] file_i = files[i].Split(';');
                ///////////////////////////////////////////Compute MD5 Hash//////////////////////////////////////////////
-               byte[] computedHash = new MD5CryptoServiceProvider().ComputeHash(File.ReadAllBytes(path+"DesktopApp\\TestingDesktopApp\\" + user_name +file_i[0]));
+               //byte[] computedHash = new MD5CryptoServiceProvider().ComputeHash(File.ReadAllBytes(path+"DesktopApp\\TestingDesktopApp\\" + user_name +file_i[0]));
+               byte[] computedHash = new MD5CryptoServiceProvider().ComputeHash(File.ReadAllBytes(path+"files\\" + user_name +file_i[0]));
                 var sBuilder = new StringBuilder();
                 Response.Write("hiiiii\n");
                 foreach (byte b in computedHash)
@@ -130,9 +131,9 @@ void Page_Load(object sender, EventArgs e) {
                       //insert into database
                       //string[] ext = file_i[0].Split('.');
                       string ext = file_i[0].Substring(file_i[0].LastIndexOf('.')+1);
-                      FileInfo fi = new FileInfo(path+"DesktopApp\\TestingDesktopApp\\" + user_name +file_i[0]);
+                      FileInfo fi = new FileInfo(path+"files\\" + user_name +file_i[0]);
                       if (fi.Exists)
-                            fi.MoveTo(path+"DesktopApp\\TestingDesktopApp\\" + next_file_id.ToString() +"."+ext);
+                            fi.MoveTo(path+"files\\" + next_file_id.ToString() +"."+ext);
                       //rename this file..
                   }
                   else if(already_present ==1)
@@ -142,14 +143,14 @@ void Page_Load(object sender, EventArgs e) {
                       MySqlCommand cmd3 = new MySqlCommand(insertQuery, connection);
                       cmd3.ExecuteNonQuery();
                       //insert into database......with same file id as found above
-                      if ((System.IO.File.Exists(path+"DesktopApp\\TestingDesktopApp\\" + user_name +file_i[0])))
-                            System.IO.File.Delete(path+"DesktopApp\\TestingDesktopApp\\" + user_name +file_i[0]);
+                      if ((System.IO.File.Exists(path+"files\\" + user_name +file_i[0])))
+                            System.IO.File.Delete(path+"files\\" + user_name +file_i[0]);
                       // delete file_i[0]
                   }
                   else
                   {
-                      if ((System.IO.File.Exists(path+"DesktopApp\\TestingDesktopApp\\" + user_name +file_i[0])))
-                            System.IO.File.Delete(path+"DesktopApp\\TestingDesktopApp\\" + user_name +file_i[0]);
+                      if ((System.IO.File.Exists(path+"files\\" + user_name +file_i[0])))
+                            System.IO.File.Delete(path+"files\\" + user_name +file_i[0]);
                       // delete file_i[0]
                   }
              
