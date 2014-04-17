@@ -4,7 +4,7 @@
     session_start();
 
     echo '<link rel="stylesheet" href="css/dropdown.css" type="text/css">';
-    
+    $count = 0;
     //Set variables to perform database query.
     $user = $_SESSION['user'];
     $folder = $_POST['folder'];
@@ -34,8 +34,8 @@
 
     //File parameter table.
     echo '
-        <table width="79%" cellpadding="8px" class="heading">
-            <tr class="border_bottom">
+        <table width="84%" cellpadding="8px" class="heading">
+            <tr id="row_id" class="border_bottom">
             <td width="55%">File Name</td>
             <td width="20%">Type</td>
             <td >Shared By</td>
@@ -52,7 +52,10 @@
     }
     echo "</table>";
     //echo '<iframe style="height:auto; width:auto;border:0;" id = "preview"></iframe>';
+    if($count ==0){
+        
+    }
     echo '</div>';
     echo '</div>';
-
+    
 ?>

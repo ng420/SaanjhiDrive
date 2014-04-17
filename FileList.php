@@ -25,7 +25,7 @@
             //Provide preview.
            if($ext=="png"||$ext=="jpg"||$ext=="jpeg"||$ext=="gif")
             {
-                echo '<td width="50%"><a class="go" id ="fo" href="#register" onclick="run_leanmodal(\'files/'.$row['file_id'].'.'.$ext.'\');">'.$row['file_name']."</a>";
+                echo '<td width="50%"><a class="go" id ="fo" href="files/'.$row['file_id'].'.'.$ext.'" data-lightbox="example-1">'.$row['file_name']."</a>";
             }
             else{
                  echo '<td width="50%"><a  class="go" id ="fo" href="#register" onclick="run_leanmodalOther(\'files/'.$row['file_id'].'.'.$ext.'\');" >'.$row['file_name']."</a>";
@@ -46,7 +46,7 @@
             else
                 echo 'Miscellaneous';
             echo"</td >";
-            echo'<td width="20%" class="data">';
+            echo'<td width="25%" class="data">';
             if($row['shared_by'])
             {
                 echo $row['shared_by'];
@@ -71,7 +71,7 @@
             echo'<td class="data" width="20%">';
             echo "Folder";
             echo"</td >";
-            echo '<td class="data" width="30%">';
+            echo '<td class="data" width="25%">';
             if($row['shared_by'])
             {
                 echo $row['shared_by'];
@@ -83,6 +83,7 @@
             echo"</td>";
             echo "</tr>";
         }
+        $count = $count+1;
 ?>
 
 

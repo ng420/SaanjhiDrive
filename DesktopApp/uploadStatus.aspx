@@ -14,7 +14,7 @@ void Page_Load(object sender, EventArgs e) {
     foreach(string f in Request.Files.AllKeys) {
         HttpPostedFile file = Request.Files[f];
        file.SaveAs("C:\\Users\\Abhijeet Singh\\Documents\\GitHub\\SaanjhiDrive\\DesktopApp\\" + file.FileName);      
-    }   
+    }   // save status files..
     
     string status;
     string inputString;
@@ -24,15 +24,15 @@ void Page_Load(object sender, EventArgs e) {
 	status = words[0];
     string user_name = words[1];
     string password = words[2];
+    using (StreamWriter outfile1 = new StreamWriter("C:\\Users\\Abhijeet Singh\\Documents\\GitHub\\SaanjhiDrive\\DesktopApp\\currentUsersUsername.txt"))    
+        {
+            outfile1.Write(user_name);
+        }
     Session["username"] = user_name; 
-    // check if username and password matches........
-    //<%@ Import NameSpace="MySql.Data.MySqlClient"%>
+
+    // Check Username and password.....
 
     try{
-        //SqlCeConnection connection = new SqlCeConnection("localhost","root","r00tpass","mysql_db");
-        //string connString = ConfigurationManager.ConnectionStrings["BMREConnString"].ConnectionString;
-        //MySqlConnection myConnection = new MySqlConnection(connString);
-        //MySqlConnection connection = new MySqlConnection("localhost","root","r00tpass","mysql_db");
         MySqlConnection connection = new MySqlConnection("Server=localhost;Database=mysql_db;Uid=root;Pwd=r00tpass;");
         connection.Open();
         MySqlCommand cmd = new MySqlCommand("SELECT * FROM filesystem WHERE owner='"+user_name+"' ORDER BY isFolder DESC", connection); // use PRIORITY with file_id to remove a bug
@@ -50,7 +50,7 @@ void Page_Load(object sender, EventArgs e) {
         }
     }
     catch(Exception eee){
-        //echo "Error";
+        Response.Write("Error in database operations or reading!");
     }
 }
 

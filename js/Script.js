@@ -168,15 +168,25 @@ function getFiles(path) {
 }
 function showopt(id) {
     var lTable = document.getElementById("options").innerHTML;
-    var division = '<table width="100%" cellpadding="8px" id="uphead1"><tr><td width="10%">' + id + '</td>';
-    division += '<td width="15%"><a class="share" onclick="share_file(\'' + id + '\')">Share</a></td>';
-    division += '<td width="15%"><a class="download" onclick="download_file(\'' + id + '\')">Download</a></td>';
-    division += '<td width="15%"><a class="delete" onclick="Delete(\'' + id + '\')">Delete</a></td>';
-    division += '<td width="15%"><a class="rename" onclick="rename(\'' + id + '\')">Rename</a></td>';
-    division += '<td width="15%"><a class="move" onclick="move(\'' + id + '\')">Move</a></td>';
-    division += '</tr>';
-    division += '</table> ';
-    document.getElementById("options").innerHTML = division;
+    var filenameModified = id;
+    var res = filenameModified.split('.');
+    if(res[0].length>23){
+        filenameModified = res[0].substring(0, 7) + "........." + res[0].substring(res[0].length - 7) + "."+res[1];
+    }
+                var division = '<table width="85%" cellpadding="8px" id="uphead1"><tr><td width="20%">' + filenameModified + '</td>';
+                division += '<td width="12%"><span class="glyphicon glyphicon-link"></span><a class="share" onclick="share(\'' + id + '\')">   Share</a></td>';
+                division += '<td width="12%"><span class="glyphicon glyphicon-download-alt"></span><a class="download" onclick="download(\'' + id + '\')">   Download</a></td>';
+                division += '<td width="12%"><span class="glyphicon glyphicon-trash"></span><a class="delete" onclick="Delete(\'' + id + '\')">   Delete</a></td>';
+                division += '<td width="12%"><span class="glyphicon glyphicon-edit"></span><a class="rename" onclick="rename(\'' + id + '\')">   Rename</a></td>';
+                division += '<td width="12%"><span class="glyphicon glyphicon-share"></span><a class="move" onclick="move(\'' + id + '\')">   Move</a></td>';
+                division += '</tr>';
+                division += '</table> ';
+                document.getElementById("options").innerHTML = division;
+                document.getElementById("options").style.visibility = "visible";
+                //var tb1 = document.getElementById("table_heading");
+                document.getElementById("row_id").style.display = "none";
+                 document.getElementsByClassName('border_bottomRow').style.backgroundColor = "#365890"; 
+
 }
 
 var downloadURL = function downloadURL(url) {
@@ -280,6 +290,7 @@ function Delete(id) {
         }
     }
 }
+
 function rename(id) {
     //rename
     var row = document.getElementById(id).cells; //.getElementsByTagName(tr);
@@ -373,6 +384,15 @@ function move(id) {
         }
     }
 }
+
+  $(document).click(function (event) {
+            if ($(event.target).parents().index($('.table')) == -1&&$(event.target).parents().index($('#options')) == -1) {
+                if ($('#options').is(":visible")) {
+                    $('#options').html("");
+                    $("#row_id").css("display", "table-row");
+                }
+            }
+        })
 function displayIFrame(source) {
     document.getElementById('preview').src = source;
     //alert('sad');
