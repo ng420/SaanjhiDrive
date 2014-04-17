@@ -67,6 +67,8 @@
                     if($perform_share)
                     {
                         echo "Shared successfully.";
+                        include 'backup_failure.php';
+                        write_log($share_query);
                     }
                     else
                     {

@@ -135,6 +135,9 @@
                         die();
                     }
                     echo 'Uploaded Successfuly.';
+                    mysqli_close($con);
+                    include 'backup_failure.php';
+                    write_log($query);
                     
                 }
 
@@ -148,7 +151,7 @@
                     echo 'Unknown error occured.';
                  }
                 
-                mysqli_close($con);
+                
             }
 
             //Unable to establish connection.
