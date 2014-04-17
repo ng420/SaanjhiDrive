@@ -94,6 +94,42 @@
             if($insert_result)
             {
                 echo "Folder created successfully.";
+                mysqli_close($con);
+                $con1 = mysqli_connect("172.16.25.62", "root", "r00tpass", "mysql_db_backup");
+    
+                if($con1)
+                {
+                    //echo "Connection established.\n";
+                    $backup_result = mysqli_query($con1, $insert_query);
+                    if(!$backup_result)
+                    {
+                        $log_file_name = "log.txt";
+                        $file_handle = fopen($log_file_name, 'a') or die();
+                        $string_data = "Unable to perform query.\n$insert_query\n";
+                        fwrite($file_handle, $string_data);
+                        fclose($file_handle);  
+                        echo "Unable to perform query.";
+                    } 
+                    else 
+                    {
+                        $log_file_name = "log.txt";
+                        $file_handle = fopen($log_file_name, 'a') or die();
+                        $string_data = "Query performed successfuly.\n$insert_query\n";
+                        fwrite($file_handle, $string_data);
+                        fclose($file_handle);
+                        echo "Query performed successfully.";
+                    }
+                }  
+                else 
+                {
+                    $log_file_name = "log.txt";
+                    $file_handle = fopen($log_file_name, 'a') or 
+                    $string_data = "Unable to connect to backup database.\n$insert_query\n";
+                    fwrite($file_handle, $string_data);
+                    fclose($file_handle); 
+                    echo "Unable to connect to backup database.";
+                }
+                mysqli_close($con1);
             }
             else
             {
@@ -101,7 +137,7 @@
             }
 
         }
-        mysqli_close($con);
+        
     }
     else 
     {

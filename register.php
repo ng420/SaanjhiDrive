@@ -45,29 +45,26 @@ if(! $con)
         {
             $log_file_name = "log.txt";
             $file_handle = fopen($log_file_name, 'a') or die();
-            $string_data = "Unable to perform query.\n";
+            $string_data = "Unable to perform query.\n".$query."\n";
             fwrite($file_handle, $string_data);
             fclose($file_handle);  
-            echo $string_data;
         } 
         else 
         {
             $log_file_name = "log.txt";
             $file_handle = fopen($log_file_name, 'a') or die();
-            $string_data = "Query performed successfuly.\n";
+            $string_data = "Query performed successfuly.\n".$query."\n";
             fwrite($file_handle, $string_data);
             fclose($file_handle);
-            echo $string_data;
         }
     }  
     else 
     {
         $log_file_name = "log.txt";
         $file_handle = fopen($log_file_name, 'a') or 
-        $string_data = "Unable to connect to backup database.\n";
+        $string_data = "Unable to connect to backup database.\n$query\n";
         fwrite($file_handle, $string_data);
         fclose($file_handle); 
-        echo $string_data; 
     }
     mysqli_close($con1); 
     $response = "0";
