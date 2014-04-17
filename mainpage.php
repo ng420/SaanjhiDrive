@@ -27,6 +27,10 @@
 <body onload="getFiles('!')" >
     <?php
         session_start();
+        if(!(isset($_SESSION)) || (empty($_SESSION['user'])))
+        {
+            header('Location: '. "index.php" );
+        }
         //_SESSION['user']=$_POST['usrname'];
     ?>
     <div id="wrapper">
