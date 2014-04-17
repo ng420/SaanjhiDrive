@@ -6,19 +6,23 @@
         //Perform these operations for files only.
         if(!(substr($name, 0, 6) == "dwalin")) 
         {
-            $temp = explode(".", $row['file_name']);
+          $temp = explode(".", $row['file_name']);
             $ext = end($temp);  //Extension of file obtained.
             $ext = strtolower($ext);
             echo '<tr class="border_bottom" id="'.$row['file_name'].'" onclick="showopt(\''.$row['file_name'].'\')"><td width="5%" class="data">';
             if($ext=="png"||$ext=="jpg"||$ext=="jpeg"||$ext=="gif")
-                echo "<img src='images/picture1.png'>";
+                echo '<span class="glyphicon glyphicon-picture"></span>';
              elseif($ext=="doc"|| $ext == "txt" || $ext=="pdf"||$ext=="PDF"||$ext=="ppt"||$ext=="pps"||$ext=="pptx"||$ext=="sdf"||$ext=="dat"||$ext=="docx"||$ext=="log"||$ext=="msg"||$ext=="odt"||$ext=="pages"||$ext=="rtf"||$ext=="tex"||$ext=="txt"||$ext=="wpd"||$ext=="wps")
-                 echo "<img src='images/document2.png'>";
+                 echo '<span class="glyphicon glyphicon-list-alt"></span>';
              elseif($ext=="exe"||$ext=="exe.config")
                  echo "<img src='images/exec1.png'>";
              elseif($ext=="tar"||$ext=="zip"||$ext=="tar2012"||$ext=="7z"||$ext=="rar")
-                echo "<img src='images/compressed.png'>";
-            else
+                echo '<span class="glyphicon glyphicon-compressed"></span>';
+                elseif($ext=="mp3")
+                echo '<span class="glyphicon glyphicon-music"></span>';
+                elseif($ext=="mp4"||$ext=="flv"||$ext=="mkv"||$ext=="avi"||$ext=="wmv")
+                echo '<span class="glyphicon glyphicon-film"></span>';
+                else
                  echo "<img src='images/exec1.png'>";
             echo"</td>";
             
@@ -43,6 +47,10 @@
                 echo 'Executable';
             elseif($ext=="tar"||$ext=="zip"||$ext=="tar2012"||$ext=="7z"||$ext=="rar")
                 echo 'Compressed';
+            elseif($ext=="mp3")
+                echo "Audio";
+            elseif($ext=="mp4"||$ext=="flv"||$ext=="mkv"||$ext=="avi"||$ext == "wmv")
+               echo "Video";
             else
                 echo 'Miscellaneous';
             echo"</td >";
@@ -65,7 +73,7 @@
             $ext = end($temp);
             $folder_name = substr($name, 6) ; //Remove dwalin tag.
             $folder_name = str_replace("_", " ", $folder_name); //Replace underscore by blank spaces.
-            echo '<tr class="border_bottom"><td width="5%" class="data"><img src="images/folder.png" /></td><td class="data" width="50%" onclick="getFiles(\''.$folder.substr($name, 6).'!\')">'; 
+            echo '<tr class="border_bottom"><td width="5%" class="data"><span class="glyphicon glyphicon-folder-open"></span></td><td class="data" width="50%" onclick="getFiles(\''.$folder.substr($name, 6).'!\')">'; 
             echo $folder_name."<br>";
             echo "</td>";
             echo'<td class="data" width="20%">';
