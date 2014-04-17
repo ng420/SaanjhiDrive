@@ -1,5 +1,5 @@
 /**
- * bootbox.js [master branch]
+ * bootbox.js [v4.2.0]
  *
  * http://bootboxjs.com/license.txt
  */
@@ -546,8 +546,6 @@
 
     form.on("submit", function(e) {
       e.preventDefault();
-      // Fix for SammyJS (or similar JS routing library) hijacking the form post.
-      e.stopPropagation();
       // @TODO can we actually click *the* button object instead?
       // e.g. buttons.confirm.click() or similar
       dialog.find(".btn-primary").click();
@@ -574,7 +572,6 @@
     options = sanitize(options);
 
     var dialog = $(templates.dialog);
-    var innerDialog = dialog.find(".modal-dialog");
     var body = dialog.find(".modal-body");
     var buttons = options.buttons;
     var buttonStr = "";
@@ -599,14 +596,6 @@
 
     if (options.className) {
       dialog.addClass(options.className);
-    }
-
-    if (options.size === "large") {
-      innerDialog.addClass("modal-lg");
-    }
-
-    if (options.size === "small") {
-      innerDialog.addClass("modal-sm");
     }
 
     if (options.title) {
@@ -779,11 +768,6 @@
       OK      : "OK",
       CANCEL  : "Abbrechen",
       CONFIRM : "Akzeptieren"
-    },
-    el : {
-      OK      : "Εντάξει",
-      CANCEL  : "Ακύρωση",
-      CONFIRM : "Επιβεβαίωση"
     },
     en : {
       OK      : "OK",

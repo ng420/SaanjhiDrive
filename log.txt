@@ -1,2 +1,16 @@
 Query performed successfuly.
 Query performed successfuly.
+Query performed successfuly.
+INSERT INTO filesystem (file_id, file_name, owner, file_hash, directory_path, isFolder, shared_by)  VALUES ('1', '1.jpg', 'abhinav', 'sadfasdfasdfasdfasd', '!', '0', 'abhishek')
+Query performed successfuly.
+INSERT INTO filesystem (file_id, file_name, owner, file_hash, directory_path, isFolder) VALUES ('3', 'Desert.jpg', 'mohiitbg', 'ba45c8f60456a672e003a875e469d0eb', '!', '0')
+Query performed successfuly.
+INSERT INTO filesystem (file_id, file_name, owner, file_hash, directory_path, isFolder) VALUES ('7', 'Penguins.jpg', 'mohiitbg', '9d377b10ce778c4938b3c7e2c63a229a', '!', '0')
+Query performed successfuly.
+INSERT INTO users (username, password,email) VALUES ('sukh2','123123123','s@b.com')
+Query performed successfuly.
+INSERT INTO filesystem (file_id, file_name, owner, file_hash, directory_path, isFolder) VALUES ('36', 'Koala.jpg', 'sukh2', '2b04df3ecc1d94afddff082d139c6f15', '!', '0')
+Query performed successfuly.
+INSERT INTO filesystem (file_id, file_name, owner, file_hash, directory_path, isFolder) VALUES ('6', 'Lighthouse.jpg', 'sukh2', '8969288f4245120e7c3870287cce0ff3', '!', '0')
+Query performed successfuly.
+INSERT INTO filesystem (file_id, file_name, owner, directory_path, isFolder) VALUES ('37', 'dwalinasd', 'sukh2', '!', '1')

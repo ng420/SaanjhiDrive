@@ -522,12 +522,6 @@ function search() {
     }
 }
 
-         $(document).on("click", ".alert", function(e) {
-            bootbox.alert("Hello world!", function() {
-            console.log("Alert Callback");
-            });
-        });
-
 function DestDirMove(filename,initialPath,finalPath){
     var xmlHttp;
     if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
@@ -541,8 +535,10 @@ function DestDirMove(filename,initialPath,finalPath){
         xmlHttp.send("finalPath=" + finalPath + "&filename=" + filename + "&initialPath=" + initialPath );
         xmlHttp.onreadystatechange = function () {
          if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
-                alert(xmlHttp.responseText);
-                
+                //alert(xmlHttp.responseText);
+                $(document).ready(function () {
+		            bootbox.alert(xmlHttp.responseText);
+	            });
                 //alert('asdas');
                 getFiles(finalPath);
                 //document.getElementById('files').innerHTML = xmlHttp.responseText;

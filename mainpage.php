@@ -17,7 +17,10 @@
 	<link href="css/bootstrap-theme.min.css" rel="stylesheet">
     <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css/lightbox.css">
-    
+ <script src="js/bootminjs.js"></script>
+<script src="js/bootbox.js"></script>
+<link href="css/bootstrap.css" rel="stylesheet" type="text/css" />
+<script src="js/bootstrap.js"></script>
     <script>
         var current_folder = '!';
     </script>
