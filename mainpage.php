@@ -33,7 +33,7 @@
 
         <!-- Sidebar--> 
          <div id="sidebar-wrapper">
-			<img class="logo" src="images/sanjhalogo.jpg" width="50" height="50" alt="logo">
+			<!--<img class="logo" src="images/sanjhalogo.jpg" width="50" height="50" alt="logo">-->
             <ul class="sidebar-nav">
 				<li>
                 <form action="" name="uploadForm" method="post" enctype="multipart/form-data" id="form">
@@ -65,7 +65,7 @@
 			    </li>
 			</ul>
 		</li>
-		<li><img src="images/notification.png" style="float:left; margin-right:40px; margin-top:4px;"></li>
+			<li><span class="glyphicon glyphicon-bell" style="margin-top: 10px; margin-right: 30px;"></span></li>
 	</ul><br>
     <div class="sanjhacontainer">
 	<div class="name">SaanjhiDrive</div> 
@@ -128,7 +128,6 @@
 
 	(function() {
 		var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-		ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
 		var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
 	})();
 	</script>

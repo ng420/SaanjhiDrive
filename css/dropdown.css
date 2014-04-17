@@ -35,14 +35,14 @@ ul.menuH a /*controls the tag "Abhishek Goyal"*/
     line-height: 36px; 
     font-size: 15px;
     font-weight: bold;
-    color: #1BA1E2;
+    color: #404040;
     outline: 0;
 	margin-right: 190px;
     
 }
 .menuH a:hover
 {
-    color: #60A917;
+    color: #B0B0B0;
 }
 .menuH a.arrow
 {
@@ -102,13 +102,13 @@ ul.menuH ul
     line-height: 26px;
     font-size: 0.9em;
     font-weight: normal;
-     color: #1BA1E2;
+     color: #1404040;
     text-align: left;
 }
 
 .menuH ul a:hover
 {
-    color: #60A917;
+    color: #B0B0B0;
 }
 
 .menuH li:hover ul, .menuH li.onhover ul
@@ -238,7 +238,7 @@ ul.menuH ul
     margin-top: 120px;
     margin-left:  310px;
     font-family: Segoe UI Semibold;
-    color: #1BA1E2;
+    color: #404040;
     cursor: pointer;
     font-size: 20px;
     font-weight: normal;

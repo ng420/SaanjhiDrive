@@ -2497,6 +2497,8 @@ input[type="button"].btn-block {
 }
 .glyphicon-list-alt:before {
   content: "\e032";
+  width: 30px;
+  height: 30px;
 }
 .glyphicon-lock:before {
   content: "\e033";
@@ -2760,6 +2762,7 @@ input[type="button"].btn-block {
 }
 .glyphicon-bell:before {
   content: "\e123";
+  color: grey;
 }
 .glyphicon-certificate:before {
   content: "\e124";
@@ -3391,10 +3394,10 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   font-size: 14px;
   font-weight: normal;
   line-height: 1;
-  color: #555;
+  color: #404040;
   text-align: center;
   background-color: #eee;
-  border: 1px solid #ccc;
+  border: 1px solid grey;
   border-radius: 4px;
 }
 .input-group-addon.input-sm {
