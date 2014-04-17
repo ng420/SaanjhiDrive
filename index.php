@@ -25,69 +25,7 @@
 	<script type="text/javascript" src="js/jquery.leanModal.min.js"></script>
 	<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" />
 	<link type="text/css" rel="stylesheet" href="css/style.css" />
-	<script>
-     //checking validation of username and userpassword of form : signinform 
-     function signin() {
-         var uname = document.forms["signinform"]["usrname"].value;
-         var upwd = document.forms["signinform"]["usrpwd"].value;
-         if (uname == null || uname == "") {
-             document.getElementById("a").required = true;
-         }
-         else if (upwd == null || upwd == "") {
-             document.getElementById("b").required = true;
-         }
-         else {
-            //if (uname=="Abhishek" && upwd=="123")
-			//{
-				window.open("mainpage.php","_self");
-			//}
-			//else
-			//{
-			//	document.forms["signinform"].action = "index.html";
-			//	document.getElementById("a").setCustomValidity('Incorrect credentials') = true;
-			//}
-		 }
-     }
-     //checking validation of username, emailid, password(both) of signup_form.
-     function check_username() {
-         var reguname = document.forms["signup_form"]["regusrname"].value;
-         if (reguname == null || reguname == "") {
-             document.getElementById("rega").setCustomValidity('Please fill out this field') = true;
-         }
-         else if (!reguname.match(/^[a-zA-Z0-9_]+$/) || reguname.length < 5 || reguname > 12) {
-             document.getElementById("rega").setCustomValidity('You can only enter _ or (a-z) or (A-Z) and number of characters should be between 5-12 !!') = true;
-         }
-         else {
-             document.getElementById("rega").setCustomValidity('') = true;
-         }
-     }
-     //checking validation of password of signup_form.
-     function check_userpwd() {
-         var regupwd = document.forms["signup_form"]["regusrpwd"].value;
-         if (regupwd == null || regupwd == "") {
-             document.getElementById("regb").setCustomValidity('Please fill out this field') = true;
-         }
-         else if (regupwd.length < 8 || regupwd.length > 12) {
-             document.getElementById("regb").setCustomValidity('You password lenght should be between 8-12 !!') = true;
-         }
-         else {
-             document.getElementById("regb").setCustomValidity('') = true;
-         }
 
-     }
-     //checking validation of both the passwords of signup_form.
-     function check_userrepwd() {
-         var regupwd = document.forms["signup_form"]["regusrpwd"].value;
-         var regreupwd = document.forms["signup_form"]["regreusrpwd"].value;
-         if (regupwd != regreupwd) {
-             document.getElementById("regreb").setCustomValidity('This does not match with your password!') = true;
-         }
-         else {
-             document.getElementById("regreb").setCustomValidity('') = true;
-         }
-     }
-
-	</script>
   </head>
 
   <body>
@@ -151,13 +89,13 @@
 			<section class="popupBody">
 				<div class="user_register">
 					<form action="register.php" name="signup_form" role="form" id="my_form" method="POST" >
-						<input id= "rega" name="regusrname" type="text" class="regform-control" placeholder="Username" required oninput="check_username()">
+						<input id= "rega" name="regusrname" type="text" class="regform-control" placeholder="Username" onkeyup="check_username()" required>
                         <br/>
                         <input id= "regemail" name="regemail" type="email" class="regform-control" placeholder="Email address" required>
 						<br />
-						<input id = "regb" name="regusrpwd" type="password" class="regform-control" placeholder="Password" required oninput="check_userpwd()">
+						<input id = "regb" name="regusrpwd" type="password" class="regform-control" placeholder="Password" required onkeyup="check_userpwd()">
 						<br />
-						<input id = "regreb" name="regreusrpwd" type="password" class="regform-control" placeholder="Re-Enter Password" required oninput="check_userrepwd()"><div class="br2"></div>
+						<input id = "regreb" name="regreusrpwd" type="password" class="regform-control" placeholder="Re-Enter Password" required onkeyup="check_userrepwd()"><div class="br2"></div>
 						<br><br>
 						<div class="action_btns">
 							<button class="register_btn" type="submit" onclick="check_userrepwd()">Register</button>
@@ -187,5 +125,60 @@
 		});
 	})
 </script>
+      	<script type="text/javascript">
+     //checking validation of username and userpassword of form : signinform 
+     function signin() {
+         var uname = document.getElementById("a").value;
+         var upwd = document.getElementById("b").value;
+         if (uname == null || uname == "") {
+             document.getElementById("a").required = true;
+         }
+         else if (upwd == null || upwd == "") {
+             document.getElementById("b").required = true;
+         }
+          
+     }
+     //checking validation of username, emailid, password(both) of signup_form.
+     function check_username() {
+         var reguname = document.getElementById('rega').value;
+         if (reguname == null || reguname == "") {
+             document.getElementById("rega").setCustomValidity('Please fill out this field') = true;
+         }
+         else if (!reguname.match(/^[a-zA-Z0-9_]+$/) || reguname.length < 5 || reguname > 12) {
+             document.getElementById("rega").setCustomValidity('You can only enter _ or (a-z) or (A-Z) and number of characters should be between 5-12 !!') = true;
+         }
+         else {
+             document.getElementById("rega").setCustomValidity('') = true;
+         }
+     }
+     //checking validation of password of signup_form.
+     function check_userpwd() {
+         var regupwd = document.getElementById('regb').value;
+         if (regupwd == null || regupwd == "") {
+             document.getElementById("regb").setCustomValidity('Please fill out this field') = true;
+         }
+         else if (regupwd.length < 8 || regupwd.length > 12) {
+             document.getElementById("regb").setCustomValidity('You password lenght should be between 8-12 !!') = true;
+         }
+         else {
+             document.getElementById("regb").setCustomValidity('') = true;
+         }
+
+     }
+     //checking validation of both the passwords of signup_form.
+     function check_userrepwd() {
+         var regupwd = document.getElementById('regb').value;
+         var regreupwd = document.getElementById('regreb').value;
+         if (regupwd != regreupwd) {
+             document.getElementById("regreb").setCustomValidity('This does not match with your password!') = true;
+             return false;
+         }
+         else {
+             document.getElementById("regreb").setCustomValidity('') = true;
+             return true;
+         }
+     }
+
+	</script>
  </body>
 </html>
