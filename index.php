@@ -7,6 +7,11 @@
         {
             header('Location: '."mainpage.php");
         }
+        elseif(isset($_COOKIE['user']))
+        {
+            $_SESSION['user']=$_COOKIE['user'];
+            header('Location: '."mainpage.php");
+        }
     ?>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">

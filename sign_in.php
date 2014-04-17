@@ -20,6 +20,8 @@ if($row["username"]==$name && $row["password"]==$pass)
     {
         session_start();
         $_SESSION['user']=$name;
+        if(isset($_POST["rmbrme"]))
+        setcookie("user", $name, time()+7600, "/");
         header("Location: mainpage.php");
     }
 else
