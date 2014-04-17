@@ -521,6 +521,13 @@ function search() {
         }
     }
 }
+
+         $(document).on("click", ".alert", function(e) {
+            bootbox.alert("Hello world!", function() {
+            console.log("Alert Callback");
+            });
+        });
+
 function DestDirMove(filename,initialPath,finalPath){
     var xmlHttp;
     if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
@@ -533,9 +540,9 @@ function DestDirMove(filename,initialPath,finalPath){
         xmlHttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
         xmlHttp.send("finalPath=" + finalPath + "&filename=" + filename + "&initialPath=" + initialPath );
         xmlHttp.onreadystatechange = function () {
-            //alert(xmlHttp.status);
-            if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
+         if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
                 alert(xmlHttp.responseText);
+                
                 //alert('asdas');
                 getFiles(finalPath);
                 //document.getElementById('files').innerHTML = xmlHttp.responseText;

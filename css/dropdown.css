@@ -220,6 +220,7 @@ ul.menuH ul
 
 .go:hover{
     text-decoration: underline;
+    color: #004953;
 }
 
 .tablehead{
@@ -231,8 +232,15 @@ ul.menuH ul
 
 
 .data{
-    color:grey; 
+    color: grey;
+    cursor: pointer;
 }
+
+.data:hover{
+    text-decoration: underline;
+    color: #004953;
+}
+
 
 .path{
     margin-top: 120px;
@@ -307,6 +315,8 @@ ul.menuH ul
 	margin-top:0px;
 	padding: 10px;
 	display: none;
+    width: 800px;
+    height: 600px;
 	background: #FFF;
 	border-radius: 5px;
 	-moz-border-radius: 5px;

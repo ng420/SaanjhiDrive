@@ -29,7 +29,7 @@
             //Provide preview.
            if($ext=="png"||$ext=="jpg"||$ext=="jpeg"||$ext=="gif")
             {
-                echo '<td width="50%"><a class="go" id ="fo" href="files/'.$row['file_id'].'.'.$ext.'" data-lightbox="example-1">'.$row['file_name']."</a>";
+                echo '<td width="50%"><a class="go" id ="fo" href="#register" onclick="run_leanmodal(\'files/'.$row['file_id'].'.'.$ext.'\');">'.$row['file_name']."</a>";
             }
             else{
                  echo '<td width="50%"><a  class="go" id ="fo" href="#register" onclick="run_leanmodalOther(\'files/'.$row['file_id'].'.'.$ext.'\');" >'.$row['file_name']."</a>";
@@ -73,9 +73,10 @@
             $ext = end($temp);
             $folder_name = substr($name, 6) ; //Remove dwalin tag.
             $folder_name = str_replace("_", " ", $folder_name); //Replace underscore by blank spaces.
-            echo '<tr class="border_bottom"><td width="5%" class="data"><span class="glyphicon glyphicon-folder-open"></span></td><td class="data" width="50%" onclick="getFiles(\''.$folder.substr($name, 6).'!\')">'; 
-            echo $folder_name."<br>";
-            echo "</td>";
+            echo '<tr class="border_bottom"><td width="5%" class="data"><span class="glyphicon glyphicon-folder-open"></span></td>';
+            echo '<td width="50%">'; 
+            echo '<a class="data" onclick="getFiles(\''.$folder.substr($name, 6).'!\')">'.$folder_name.'</a>';
+            echo '</td>';
             echo'<td class="data" width="20%">';
             echo "Folder";
             echo"</td >";
