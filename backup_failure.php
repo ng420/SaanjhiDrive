@@ -1,6 +1,6 @@
 <?php
     function write_log($query) {
-        $con1 = mysqli_connect("172.16.25.62", "root", "r00tpass", "mysql_db_backup");
+        /*$con1 = mysqli_connect("172.16.25.62", "root", "r00tpass", "mysql_db_backup");
     
         if($con1)
         {
@@ -31,7 +31,7 @@
             fwrite($file_handle, $string_data);
             fclose($file_handle); 
         }
-        mysqli_close($con1);
+        mysqli_close($con1);*/
     }
 ?>
 
