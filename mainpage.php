@@ -51,8 +51,12 @@
                 </li>
                 <li><a href="#" onclick="upload_folder()">Create Folder</a>
                 </li>
-                
                 <li><a href="#">Install For desktop</a>
+                </li>
+                <li>
+                    <div id="drag_drop">
+                        <a href="#">Drag Files here</a>
+                    </div>
                 </li>
             </ul>
         </div>
@@ -267,6 +271,26 @@
 		var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
 	})();
 	</script>
+
+    <script type="text/javascript">
+        var cells = Array.prototype.slice.call(document.getElementById("path").getElementsByTagName("td"));
+        var dir_path = "";
+        for (var i in cells) {
+            dir_path += cells[i].innerHTML;
+            if (dir_path[dir_path.length - 1] == " ") {
+                dir_path = dir_path.substr(0, dir_path.length - 1);
+            }
+        }
+        dir_path = dir_path.replace('Home', '');
+        while ((dir_path.indexOf('&gt;') != -1)) {
+            dir_path = dir_path.replace('&gt;', '!');
+
+        }
+
+        dir_path = dir_path.concat('!');
+        var myDropzone = new Dropzone("div#drag_drop", { url: "upload_file.php" });
+        myDropzone.uploadMultiple = true;
+    </script>
 
 </body>
 </html>

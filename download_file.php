@@ -34,7 +34,17 @@
           
             if (file_exists($n_file_id)) {
               echo $n_file_id; 
-              
+              /*$rand_string = md5($n_file_id);
+              $file_to_download = "temp/".$rand_string.
+              if(copy($_GET['url'],$file_to_download))
+              {
+                  echo $file_to_download;  
+              }
+              else
+              {
+                  echo $n_file_id;
+              }
+              //echo "Unable to copy.";*/
             }
             else 
             {

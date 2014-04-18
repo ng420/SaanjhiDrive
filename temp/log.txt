@@ -1,0 +1,58 @@
+Query performed successfuly.
+Query performed successfuly.
+Query performed successfuly.
+INSERT INTO filesystem (file_id, file_name, owner, file_hash, directory_path, isFolder, shared_by)  VALUES ('1', '1.jpg', 'abhinav', 'sadfasdfasdfasdfasd', '!', '0', 'abhishek')
+Query performed successfuly.
+INSERT INTO filesystem (file_id, file_name, owner, file_hash, directory_path, isFolder) VALUES ('3', 'Desert.jpg', 'mohiitbg', 'ba45c8f60456a672e003a875e469d0eb', '!', '0')
+Query performed successfuly.
+INSERT INTO filesystem (file_id, file_name, owner, file_hash, directory_path, isFolder) VALUES ('7', 'Penguins.jpg', 'mohiitbg', '9d377b10ce778c4938b3c7e2c63a229a', '!', '0')
+Query performed successfuly.
+INSERT INTO users (username, password,email) VALUES ('sukh2','123123123','s@b.com')
+Query performed successfuly.
+INSERT INTO filesystem (file_id, file_name, owner, file_hash, directory_path, isFolder) VALUES ('36', 'Koala.jpg', 'sukh2', '2b04df3ecc1d94afddff082d139c6f15', '!', '0')
+Query performed successfuly.
+INSERT INTO filesystem (file_id, file_name, owner, file_hash, directory_path, isFolder) VALUES ('6', 'Lighthouse.jpg', 'sukh2', '8969288f4245120e7c3870287cce0ff3', '!', '0')
+Query performed successfuly.
+INSERT INTO filesystem (file_id, file_name, owner, directory_path, isFolder) VALUES ('37', 'dwalinasd', 'sukh2', '!', '1')
+Query performed successfuly.
+UPDATE filesystem SET directory_path = '!a!' WHERE owner='abhishek' AND file_name='database.sql' AND directory_path ='!' 
+Query performed successfuly.
+INSERT INTO filesystem (file_id, file_name, owner, file_hash, directory_path, isFolder) VALUES ('36', 'Koala.jpg', 'abhinav', '2b04df3ecc1d94afddff082d139c6f15', '!', '0')
+Query performed successfuly.
+INSERT INTO filesystem (file_id, file_name, owner, file_hash, directory_path, isFolder, shared_by)  VALUES ('16', 'College Management System(user manual).pdf', 'abhinav', 'd1fad972b7f38ae41f8ea934a34610e9', '!', '0', 'abhishek')
+Query performed successfuly.
+DELETE FROM filesystem WHERE file_id = '6' AND owner='abhishek' AND directory_path = '!a!' LIMIT 1
+Query performed successfuly.
+DELETE FROM filesystem WHERE file_id = '6' AND owner='abhishek' AND directory_path = '!a!' LIMIT 1
+Query performed successfuly.
+INSERT INTO filesystem (file_id, file_name, owner, file_hash, directory_path, isFolder) VALUES ('6', 'Lighthouse.jpg', 'abhishek', '8969288f4245120e7c3870287cce0ff3', '!a!', '0')
+Query performed successfuly.
+INSERT INTO filesystem (file_id, file_name, owner, directory_path, isFolder) VALUES ('38', 'dwalintatta_ajay', 'abhishek', '!', '1')
+Query performed successfuly.
+INSERT INTO filesystem (file_id, file_name, owner, directory_path, isFolder) VALUES ('39', 'dwalintatta', 'abhishek', '!', '1')
+Query performed successfuly.
+INSERT INTO filesystem (file_id, file_name, owner, directory_path, isFolder) VALUES ('40', 'dwalinajay_tatta', 'mohiitbg', '!', '1')
+Query performed successfuly.
+INSERT INTO filesystem (file_id, file_name, owner, file_hash, directory_path, isFolder) VALUES ('36', 'Koala.jpg', 'abhishek', '2b04df3ecc1d94afddff082d139c6f15', '!', '0')
+Query performed successfuly.
+INSERT INTO filesystem (file_id, file_name, owner, file_hash, directory_path, isFolder) VALUES ('6', 'Lighthouse.jpg', 'abhishek', '8969288f4245120e7c3870287cce0ff3', '!', '0')
+Query performed successfuly.
+SELECT * FROM filesystem  WHERE owner='abhishek' AND directory_path = '!' AND file_name = 'Lighthouse.jpg'
+Query performed successfuly.
+INSERT INTO filesystem (file_id, file_name, owner, file_hash, directory_path, isFolder) VALUES ('41', '1381984_230878953744097_145421349_n.jpg', 'jaihind', '73d46e1fc9a16ec94d114e4f0023e136', '!', '0')
+Query performed successfuly.
+DELETE FROM filesystem WHERE file_id = '42' AND owner='abhishek' AND directory_path = '!' LIMIT 1
+Query performed successfuly.
+DELETE FROM filesystem WHERE file_id = '' AND owner='abhishek' AND directory_path = '!' LIMIT 1
+Query performed successfuly.
+INSERT INTO filesystem (file_id, file_name, owner, file_hash, directory_path, isFolder) VALUES ('42', '27.dll', 'jaihind', '7c3b449f661d99a9b1033a14033d2987', '!', '0')
+Query performed successfuly.
+DELETE FROM filesystem WHERE file_id = '41' AND owner='jaihind' AND directory_path = '!' LIMIT 1
+Query performed successfuly.
+DELETE FROM filesystem WHERE file_id = '41' AND owner='jaihind' AND directory_path = '!' LIMIT 1
+Query performed successfuly.
+DELETE FROM filesystem WHERE file_id = '41' AND owner='jaihind' AND directory_path = '!' LIMIT 1
+Query performed successfuly.
+DELETE FROM filesystem WHERE file_id = '41' AND owner='jaihind' AND directory_path = '!' LIMIT 1
+Query performed successfuly.
+SELECT * FROM filesystem  WHERE owner='jaihind' AND directory_path = '!' AND file_name = '27.dll'
