@@ -14,17 +14,17 @@ namespace DownloadTry1
 {
     public partial class Form1 : Form
     {
-        string username = "";//= "abhishek";
-        string password  = "";//= "anything";
-        string clientHome1 = "";// "C:\\Users\\Abhishek Sen\\Downloads\\___SAANJHI";
-        string clientHome2 = "";//"C:\\\\Users\\\\Abhishek Sen\\\\Downloads\\\\___SAANJHI";
+        string username = "";//= "abhishek";                                                                                    // this users username
+        string password  = "";//= "anything";                                                                                   // password of user
+        string clientHome1 = "";// "C:\\Users\\Abhishek Sen\\Downloads\\___SAANJHI";                                            // Saanjhi drive folder on desktop
+        string clientHome2 = "";//"C:\\\\Users\\\\Abhishek Sen\\\\Downloads\\\\___SAANJHI";                                     // same as above, but "\\" replaced with "\\\\"
         string tempToGenerateFile = "";
-        string tempToGenerateFilesToUploadToServer = "";
+        string tempToGenerateFilesToUploadToServer = "";                                                                        // list of files to be uploaded
         string tempToGenerateFOLDERToUploadToServer = "";
         int syncComplete = 0;
         //string path = "http://172.16.25.157/";
-        string path = "http://localhost:24667/";
-        string saveTempFilesPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),"Saanjhi Drive")  + "\\";
+        string path = "http://localhost:24667/";                                                                            
+        string saveTempFilesPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),"Saanjhi Drive")  + "\\";          // location of temp files in appdata of clients desktop
 
         public Form1()
         {
@@ -77,7 +77,7 @@ namespace DownloadTry1
                 return -1;
             }
 
-        }
+        }               // function to download file from server
         private int getQueueFromServer()
         {
             try
@@ -98,7 +98,7 @@ namespace DownloadTry1
             {
                 return -1;
             }
-        }
+        }                                                                                       // not used
         private int uploadFileToServer(string fullUploadFilePath)
         {
             //var FD = new System.Windows.Forms.OpenFileDialog();
@@ -135,7 +135,7 @@ namespace DownloadTry1
             //}
 
 
-        }
+        }                                                              // function to upload file to server
 
         private int DeleteFileOnDesktop(string file)
         {
@@ -148,7 +148,7 @@ namespace DownloadTry1
             {
                 return -1;
             }
-        }
+        }                                                                           // function to delete files on desktop
 
         private void Sync_Click(object sender, EventArgs e)
         {
@@ -176,7 +176,7 @@ namespace DownloadTry1
                 MessageBox.Show("Please Select Target Folder first");
             }
 
-        }
+        }                                                                    // function to send username, password to server for verification
 
         private void DownloadStatusFile_Click(object sender, EventArgs e)
         {
@@ -296,7 +296,7 @@ namespace DownloadTry1
                 }
                 
                     
-        }
+        }                                                       // event handler - syncs all the files
 
        
         private void TraverseDirs(DirectoryInfo dir)
@@ -344,7 +344,7 @@ namespace DownloadTry1
             catch (Exception)
             {
             }
-        }
+        }                                                                           // traverse all the directories inside SaanjhiDrive folder
 
         private void TraverseDirsTODelete(DirectoryInfo dir)
         {
@@ -430,7 +430,7 @@ namespace DownloadTry1
             catch (Exception)
             {
             }
-        }
+        }                                                                   // not used
 
         private void generateFilesToUploadToServerandUploadThem()
         {
@@ -495,7 +495,7 @@ namespace DownloadTry1
             }
 
 
-        }
+        }                                                              // generate list of files to upload on server and uploads them too
 
         private void button1_Click(object sender, EventArgs e) //save
         {
@@ -533,7 +533,7 @@ namespace DownloadTry1
                  //verify
                 // curUser.Text = username + " is Logged In";
              }
-        }
+        }                                                           // event handler: save button
 
         private void lblSettings_Click(object sender, EventArgs e)
         {
@@ -588,7 +588,7 @@ namespace DownloadTry1
 
             
             
-        }
+        }                                                             // event handler: click on "Settings"
 
         private void button2_Click(object sender, EventArgs e)//select folder
         {
@@ -619,7 +619,7 @@ namespace DownloadTry1
                 MessageBox.Show("Please Select Valid Path", "My Application", MessageBoxButtons.OKCancel, MessageBoxIcon.Asterisk);
             }
                
-        }
+        }                                                    // event handler: click on "Select Folder"
 
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -658,7 +658,7 @@ namespace DownloadTry1
                 MessageBox.Show("Error reading user credentials. Enter your details together with Target Folder again");
             }
            
-        }
+        }                                                                   // event handler: form load
 
         private void panel4_Paint(object sender, PaintEventArgs e)
         {
