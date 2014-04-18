@@ -234,9 +234,7 @@
         }
     </script> 
 
-     <div id="register">
-        <iframe  id="ifrm" width="800px" height="600px" frameborder="0"  scrolling="yes"></iframe>
-    </div>
+  
 
     <script type="text/javascript" src="js/jquery-1.11.0.min.js"></script>
     <script type="text/javascript" src="js/script.js"></script>

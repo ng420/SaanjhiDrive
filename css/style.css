@@ -115,7 +115,7 @@ body {font-family: Segoe UI Semibold; font-size: 14px; color: #666;}
 	border-color: #0050EF;
 }
 .forgotpwd {
-    text-decoration: :none;
+    text-decoration:none;
 }
 .one_half {width:50%; display: block; float:left;}
 .one_half.last {width:45%; margin-left:5%;}
