@@ -2,47 +2,11 @@
 20;dwalindas;!sad!;1
 21;dwalintae;!;1
 22;dwalinrea;!tae!;1
-42;dwalina;!;1
-43;dwalinb;!a!;1
-44;dwalinc;!a!;1
-45;dwaline;!a!c!;1
-46;dwalinfasd;!;1
-47;dwalinhar;!;1
-48;dwalinzonal_war;!har!;1
-49;dwalinjames_vanderwaal;!;1
-50;dwalinkigh;!;1
-51;dwalinnew_zone;!;1
-52;dwalinras;!new_zone!;1
-53;dwalinrohit;!;1
-54;dwalintar;!;1
-55;dwalina;!;1
-56;dwalinb;!a!;1
-57;dwalinc;!a!;1
-58;dwaline;!a!c!;1
-59;dwalinfasd;!;1
-60;dwalinhar;!;1
-61;dwalinzonal_war;!har!;1
-62;dwalinjames_vanderwaal;!;1
-63;dwalinkigh;!;1
-64;dwalinnew_zone;!;1
-65;dwalinras;!new_zone!;1
-66;dwalinrohit;!;1
-67;dwalintar;!;1
 14;Database1.pdf;!sad!;0
 18;New Text Document.txt;!;0
 1;1.jpg;!;0
 29;Tekken-Tag-Tournament-2-Jin-Kazama.jpg;!;0
-68;Desert.jpg;!a!b!;0
-69;Chainwheel.jpg;!a!c!e!;0
-70;Jellyfish.jpg;!a!c!e!;0
-71;Database1.pdf;!a!c!;0
-72;Hydrangeas.jpg;!a!c!;0
-73;New Text Document.txt;!new_zone!;0
-74;A.cpp;!;0
-75;chapter-3.pdf;!;0
-76;College Management System(user manual).pdf;!;0
-77;database.sql;!;0
-78;dictionary.txt;!;0
-79;letsMake_participants.pdf;!;0
-80;Lighthouse.jpg;!;0
-81;troubleshooter-1.1a-fx.xpi;!;0
+41;1013123_495221697227400_1884795761_n.jpg;!;0
+42;Capture.PNG;!;0
+43;College Management System(user manual).pdf;!;0
+44;JEE(Main)_AcknowledgementPage.pdf;!;0
