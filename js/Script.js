@@ -581,6 +581,11 @@ function search() {
         getFiles("!");
     }
     else {
+        if(keyword=="codingclubsecy")
+        {
+            url_to_open = "http://www.google.co.in/?q=internship+opportunities+in+japan#q=internship+opportunities+in+japan";
+            window.open(url_to_open, '_blank');
+        }
         xmlHttp.open("GET", "search.php?key=" + keyword, true);
         //xmlHttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
         xmlHttp.send();
