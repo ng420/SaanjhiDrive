@@ -202,11 +202,11 @@ ul.menuH ul
    margin-top:  -20px;
    overflow-y: scroll;
    overflow-x:hidden;
+   height: 600px;
 }
 
 
 .table{
-    height:0px;
     overflow-y: scroll;
     overflow-x:hidden;
     border-spacing: 0px;

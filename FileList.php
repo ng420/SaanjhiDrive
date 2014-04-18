@@ -9,13 +9,13 @@
           $temp = explode(".", $row['file_name']);
             $ext = end($temp);  //Extension of file obtained.
             $ext = strtolower($ext);
-            echo '<tr class="border_bottom" id="'.$row['file_name'].'" onclick="showopt(\''.$row['file_name'].'\')"><td width="5%" class="data">';
+            echo '<tr class="br" id="'.$row['file_name'].'" onclick="showopt(\''.$row['file_name'].'\')"><td width="5%" class="data">';
             if($ext=="png"||$ext=="jpg"||$ext=="jpeg"||$ext=="gif")
                 echo '<span class="glyphicon glyphicon-picture"></span>';
              elseif($ext=="doc"|| $ext == "txt" || $ext=="pdf"||$ext=="PDF"||$ext=="ppt"||$ext=="pps"||$ext=="pptx"||$ext=="sdf"||$ext=="dat"||$ext=="docx"||$ext=="log"||$ext=="msg"||$ext=="odt"||$ext=="pages"||$ext=="rtf"||$ext=="tex"||$ext=="txt"||$ext=="wpd"||$ext=="wps")
                  echo '<span class="glyphicon glyphicon-file"></span>';
              elseif($ext=="exe"||$ext=="exe.config")
-                 echo "<img src='images/exec1.png'>";
+                 echo '<span class="glyphicon glyphicon-credit-card"></span>';
              elseif($ext=="tar"||$ext=="zip"||$ext=="tar2012"||$ext=="7z"||$ext=="rar")
                 echo '<span class="glyphicon glyphicon-compressed"></span>';
                 elseif($ext=="mp3")
@@ -23,7 +23,7 @@
                 elseif($ext=="mp4"||$ext=="flv"||$ext=="mkv"||$ext=="avi"||$ext=="wmv")
                 echo '<span class="glyphicon glyphicon-film"></span>';
                 else
-                  echo '<span class="glyphicon glyphicon-list-alt"></span>';
+                  echo '<span class="glyphicon glyphicon-exclamation-sign"></span>';
             echo"</td>";
             
             //Provide preview.
@@ -74,7 +74,7 @@
             $folder_name = substr($name, 6) ; //Remove dwalin tag.
             $folder_name = str_replace("_", " ", $folder_name); //Replace underscore by blank spaces.
             echo '<tr class="border_bottom"><td width="5%" class="data"><span class="glyphicon glyphicon-folder-open"></span></td>';
-            echo '<td width="50%">'; 
+            echo '<td "width="50%">'; 
             echo '<a class="data" onclick="getFiles(\''.$folder.substr($name, 6).'!\')">'.$folder_name.'</a>';
             echo '</td>';
             echo'<td class="data" width="20%">';

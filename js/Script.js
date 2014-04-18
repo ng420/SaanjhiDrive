@@ -37,7 +37,8 @@ function callUpload() {
     xmlhttp.onreadystatechange = function () {
         //alert("sdfasdfsda");
         if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-            alert(xmlhttp.responseText);
+            //alert(xmlhttp.responseText);
+            bootbox.alert(xmlhttp.responseText);
             getFiles(dir_path);
         }
     }
@@ -85,9 +86,14 @@ function share_file(file_name) {
     }
 
     dir_path = dir_path.concat('!');
-    var user_to_share_with = prompt("Enter user name");
-
-    //AJAX request.
+    var user_to_share_with;
+  
+		bootbox.prompt("Enter username", function(result) {
+		if (result == null) {
+			bootbox.hideAll();
+		} else {
+			user_to_share_with = result;
+            //AJAX request.
     var xmlhttp;
     var form_data = new FormData();
     //alert('in callUpload()');
@@ -100,8 +106,9 @@ function share_file(file_name) {
     xmlhttp.onreadystatechange = function () {
         //alert("sdfasdfsda");
         if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-            alert(xmlhttp.responseText);
-            getFiles(dir_path);
+            //alert(xmlhttp.responseText);
+            bootbox.alert(xmlhttp.responseText);
+	        getFiles(dir_path);
         }
         //alert(xmlhttp.status);
     }
@@ -111,50 +118,66 @@ function share_file(file_name) {
     form_data.append("dir_path", dir_path);
     form_data.append("user_to_share_with", user_to_share_with);
     xmlhttp.send(form_data);
+		}
+		});
+	
+    
 }
 function upload_folder() {
     var folder_name = "";
-    while (folder_name.length == 0) {
-        folder_name = prompt("Enter folder name?");
-    }
-    var cells = Array.prototype.slice.call(document.getElementById("path").getElementsByTagName("td"));
-    var dir_path = "";
-    for (var i in cells) {
-        dir_path += cells[i].innerHTML;
-        if (dir_path[dir_path.length - 1] == " ") {
-            dir_path = dir_path.substr(0, dir_path.length - 1);
-        }
-    }
-    dir_path = dir_path.replace('Home', '');
-    while ((dir_path.indexOf('&gt;') != -1)) {
-        dir_path = dir_path.replace('&gt;', '!');
+    bootbox.prompt("Enter Folder Name:", function (result) {
+        if (result == null) {
+            bootbox.hideAll();
+        } else {
+            folder_name = result;
+            if (folder_name.length == 0) {
+                bootbox.alert("Please enter some name and try again!!");
+            }
+            else {
+                var cells = Array.prototype.slice.call(document.getElementById("path").getElementsByTagName("td"));
+                var dir_path = "";
+                for (var i in cells) {
+                    dir_path += cells[i].innerHTML;
+                    if (dir_path[dir_path.length - 1] == " ") {
+                        dir_path = dir_path.substr(0, dir_path.length - 1);
+                    }
+                }
+                dir_path = dir_path.replace('Home', '');
+                while ((dir_path.indexOf('&gt;') != -1)) {
+                    dir_path = dir_path.replace('&gt;', '!');
 
-    }
+                }
 
-    dir_path = dir_path.concat('!');
-    //alert(dir_path);
-    var xmlhttp;
-    var form_data = new FormData();
-    //alert('in callUpload()');
-    if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
-        xmlhttp = new XMLHttpRequest();
-    }
-    else {// code for IE6, IE5
-        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-    }
-    xmlhttp.onreadystatechange = function () {
-        //alert("sdfasdfsda");
-        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-            alert(xmlhttp.responseText);
-            getFiles(dir_path);
+                dir_path = dir_path.concat('!');
+                //alert(dir_path);
+                var xmlhttp;
+                var form_data = new FormData();
+                //alert('in callUpload()');
+                if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
+                    xmlhttp = new XMLHttpRequest();
+                }
+                else {// code for IE6, IE5
+                    xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+                }
+                xmlhttp.onreadystatechange = function () {
+                    //alert("sdfasdfsda");
+                    if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                        //alert(xmlhttp.responseText);
+                        bootbox.alert(xmlhttp.responseText);
+                        getFiles(dir_path);
+                    }
+                    //alert(xmlhttp.status);
+                }
+                xmlhttp.open("POST", "create_folder.php", true);
+                //xmlHttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                form_data.append("folder_name", folder_name);
+                form_data.append("directory_path", dir_path);
+                xmlhttp.send(form_data);
+            }
         }
-        //alert(xmlhttp.status);
-    }
-    xmlhttp.open("POST", "create_folder.php", true);
-    //xmlHttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    form_data.append("folder_name", folder_name);
-    form_data.append("directory_path", dir_path);
-    xmlhttp.send(form_data);
+    });
+    
+    
 }
 function getFiles(path) {
     var xmlHttp;
@@ -197,7 +220,7 @@ function showopt(id) {
     if(res[0].length>23){
         filenameModified = res[0].substring(0, 7) + "........." + res[0].substring(res[0].length - 7) + "."+res[1];
     }
-                var division = '<table width="85%" cellpadding="8px" id="uphead1"><tr><td width="20%">' + filenameModified + '</td>';
+                var division = '<table width="85%" cellpadding="8px" id="uphead1"><tr id="tr1"><td width="20%">' + filenameModified + '</td>';
                 division += '<td class="opt" width="12%"><span class="glyphicon glyphicon-link"></span><a class="share" onclick="share_file(\'' + id + '\')">   Share</a></td>';
                 division += '<td class="opt" width="12%"><span class="glyphicon glyphicon-download-alt"></span><a class="download" onclick="download_file(\'' + id + '\')">   Download</a></td>';
                 division += '<td class="opt" width="12%"><span class="glyphicon glyphicon-trash"></span><a class="delete" onclick="Delete(\'' + id + '\')">   Delete</a></td>';
@@ -209,7 +232,7 @@ function showopt(id) {
                 document.getElementById("options").style.visibility = "visible";
                 //var tb1 = document.getElementById("table_heading");
                 document.getElementById("row_id").style.display = "none";
-                 document.getElementsByClassName('border_bottomRow').style.backgroundColor = "#365890"; 
+                 //document.getElementsByClassName('border_bottomRow').style.backgroundColor = "#365890"; 
 
 }
 
@@ -220,6 +243,11 @@ var downloadURL = function downloadURL(url, file_name) {
     window.location.href = query_string;
 
 };
+
+/*$(document).on("click", ".br", function () {
+    $(this).css("background-color", "red");
+});
+*/
 
 function download_file(file_name) {
     //Extract directory path.
@@ -260,7 +288,7 @@ function download_file(file_name) {
 
             }
             else {
-                alert("File not present.");
+                bootbox.alert("File not present.");
             }
             getFiles(dir_path);
         }
@@ -275,6 +303,54 @@ function download_file(file_name) {
 
 function Delete(id) {
     //delete
+    bootbox.confirm("Are you sure?", function (result) {
+        if (result == null) {
+            bootbox.hideAll();
+        }
+        else{
+            var cells = Array.prototype.slice.call(document.getElementById("path").getElementsByTagName("td"));
+    var dir_path = "";
+    for (var i in cells) {
+        dir_path += cells[i].innerHTML;
+        if (dir_path[dir_path.length - 1] == " ") {
+            dir_path = dir_path.substr(0, dir_path.length - 1);
+        }
+    }
+    dir_path = dir_path.replace('Home', '');
+    while ((dir_path.indexOf('&gt;') != -1)) {
+        dir_path = dir_path.replace('&gt;', '!');
+
+    }
+
+    dir_path = dir_path.concat('!');
+
+
+    //alert(text);
+
+    var xmlHttp;
+    if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
+        xmlHttp = new XMLHttpRequest();
+    }
+    else {// code for IE6, IE5
+        xmlHttp = new ActiveXObject("Microsoft.XMLHTTP");
+    }
+    xmlHttp.open("POST", "remove.php", true);
+    xmlHttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xmlHttp.send("filename=" + id + "&current_dir=" + dir_path);
+    xmlHttp.onreadystatechange = function () {
+        //alert(xmlHttp.status);
+        if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
+            //alert(xmlHttp.responseText); //.getElementsByTagName(tr);
+            //alert(row.length);
+            //var text = row[1].getElementsByTagName("*");
+            //var row = document.getElementById(filename).cells;
+            //row[1].innerHTML = '<a class="contents" onclick="displayIFrame(\'files/'+text+'\');">'+text+'</a>';
+            getFiles(dir_path);
+        }
+    }
+        }
+    }); 
+    
     var cells = Array.prototype.slice.call(document.getElementById("path").getElementsByTagName("td"));
     var dir_path = "";
     for (var i in cells) {
@@ -426,6 +502,15 @@ function move(id) {
         }
     }
 }
+
+/*$(document).click(function (event) {
+    if ($(event.target).parents().index($('.br')) == -1) {
+        if ($('.br').css("background-color") == "rgb(255,0,0)") {
+            //$('.br').css("background-color","black");
+            alert("hey baby");
+        }
+    }
+})*/
 
   $(document).click(function (event) {
             if ($(event.target).parents().index($('.table')) == -1&&$(event.target).parents().index($('#options')) == -1) {
