@@ -1,12 +1,12 @@
 <?php
     function write_log($query) {
-        /*$con1 = mysqli_connect("172.16.25.62", "root", "r00tpass", "mysql_db_backup");
+        /*$con1 = mysqli_connect("172.16.25.62", "root", "r00tpass", "mysql_db_backup");        //Establishes connection with backup server
     
-        if($con1)
+        if($con1)   //Check whether connection is established or not
         {
             //echo "Connection established.\n";
             $backup_result = mysqli_query($con1, $query);
-            if(!$backup_result)
+            if(!$backup_result)     //Write failure into log.txt if unable to perform query.
             {
                 $log_file_name = "log.txt";
                 $file_handle = fopen($log_file_name, 'a') or die();
@@ -14,7 +14,7 @@
                 fwrite($file_handle, $string_data);
                 fclose($file_handle);  
             } 
-            else 
+            else //Write status of query performed.
             {
                 $log_file_name = "log.txt";
                 $file_handle = fopen($log_file_name, 'a') or die();

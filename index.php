@@ -18,6 +18,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
+    <meta http-equiv="refresh" content="5" > 
     <title>SaanjhiDrive</title>
 	    <link href="css/signin.css" rel="stylesheet">
 	<link rel="shortcut icon" href="images/icon.ico">
