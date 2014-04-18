@@ -24,6 +24,7 @@ namespace DownloadTry1
         int syncComplete = 0;
         //string path = "http://172.16.25.157/";
         string path = "http://localhost:24667/";
+        string saveTempFilesPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),"Saanjhi Drive")  + "\\";
 
         public Form1()
         {
@@ -153,7 +154,7 @@ namespace DownloadTry1
         {
             if(clientHome1!="")
             {
-            System.IO.StreamWriter file = new System.IO.StreamWriter("status.txt");
+            System.IO.StreamWriter file = new System.IO.StreamWriter(saveTempFilesPath +"status.txt");
             file.WriteLine("NewSync;"+username+";"+password);
             file.Close();
             WebClient client = new WebClient();
@@ -161,7 +162,7 @@ namespace DownloadTry1
             string uploadWebUrl = path+"DesktopApp/uploadStatus.aspx";
             try
             {
-                client.UploadFile(uploadWebUrl, "status.txt");
+                client.UploadFile(uploadWebUrl, saveTempFilesPath + "status.txt");
                 syncComplete = 1;
             }
             catch (Exception ee)
@@ -185,6 +186,15 @@ namespace DownloadTry1
                 string status = "No";
                 try
                 {
+                    /////////////////////////////////////////////////////Generate Present Structure of Home directory//////////////////////////////////////////////////////////////
+                    DirectoryInfo tDir = new DirectoryInfo(@clientHome1);
+                    TraverseDirs(tDir);
+                    System.IO.StreamWriter fileStructure = new System.IO.StreamWriter(saveTempFilesPath + "presentStructure.txt");
+                    tempToGenerateFile = tempToGenerateFile.Replace("\\", "\\\\");
+                    fileStructure.WriteLine(tempToGenerateFile);
+                    fileStructure.Close();
+                    tempToGenerateFile = tempToGenerateFile.Replace("\\\\", "\\");
+                    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
                     WebClient webClient = new WebClient();
                     Stream stream = webClient.OpenRead(path+"DesktopApp/status.txt");
@@ -201,7 +211,7 @@ namespace DownloadTry1
                         Stream stream1 = webClient.OpenRead(path+"DesktopApp/currentStatus.txt");
                         StreamReader streamReader1 = new StreamReader(stream1);
 
-                        System.IO.StreamWriter file = new System.IO.StreamWriter("currentStatus.txt");
+                        System.IO.StreamWriter file = new System.IO.StreamWriter(saveTempFilesPath + "currentStatus.txt");
                         while ((line1 = streamReader1.ReadLine()) != null)
                         {
                             //MessageBox.Show("hi");
@@ -209,8 +219,8 @@ namespace DownloadTry1
                             file.WriteLine(v);
                         }
                         file.Close();
-                        
-                        System.IO.StreamReader fileToRead = new System.IO.StreamReader("currentStatus.txt");
+
+                        System.IO.StreamReader fileToRead = new System.IO.StreamReader(saveTempFilesPath + "currentStatus.txt");
                         while ((line = fileToRead.ReadLine()) != null )
                         {
                             if (line.Length > 2)
@@ -264,15 +274,6 @@ namespace DownloadTry1
                         ///////////////////////////////////////////////////Delete Files which are not there on server but are in client's desktop///////////////
                         //DirectoryInfo tDir1 = new DirectoryInfo(@clientHome1);
                         //TraverseDirsTODelete(tDir1);
-                        /////////////////////////////////////////////////////Generate Present Structure of Home directory//////////////////////////////////////////////////////////////
-                        DirectoryInfo tDir = new DirectoryInfo(@clientHome1);
-                        TraverseDirs(tDir);
-                        System.IO.StreamWriter fileStructure = new System.IO.StreamWriter("presentStructure.txt");
-                        tempToGenerateFile = tempToGenerateFile.Replace("\\", "\\\\");
-                        fileStructure.WriteLine(tempToGenerateFile);
-                        fileStructure.Close();
-                        tempToGenerateFile = tempToGenerateFile.Replace("\\\\", "\\");
-                        //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                         ////////////////////////////////////////////////////Upload files which are not there on server/////////////////////////////////////////
                         generateFilesToUploadToServerandUploadThem();
 
@@ -360,7 +361,7 @@ namespace DownloadTry1
                     string afterHeaderWithoutName = withoutInitialHeader.Substring(0, withoutInitialHeader.Length - (nameOfFolder.Length - 6)); //to eliminate dwalin
                     //tempToGenerateFile = tempToGenerateFile + nameOfFolder + ";" + afterHeaderWithoutName + "\r\n"; //eg. name;pathafterdropboxhomefolder
                     string line, tt = afterHeaderWithoutName.Replace("\\", "\\\\");
-                    System.IO.StreamReader fileToRead = new System.IO.StreamReader("currentStatus.txt");
+                    System.IO.StreamReader fileToRead = new System.IO.StreamReader(saveTempFilesPath + "currentStatus.txt");
                     int flagToDelete =0;
                     while ((line = fileToRead.ReadLine()) != null)
                     {
@@ -401,7 +402,7 @@ namespace DownloadTry1
                     string afterHeaderWithoutName = withoutInitialHeader.Substring(0, withoutInitialHeader.Length - nameOfFile.Length);
                     //tempToGenerateFile = tempToGenerateFile + nameOfFile + ";" + afterHeaderWithoutName + "\r\n";
                     string line,tt = afterHeaderWithoutName.Replace("\\","\\\\");
-                    System.IO.StreamReader fileToRead = new System.IO.StreamReader("currentStatus.txt");
+                    System.IO.StreamReader fileToRead = new System.IO.StreamReader(saveTempFilesPath + "currentStatus.txt");
                     int flagToDelete = 0;
                     while ((line = fileToRead.ReadLine()) != null)
                     {
@@ -434,14 +435,14 @@ namespace DownloadTry1
         private void generateFilesToUploadToServerandUploadThem()
         {
             string line1,line2;
-            System.IO.StreamReader readCurrent = new System.IO.StreamReader("presentStructure.txt"); // on client
+            System.IO.StreamReader readCurrent = new System.IO.StreamReader(saveTempFilesPath + "presentStructure.txt"); // on client
             while ((line1 = readCurrent.ReadLine()) != null)
             {
                 if (line1.Length > 2)
                 {
                     int flag = 0;
                     string[] columns1 = line1.Split(';');
-                    System.IO.StreamReader readPresent = new System.IO.StreamReader("currentStatus.txt");// on server
+                    System.IO.StreamReader readPresent = new System.IO.StreamReader(saveTempFilesPath + "currentStatus.txt");// on server
                     while ((line2 = readPresent.ReadLine()) != null)
                     {
                         
@@ -474,7 +475,7 @@ namespace DownloadTry1
             }
             
             readCurrent.Close();
-            StreamWriter filefromc2s = new StreamWriter("xtrafiles2beadded2server.txt");
+            StreamWriter filefromc2s = new StreamWriter(saveTempFilesPath + "xtrafiles2beadded2server.txt");
             filefromc2s.WriteLine(tempToGenerateFilesToUploadToServer); // one extra \n
             filefromc2s.WriteLine("`");
             filefromc2s.WriteLine(tempToGenerateFOLDERToUploadToServer);
@@ -484,7 +485,7 @@ namespace DownloadTry1
             string uploadWebUrl = path+"DesktopApp/XtraFilesFromClient2Server.aspx";
             try
             {
-                client.UploadFile(uploadWebUrl, "xtrafiles2beadded2server.txt");
+                client.UploadFile(uploadWebUrl, saveTempFilesPath + "xtrafiles2beadded2server.txt");
                 MessageBox.Show("Synced");
             }
             catch (Exception )
@@ -506,8 +507,11 @@ namespace DownloadTry1
              }
              else
              {
-
-                 StreamWriter file = new StreamWriter("userCredentials.txt");
+                 if (!Directory.Exists(saveTempFilesPath))
+                 {
+                     DirectoryInfo di = Directory.CreateDirectory(saveTempFilesPath);
+                 }
+                 StreamWriter file = new StreamWriter(saveTempFilesPath + "userCredentials.txt");
                  file.WriteLine(username);
                  file.WriteLine(password);
                  if (clientHome1 != "")  //if select folder is pressed first then write path only when usern and passw has already beign written otherwise it will be in 1st line
@@ -522,7 +526,7 @@ namespace DownloadTry1
                  file.Close();
 
                  MessageBox.Show("Saved");
-                 lblSettings.Text = "Connection Settings";
+                 lblSettings.Text = "Settings";
                  panel4.Visible = false;
                  panel1.Visible = true;
                  panel1.Dock = DockStyle.Fill;
@@ -533,17 +537,17 @@ namespace DownloadTry1
 
         private void lblSettings_Click(object sender, EventArgs e)
         {
-            if (lblSettings.Text == "Connection Settings")
+            if (lblSettings.Text == "Settings")
             {
                 lblSettings.Text = "Back";
                 panel1.Visible = false;
                 panel4.Visible = true;
                 panel4.Dock = DockStyle.Fill;
 
-                if (File.Exists("userCredentials.txt")) //file exits only when it is filled with credentials after 1st login (1st click on save button)
+                if (File.Exists(saveTempFilesPath + "userCredentials.txt")) //file exits only when it is filled with credentials after 1st login (1st click on save button)
                 {
                     string firstline = "";
-                    StreamReader file = new StreamReader("userCredentials.txt");
+                    StreamReader file = new StreamReader(saveTempFilesPath + "userCredentials.txt");
                     firstline = file.ReadLine();
                     if (firstline.Length > 2) //if file is there but not empty or having \n
                     {
@@ -564,7 +568,7 @@ namespace DownloadTry1
             }
             else
             {
-                lblSettings.Text = "Connection Settings";
+                lblSettings.Text = "Settings";
                 panel4.Visible = false;
                 panel1.Visible = true;
                 panel1.Dock = DockStyle.Fill;
@@ -601,7 +605,7 @@ namespace DownloadTry1
                 curFolder.Text = "Current Drive Path is " + clientHome1;
                 if (username != "") //if username is assigned then it is writtern as 1st line of userCredentials
                 {
-                    StreamWriter file = new StreamWriter("userCredentials.txt");
+                    StreamWriter file = new StreamWriter(saveTempFilesPath + "userCredentials.txt");
                     file.WriteLine(username);
                     file.WriteLine(password);
                     file.WriteLine(clientHome1); //written as 3rd line
@@ -625,10 +629,10 @@ namespace DownloadTry1
             panel4.Dock = DockStyle.None;
             try
             {
-                if (File.Exists("userCredentials.txt")) //file exits only when it is filled with credentials after 1st login (1st click on save button)
+                if (File.Exists(saveTempFilesPath + "userCredentials.txt")) //file exits only when it is filled with credentials after 1st login (1st click on save button)
                 {
                     string firstline = "";
-                    StreamReader file = new StreamReader("userCredentials.txt");
+                    StreamReader file = new StreamReader(saveTempFilesPath + "userCredentials.txt");
                     firstline = file.ReadLine();
                     if (firstline.Length > 2) //if file is there but not empty or having \n
                     {
@@ -640,6 +644,13 @@ namespace DownloadTry1
                     }
                     file.Close();
 
+                }
+                else
+                {
+                    panel1.Visible = false;
+                    panel1.Dock = DockStyle.None;
+                    panel4.Visible = true;
+                    panel4.Dock = DockStyle.Fill;
                 }
             }
             catch (Exception dufbeui)
