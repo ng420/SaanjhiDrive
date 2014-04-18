@@ -162,6 +162,10 @@ namespace DownloadTry1
             string uploadWebUrl = path+"DesktopApp/uploadStatus.aspx";
             try
             {
+
+                System.Net.ServicePointManager.Expect100Continue = false; //NEWLY ADDED//
+
+
                 client.UploadFile(uploadWebUrl, saveTempFilesPath + "status.txt");
                 syncComplete = 1;
             }
