@@ -122,7 +122,7 @@ void Page_Load(object sender, EventArgs e) {
                     }
                     rdr.Close();
                   
-                  if(already_present == 0)
+                  if(already_present == 0)// if this file was not present in database
                   {
                       file_i[1] = file_i[1].Replace("\\\\","!");
                       string insertQuery = "INSERT INTO filesystem (file_id, file_name, file_hash, owner, directory_path, isFolder) VALUES ('"+ next_file_id+"','"+file_i[0]+"','"+file_hash+"','"+user_name+"','"+file_i[1]+"','0')";
@@ -136,7 +136,7 @@ void Page_Load(object sender, EventArgs e) {
                             fi.MoveTo(path+"files\\" + next_file_id.ToString() +"."+ext);
                       //rename this file..
                   }
-                  else if(already_present ==1)
+                  else if(already_present ==1)// if another user has the same file
                   {
                       file_i[1] = file_i[1].Replace("\\\\","!");
                       string insertQuery = "INSERT INTO filesystem (file_id, file_name, file_hash, owner, directory_path, isFolder) VALUES ('"+ file_id+"','"+file_i[0]+"','"+file_hash+"','"+user_name+"','"+file_i[1]+"','0')";
@@ -147,7 +147,7 @@ void Page_Load(object sender, EventArgs e) {
                             System.IO.File.Delete(path+"files\\" + user_name +file_i[0]);
                       // delete file_i[0]
                   }
-                  else
+                  else// if the same user already has this file
                   {
                       if ((System.IO.File.Exists(path+"files\\" + user_name +file_i[0])))
                             System.IO.File.Delete(path+"files\\" + user_name +file_i[0]);

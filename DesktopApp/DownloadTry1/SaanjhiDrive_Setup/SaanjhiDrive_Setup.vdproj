@@ -21,7 +21,7 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_E7DA6F32F98740A49C93017B5BFA3FAA"
+        "MsmKey" = "8:_AD336E9B1A0440CDB4A89988CF2867D2"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -49,6 +49,27 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.0,Profile=Client"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4 Client Profile (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.0,Profile=Client"
+                    }
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:Microsoft.Windows.Installer.3.1"
+                    {
+                    "Name" = "8:Windows Installer 3.1"
+                    "ProductCode" = "8:Microsoft.Windows.Installer.3.1"
+                    }
+                }
+            }
         }
         "Release"
         {
@@ -65,6 +86,14 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+            }
         }
     }
     "Deployable"
@@ -94,9 +123,9 @@
         }
         "File"
         {
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_E7DA6F32F98740A49C93017B5BFA3FAA"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_AD336E9B1A0440CDB4A89988CF2867D2"
             {
-            "SourcePath" = "8:..\\..\\..\\..\\..\\Desktop\\icon.ico"
+            "SourcePath" = "8:..\\..\\..\\images\\icon.ico"
             "TargetName" = "8:icon.ico"
             "Tag" = "8:"
             "Folder" = "8:_7BB3BE0E98E64381BABD376D22DFCE97"
@@ -171,7 +200,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:SaanjhiDrive_Setup"
         "ProductCode" = "8:{2395B1CF-653D-4D7A-AF9B-50B53C79466A}"
-        "PackageCode" = "8:{BBC36B1B-FD0C-4C93-8152-A57FAE28CE3C}"
+        "PackageCode" = "8:{5968B350-800F-4B23-A4CC-A51A23BDD60C}"
         "UpgradeCode" = "8:{A8773F9D-5AA5-4491-97F7-86123D148EE6}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
@@ -179,14 +208,14 @@
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:FALSE"
         "ProductVersion" = "8:1.0.0"
-        "Manufacturer" = "8:Default Company Name"
+        "Manufacturer" = "8:SaanjhiDrive"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"
         "Title" = "8:SaanjhiDrive_Setup"
         "Subject" = "8:"
-        "ARPCONTACT" = "8:Default Company Name"
+        "ARPCONTACT" = "8:SaanjhiDrive"
         "Keywords" = "8:"
-        "ARPCOMMENTS" = "8:"
+        "ARPCOMMENTS" = "8:Saaddi drive, tuhada data!"
         "ARPURLINFOABOUT" = "8:"
         "ARPPRODUCTICON" = "8:"
         "ARPIconIndex" = "3:0"
@@ -302,7 +331,7 @@
             "Target" = "8:_48A85C2A3D0840FB9C98D6BD05CEFAA8"
             "Folder" = "8:_9574ABE4F35D4565AD0D45D7807D639F"
             "WorkingFolder" = "8:_7BB3BE0E98E64381BABD376D22DFCE97"
-            "Icon" = "8:_E7DA6F32F98740A49C93017B5BFA3FAA"
+            "Icon" = "8:_AD336E9B1A0440CDB4A89988CF2867D2"
             "Feature" = "8:"
             }
             "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_31E091572CE545DC958B4D0103325356"
@@ -316,7 +345,7 @@
             "Target" = "8:_48A85C2A3D0840FB9C98D6BD05CEFAA8"
             "Folder" = "8:_15D2F559B7B848309F9F463A689F4FD5"
             "WorkingFolder" = "8:_7BB3BE0E98E64381BABD376D22DFCE97"
-            "Icon" = "8:"
+            "Icon" = "8:_AD336E9B1A0440CDB4A89988CF2867D2"
             "Feature" = "8:"
             }
             "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_610ED3934EFB421A8DE58ACBAE939261"
@@ -330,7 +359,7 @@
             "Target" = "8:_48A85C2A3D0840FB9C98D6BD05CEFAA8"
             "Folder" = "8:_9574ABE4F35D4565AD0D45D7807D639F"
             "WorkingFolder" = "8:_7BB3BE0E98E64381BABD376D22DFCE97"
-            "Icon" = "8:"
+            "Icon" = "8:_AD336E9B1A0440CDB4A89988CF2867D2"
             "Feature" = "8:"
             }
             "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_9330F37DE03445A5A2DBBB20F36EEB6C"
@@ -344,7 +373,7 @@
             "Target" = "8:_48A85C2A3D0840FB9C98D6BD05CEFAA8"
             "Folder" = "8:_15D2F559B7B848309F9F463A689F4FD5"
             "WorkingFolder" = "8:_7BB3BE0E98E64381BABD376D22DFCE97"
-            "Icon" = "8:_E7DA6F32F98740A49C93017B5BFA3FAA"
+            "Icon" = "8:_AD336E9B1A0440CDB4A89988CF2867D2"
             "Feature" = "8:"
             }
         }

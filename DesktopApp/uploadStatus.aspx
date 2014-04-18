@@ -1,6 +1,4 @@
 ﻿<%@ Page Language="C#" %>
-
-
 <%@ Import Namespace="System"%>
 <%@ Import Namespace="System.IO"%>
 <%@ Import Namespace="System.Net"%>
@@ -19,7 +17,7 @@ void Page_Load(object sender, EventArgs e) {
     string status;
     string inputString;
     using (StreamReader streamReader = File.OpenText(path+"DesktopApp\\status.txt"))
-        inputString = streamReader.ReadLine();
+        inputString = streamReader.ReadLine();// read username and password
     string[] words = inputString.Split(';');
 	status = words[0];
     string user_name = words[1];
@@ -27,7 +25,7 @@ void Page_Load(object sender, EventArgs e) {
  
     using (StreamWriter outfile1 = new StreamWriter(path+"DesktopApp\\currentUsersUsername.txt"))    
         {
-            outfile1.Write(user_name);
+            outfile1.Write(user_name);// save current user username
         }
     Session["username"] = user_name; 
 
@@ -56,14 +54,14 @@ void Page_Load(object sender, EventArgs e) {
         MySqlDataReader rdr = cmd.ExecuteReader();
         using (StreamWriter outfile = new StreamWriter(path+"DesktopApp\\currentStatus.txt"))    
         {
-            while (rdr.Read())
+            while (rdr.Read())// write the files owned by this user in the "currentStatus.txt"
             {
                 outfile.Write(rdr.GetValue(0).ToString()+";"+rdr.GetValue(1)+";"+rdr.GetValue(5)+";"+rdr.GetValue(6).ToString()+"\n");
             }
         }
         using (StreamWriter outfile1 = new StreamWriter(path+"DesktopApp\\status.txt"))    
         {
-            outfile1.Write("ReadyToDownload");
+            outfile1.Write("ReadyToDownload");// signal for desktop application that username and password matched and filelist has been written
         }
     
     }
@@ -71,7 +69,7 @@ void Page_Load(object sender, EventArgs e) {
     {
        using (StreamWriter outfile1 = new StreamWriter(path+"DesktopApp\\status.txt"))    
         {
-            outfile1.Write("failed");
+            outfile1.Write("failed");// if username and password didnt match
         }
 
 

@@ -11,12 +11,12 @@
 void Page_Load(object sender, EventArgs e) {
     //string user_name = Session["username"]; //                                    Change this later !!
     //string user_name = "abhishek";
-    string path = Server.MapPath("/");
+    string path = Server.MapPath("/");// get the current directory's path
     string user_name;
     using (StreamReader streamReader = File.OpenText(path+"DesktopApp\\currentUsersUsername.txt"))
         user_name = streamReader.ReadLine();
 
-    foreach(string f in Request.Files.AllKeys) {
+    foreach(string f in Request.Files.AllKeys) {// save the files that are send to it
         HttpPostedFile file = Request.Files[f];
        //file.SaveAs(path+"DesktopApp\\TestingDesktopApp\\" + user_name + file.FileName); 
        file.SaveAs(path+"files\\" + user_name + file.FileName); 
