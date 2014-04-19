@@ -131,8 +131,7 @@
     <script type="text/javascript" src="js/bootstrap.js"></script>
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
     <script type="text/javascript" src="js/jquery.leanModal.min.js"></script>
-
- 
+    <script type="text/javascript" src="js/dropzone.js"></script>
     <script src="js/lightbox2.js"></script>
 	<script src="js/lightbox.js"></script>
 
@@ -164,7 +163,7 @@
 
         dir_path = dir_path.concat('!');
         var myDropzone = new Dropzone("div#drag_drop", { url: "upload_file.php" });
-        myDropzone.uploadMultiple = true;
+        //myDropzone.uploadMultiple = true;
     </script>
 
 </body>

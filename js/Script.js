@@ -529,6 +529,13 @@ function displayIFrame(source) {
     //source = "files\\9.pdf";
     bootbox.alert("<iframe align='center' width='100%' height='500px' src =" + source + "></iframe>");
 }
+function displayVideo(source){
+    bootbox.alert('<video width="100%" controls><source src="'+source+'type="video/mp4">Your browser does not support the video tag.</video>' );
+}
+
+function displayAudio(source){
+    bootbox.alert('<audio controls><source src="'+source+' type="audio/mpeg" >Your browser does not support the video tag.</audio>' );
+}
 function displayOther(source) {
     var xmlHttp;
     if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
