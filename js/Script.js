@@ -526,8 +526,8 @@ function move(id) {
             }
         })
 function displayIFrame(source) {
-    document.getElementById('preview').src = source;
-    //alert('sad');
+    //source = "files\\9.pdf";
+    bootbox.alert("<iframe align='center' width='100%' height='500px' src =" + source + "></iframe>");
 }
 function displayOther(source) {
     var xmlHttp;
@@ -545,10 +545,10 @@ function displayOther(source) {
         if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
 
             var res = source.split(".");
-            source = res[0] + ".swf";
+            source = res[0] + ".pdf";
             //alert(xmlHttp.responseText);
             displayIFrame(source);
-            deleteFiles(res[0], res[1]);
+            //deleteFiles(res[0], res[1]);
         }
     }
 }
