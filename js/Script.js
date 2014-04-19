@@ -75,6 +75,114 @@ function shared_with_me() {
     
     xmlhttp.send();
 }
+function showopt(id) {
+    var lTable = document.getElementById("options").innerHTML;
+    var filenameModified = id;
+    var res = filenameModified.split('.');
+    if(res[0].length>23){
+        filenameModified = res[0].substring(0, 7) + "........." + res[0].substring(res[0].length - 7) + "."+res[1];
+    }
+    if (res[1] == "txt") {
+        var division = '<table width="85%" cellpadding="8px" id="uphead1"><tr id="tr1"><td width="20%">' + filenameModified + '</td>';
+        division += '<td class="opt" width="10%"><span class="glyphicon glyphicon-link"></span><a class="share" onclick="share_file(\'' + id + '\')">   Share</a></td>';
+        division += '<td class="opt" width="10%"><span class="glyphicon glyphicon-download-alt"></span><a class="download" onclick="download_file(\'' + id + '\')">   Download</a></td>';
+        division += '<td class="opt" width="10%"><span class="glyphicon glyphicon-trash"></span><a class="delete" onclick="Delete(\'' + id + '\')">   Delete</a></td>';
+        division += '<td class="opt" width="10%"><span class="glyphicon glyphicon-edit"></span><a class="rename" onclick="rename(\'' + id + '\')">   Rename</a></td>';
+        division += '<td class="opt" width="10%"><span class="glyphicon glyphicon-share"></span><a class="move" onclick="move(\'' + id + '\')">   Move</a></td>';
+        division += '<td class="opt" width="10%"><span class="glyphicon glyphicon-edit"></span><a class="edit" onclick="edit(\'' + id + '\')">   Edit</a></td>';
+        division += '</tr>';
+        division += '</table> ';
+        document.getElementById("options").innerHTML = division;
+        document.getElementById("options").style.visibility = "visible";
+        //var tb1 = document.getElementById("table_heading");
+        document.getElementById("row_id").style.display = "none";
+        //document.getElementsByClassName('border_bottomRow').style.backgroundColor = "#365890"; 
+
+    }
+    else {
+        var division = '<table width="85%" cellpadding="8px" id="uphead1"><tr id="tr1"><td width="20%">' + filenameModified + '</td>';
+        division += '<td class="opt" width="12%"><span class="glyphicon glyphicon-link"></span><a class="share" onclick="share_file(\'' + id + '\')">   Share</a></td>';
+        division += '<td class="opt" width="12%"><span class="glyphicon glyphicon-download-alt"></span><a class="download" onclick="download_file(\'' + id + '\')">   Download</a></td>';
+        division += '<td class="opt" width="12%"><span class="glyphicon glyphicon-trash"></span><a class="delete" onclick="Delete(\'' + id + '\')">   Delete</a></td>';
+        division += '<td class="opt" width="12%"><span class="glyphicon glyphicon-edit"></span><a class="rename" onclick="rename(\'' + id + '\')">   Rename</a></td>';
+        division += '<td class="opt" width="12%"><span class="glyphicon glyphicon-share"></span><a class="move" onclick="move(\'' + id + '\')">   Move</a></td>';
+        division += '</tr>';
+        division += '</table> ';
+        document.getElementById("options").innerHTML = division;
+        document.getElementById("options").style.visibility = "visible";
+        //var tb1 = document.getElementById("table_heading");
+        document.getElementById("row_id").style.display = "none";
+        //document.getElementsByClassName('border_bottomRow').style.backgroundColor = "#365890"; 
+    }
+}
+function back()
+{
+window.location.href = "mainpage.php" ;
+}
+function save(filename){
+    var xmlHttp;
+    if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
+        xmlHttp = new XMLHttpRequest();
+    }
+    else {// code for IE6, IE5
+        xmlHttp = new ActiveXObject("Microsoft.XMLHTTP");
+    }
+    text = document.getElementById("lol").value;
+    xmlHttp.open("POST", "save.php", true);
+    xmlHttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xmlHttp.send("filename=" + filename +"&text="+ text );
+    xmlHttp.onreadystatechange = function () {
+        //alert(xmlHttp.status);
+        if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
+            //alert(xmlHttp.responseText); //.getElementsByTagName(tr);
+            //alert(row.length);
+            //var text = row[1].getElementsByTagName("*");
+            //var row = document.getElementById(filename).cells;
+            //row[1].innerHTML = '<a class="contents" onclick="displayIFrame(\'files/'+text+'\');">'+text+'</a>';
+            getFiles(dir_path);
+        }
+    }
+}
+    
+function edit(source){
+        var cells = Array.prototype.slice.call(document.getElementById("path").getElementsByTagName("td"));
+    var dir_path = "";
+    for (var i in cells) {
+        dir_path += cells[i].innerHTML;
+        if (dir_path[dir_path.length - 1] == " ") {
+            dir_path = dir_path.substr(0, dir_path.length - 1);
+        }
+    }
+    dir_path = dir_path.replace('Home', '');
+    while ((dir_path.indexOf('&gt;') != -1)) {
+        dir_path = dir_path.replace('&gt;', '!');
+
+    }
+
+    dir_path = dir_path.concat('!');
+        var xmlHttp;
+    if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
+        xmlHttp = new XMLHttpRequest();
+    }
+    else {// code for IE6, IE5
+        xmlHttp = new ActiveXObject("Microsoft.XMLHTTP");
+    }
+    xmlHttp.open("POST", "editor.php", true);
+    xmlHttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xmlHttp.send("filename=" + source + "&current_dir=" + dir_path );
+    xmlHttp.onreadystatechange = function () {
+        alert(xmlHttp.status);
+        if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
+            //alert(xmlHttp.responseText); //.getElementsByTagName(tr);
+            //alert(row.length);
+            //var text = row[1].getElementsByTagName("*");
+            //var row = document.getElementById(filename).cells;
+            //row[1].innerHTML = '<a class="contents" onclick="displayIFrame(\'files/'+text+'\');">'+text+'</a>';
+            bootbox.alert(xmlHttp.responseText);
+            //getFiles(dir_path);
+        }
+    }
+}
 
 function share_file(file_name) {
     var cells = Array.prototype.slice.call(document.getElementById("path").getElementsByTagName("td"));
@@ -217,28 +325,6 @@ function getFiles(path) {
         }
     }
 
-
-}
-function showopt(id) {
-    var lTable = document.getElementById("options").innerHTML;
-    var filenameModified = id;
-    var res = filenameModified.split('.');
-    if(res[0].length>23){
-        filenameModified = res[0].substring(0, 7) + "........." + res[0].substring(res[0].length - 7) + "."+res[1];
-    }
-                var division = '<table width="85%" cellpadding="8px" id="uphead1"><tr id="tr1"><td width="20%">' + filenameModified + '</td>';
-                division += '<td class="opt" width="12%"><span class="glyphicon glyphicon-link"></span><a class="share" onclick="share_file(\'' + id + '\')">   Share</a></td>';
-                division += '<td class="opt" width="12%"><span class="glyphicon glyphicon-download-alt"></span><a class="download" onclick="download_file(\'' + id + '\')">   Download</a></td>';
-                division += '<td class="opt" width="12%"><span class="glyphicon glyphicon-trash"></span><a class="delete" onclick="Delete(\'' + id + '\')">   Delete</a></td>';
-                division += '<td class="opt" width="12%"><span class="glyphicon glyphicon-edit"></span><a class="rename" onclick="rename(\'' + id + '\')">   Rename</a></td>';
-                division += '<td class="opt" width="12%"><span class="glyphicon glyphicon-share"></span><a class="move" onclick="move(\'' + id + '\')">   Move</a></td>';
-                division += '</tr>';
-                division += '</table> ';
-                document.getElementById("options").innerHTML = division;
-                document.getElementById("options").style.visibility = "visible";
-                //var tb1 = document.getElementById("table_heading");
-                document.getElementById("row_id").style.display = "none";
-                 //document.getElementsByClassName('border_bottomRow').style.backgroundColor = "#365890"; 
 
 }
 
