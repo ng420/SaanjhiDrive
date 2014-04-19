@@ -27,9 +27,15 @@
             echo"</td>";
             
             //Provide preview.
-           if($ext=="png"||$ext=="jpg"||$ext=="jpeg"||$ext=="gif"||$ext=="pdf"||$ext=="txt"||$ext=="mp4")
+           if($ext=="png"||$ext=="jpg"||$ext=="jpeg"||$ext=="gif"||$ext=="txt")
             {
                 echo '<td width="50%"><a class="go"   href="#" onclick="displayIFrame(\'files/'.$row['file_id'].'.'.$ext.'\');">'.$row['file_name']."</a>";
+            }
+            elseif($ext == "mp4" || $ext == "ogg" || $ext == "webM"){
+                 echo '<td width="50%"><a class="go"   href="#" onclick="displayVideo(\'files/'.$row['file_id'].'.'.$ext.'\');">'.$row['file_name']."</a>";    
+            }
+            elseif($ext == "mp3" || $ext == "ogg" || $ext == "wav"){
+                 echo '<td width="50%"><a class="go"   href="#" onclick="displayAudio(\'files/'.$row['file_id'].'.'.$ext.'\');">'.$row['file_name']."</a>";
             }
             else{
                  echo '<td width="50%"><a  class="go" onclick="displayOther(\'files/'.$row['file_id'].'.'.$ext.'\');" >'.$row['file_name']."</a>";
