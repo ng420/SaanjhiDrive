@@ -27,9 +27,9 @@
             echo"</td>";
             
             //Provide preview.
-           if($ext=="png"||$ext=="jpg"||$ext=="jpeg"||$ext=="gif")
+           if($ext=="png"||$ext=="jpg"||$ext=="jpeg"||$ext=="gif"||$ext=="pdf"||$ext=="txt"||$ext=="mp4")
             {
-                echo '<td width="50%"><a class="go" id ="fo" href="#register" onclick="run_leanmodal(\'files/'.$row['file_id'].'.'.$ext.'\');">'.$row['file_name']."</a>";
+                echo '<td width="50%"><a class="go" rel="leanModal" id ="fo" href="#register" onclick="run_leanmodal(\'files/'.$row['file_id'].'.'.$ext.'\');">'.$row['file_name']."</a>";
             }
             else{
                  echo '<td width="50%"><a  class="go" id ="fo" href="#register" onclick="run_leanmodalOther(\'files/'.$row['file_id'].'.'.$ext.'\');" >'.$row['file_name']."</a>";

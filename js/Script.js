@@ -21,30 +21,36 @@ function callUpload() {
     var form = document.getElementById('form');
     var fileSelect = document.getElementById('file');
     var files = fileSelect.files;
-    var formData = new FormData();
+
+        if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
+            xmlhttp = new XMLHttpRequest();
+        }
+        else {// code for IE6, IE5
+            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+        }    
+        var formData = new FormData();
+
     for (var i = 0; i < files.length; i++) {
         var file = files[i];
-
+        
         // Add the file to the request.
-        formData.append('file', file, file.name);
-    }
-    if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
-        xmlhttp = new XMLHttpRequest();
-    }
-    else {// code for IE6, IE5
-        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-    }
-    xmlhttp.onreadystatechange = function () {
-        //alert("sdfasdfsda");
-        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-            //alert(xmlhttp.responseText);
-            bootbox.alert(xmlhttp.responseText);
-            getFiles(dir_path);
+        formData.append('file[]', file, file.name);
         }
-    }
-    xmlhttp.open("POST", "upload_file.php", true);
-    formData.append("directory_path", dir_path);
-    xmlhttp.send(formData);
+        xmlhttp.onreadystatechange = function () {
+            //alert("sdfasdfsda");
+            //alert(xmlhttp.readyState);
+            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                //alert(xmlhttp.responseText);
+                bootbox.alert(xmlhttp.responseText);
+                getFiles(dir_path);
+ //               delete formData;
+            }
+        }
+        xmlhttp.open("POST", "upload_file.php", true);
+        formData.append("directory_path", dir_path);
+        //formData.append("i", i);
+        xmlhttp.send(formData);
+        
 }
 
 function shared_with_me() {
@@ -401,11 +407,10 @@ function rename(id) {
     anchor = anchor.innerHTML;
     //alert(anchor.innerHTML);
     var res = anchor.split('.');
-
-    row[1].innerHTML = "<input type='text' onblur='changeRename(this,\"" + id + "\",\""+res[1]+"\")' style='color:grey;' value ='" + res[0] + "' autofocus  />";
+    row[1].innerHTML = "<input type='text' onblur='changeRename(this,\"" + id + "\",\""+res[1]+"\",\""+row[3].innerHTML+"\")' style='color:grey;' value ='" + res[0] + "' autofocus  />";
 
 }
-function changeRename(input, filename,extension) {
+function changeRename(input, filename,extension,shared) {
     text = input.value + "." + extension;
     var cells = Array.prototype.slice.call(document.getElementById("path").getElementsByTagName("td"));
     var dir_path = "";
@@ -435,11 +440,11 @@ function changeRename(input, filename,extension) {
     }
     xmlHttp.open("POST", "rename.php", true);
     xmlHttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    xmlHttp.send("input=" + text + "&filename=" + filename + "&current_dir=" + dir_path);
+    xmlHttp.send("input=" + text + "&filename=" + filename + "&current_dir=" + dir_path+"&shared="+shared);
     xmlHttp.onreadystatechange = function () {
         //alert(xmlHttp.status);
         if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
-            //alert(xmlHttp.responseText);
+            alert(xmlHttp.responseText);
             var row = document.getElementById(filename).cells; //.getElementsByTagName(tr);
             //alert(row.length);
             //var text = row[1].getElementsByTagName("*");
@@ -635,3 +640,134 @@ function DestDirMove(filename,initialPath,finalPath){
             }
         }
     }
+    function run_leanmodal(source) {
+            $(".go").leanModal({ top: 150, overlay: 0.6, closeButton: ".modal_close" });
+            document.getElementById("ifrm").src = source;
+            $("#register").show();
+        }
+        function run_leanmodalOther(source) {
+            var res = source.split(".");
+            var ext = res[1];
+            //var ext = extension.tolower();
+            document.write(source);
+            if (ext == 'pdf') {
+                document.write('<embed src = "' + source + '" width = 800px height = 450px>');
+                document.write('<input type="submit" value="X" id="closebut" style="position: absolute; left: 1280px; top: 0px; " onclick="location.reload()">');
+            }
+            else if (ext == "txt") {
+                document.write('<object data="' + source + '" type=text/plain width=800 style=height: 470px >' + '</object>');
+                // document.write('<embed src = "' + source + '" width = 800px height = 450px>');
+                document.write('<input type="submit" value="X" id="closebut" style="position: absolute; left: 1280px; top: 0px; " onclick="location.reload()">');
+            }
+            else if (ext == "mp4") {
+                //document.write('<embed src="files/a.mp4" "' + source + '" width="200" height="200">');
+                document.write('<video width="320" height="240" controls autoplay>' +
+             '<source src="' + source + '" type="video/mp4">' +
+             'Your browser does not support video' +
+             '</video>');
+                document.write('<input type="submit" value="X" id="closebut" style="position: absolute; left: 1280px; top: 0px; " onclick="location.reload()">');
+            }
+            else if (ext == "png" || ext == "jpg" || ext == "jpeg" || ext == "gif") {
+                document.write('<img src="' + source + '" alt=" lkhjds" style="position:relative ;"/>');
+                document.write('<input type="submit" value="X" id="closebut" style="position: absolute; left: 1280px; top: 0px; " onclick="location.reload()">');
+            }
+            else if (ext == 'doc' || ext == 'docx') {
+                document.write('<embed src = "' + source + '" width = 800px height = 450px>');
+                document.write('<input type="submit" value="X" id="closebut" style="position: absolute; left: 1280px; top: 0px; " onclick="location.reload()">');
+                // 
+                //  document.write('<iframe src="'+source+'" width=100% height=700px></iframe>');
+            }
+            else if (ext == 'ppt') {
+                document.write('<embed src = "' + source + '" width = 800px height = 450px>');
+                document.write('<input type="submit" value="X" id="closebut" style="position: absolute; left: 1280px; top: 0px; " onclick="location.reload()">');
+                // 
+            }
+
+            document.write(source);
+            document.write('<input type="submit" value="X" id="closebut" style="position: absolute; left: 1280px; top: 0px; " onclick="location.reload()">');
+            // 
+
+            /*document.write ('<video width="320" height="240" controls autoplay>'+
+            '<source src="files/a.mp4" type="video/mp4">'+
+            '<object data="movie.mp4" width="320" height="240">'+
+            '<embed width="320" height="240" src="movie.swf">'
+            +'</object>'+
+            '</video>');*/
+            /* document.write('<img src=" files/10.jpg" alt=" lkhjds"style="position:relative ;"/>');
+            document.write('<body>' + '<div style=" width: 100%; height: 100px; overflow:hidden;" class="fakewindowcontain"id="e">'
+            + '<div class="ui-overlay" id="a"><div class="ui-widget-overlay" id="c">kjgg THIS IS THE BACKGROUNDgkgkg</div><div class="ui-widget-shadow ui-corner-all" style="width: 0px; height: 0px; position: absolute; left: 50px; top: 30px;"id="d"></div></div> '
+            + '<div style="position: absolute; width: 00px; height:0px;left: 50px; top: 30px; padding: 0px;" style="background-color :#d92525;" class="ui-widget ui-widget-content ui-corner-all" id="b">'
+            + '<div class="ui-dialog-content ui-widget-content" style="background-color :#d92525; border: 0;">' + '</body>');
+            document.write(source);
+            document.write(' <embed src = source width = 800px height = 450px> ' + '<object data=files/8.txt type=text/plain width=800 style=height: 470px >' + ' <a href=source>No Support?</a> ' + '</object>');
+            //document.write("<object data=files/8.txt type=text/plain width=800 style=height: 470px > ");
+            //  document.write("  <a href=source>No Support?</a> ");
+            //  document.write("</object>");
+
+            /* var video = '<button onclick="playVid()" type="button">Play Video</button>';
+
+            video += ' <button onclick="pauseVid()" type="button">Pause Video</button>';
+            video += ' <br>';
+            video += ' <span class="ui-dialog-content ui-widget-content" style="background: none; border: 0;"><span class="ui-dialog-content ui-widget-content" style="background: none; border: 0;"><span class="ui-dialog-content ui-widget-content" style="background: none; border: 0;"><span class="ui-dialog-content ui-widget-content" style="background: none; border: 0;"><span class="ui-dialog-content ui-widget-content" style="background: none; border: 0;"><span class="ui-dialog-content ui-widget-content" style="background: none; border: 0;">';
+            video += ' <video id="video1">';
+            video += '  <source src="files/a.mp4" type="video/mp4" style="position: absolute; width: 800px; height:755px;left: 10px; top: 10px; padding: 0px;">';
+            video += '  Your browser does not support HTML5 video. </video>';
+            video += '</span></span></span></span></span></span><br>';
+
+            video += '   var myVideo=document.getElementById("video1"); ';
+
+            video += '  function playVid()';
+            video += '   { ';
+            video += '  myVideo.play(); ';
+            video += '  } ';
+
+            video += ' function pauseVid()';
+            video += ' { myVideo.pause(); } ';
+            document.getElementById("ifrm").innerHTML = video;*/
+
+            /*   var html_text = '<button onclick="playVid()" type="button">Play Video</button>';
+            html_text.concat('<button onclick="pauseVid()" type="button">Pause Video</button><br>');
+            html_text.concat('<span class="ui-dialog-content ui-widget-content" style="background: none; border: 0;"><span class="ui-dialog-content ui-widget-content" style="background: none; border: 0;"><span class="ui-dialog-content ui-widget-content" style="background: none; border: 0;"><span class="ui-dialog-content ui-widget-content" style="background: none; border: 0;"><span class="ui-dialog-content ui-widget-content" style="background: none; border: 0;"><span class="ui-dialog-content ui-widget-content" style="background: none; border: 0;">');
+            html_text.concat(' <video id="video1">');
+            html_text.concat('<source src="files/a.mp4" type="video/mp4" style="position: absolute; width: 800px; height:755px;left: 10px; top: 10px; padding: 0px;">');
+            html_text.concat('Your browser does not support HTML5 video. </video>');
+            html_text.concat('</span></span></span></span></span></span><br>');
+            html_text.concat('<script> ');
+            html_text.concat('var myVideo=document.getElementById("video1");');
+            html_text.concat(' function playVid()');
+            html_text.concat(' { myVideo.play(); } ');
+            html_text.concat('function pauseVid()');
+            html_text.concat('{ myVideo.pause(); }');
+
+            document.getElementById("video1").innerHTML = html_text;
+
+            var myVideo = document.getElementById("video1");
+
+
+            function playVid() {
+            myVideo.play();
+            }
+
+            function pauseVid() {
+            myVideo.pause();
+            }
+            /* var keyword;
+            var srctxt;
+            var srctxtarray;
+
+            keyword = "archery";
+            srctxt = "hellow blah blah blah archery <img src= files/10.jpg>hello test archery";
+
+            srctxtarray = srctxt.split(" ");
+            for (var i = 0; i < srctxtarray.length; i++) {
+            if (srctxtarray[i] != keyword) {
+            document.write(srctxtarray[i]);
+            }
+            else {
+            document.write("<b class=\"red\">");
+            document.write(srctxtarray[i]);
+            document.write("</b>");
+            }
+            }*/
+            // $(".go").leanModal({ top: 150, overlay: 0.6, closeButton: ".modal_close" });
+        }

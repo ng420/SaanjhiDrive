@@ -3,6 +3,16 @@
     $newName =  $_POST['input'];
     $oldName = $_POST['filename'];
     $currDir = $_POST['current_dir'];
+    $shared = $_POST['shared'];
+    $user = $_SESSION['user'];
+    
+    if($shared="--"){
+        $query = "UPDATE filesystem SET file_name = '$newName' WHERE owner='$user' AND directory_path = '$currDir' AND file_name = '$oldName' AND shared_by is NULL";
+    }
+    else {
+        $query = "UPDATE filesystem SET file_name = '$newName' WHERE owner='$user' AND directory_path = '$currDir' AND file_name = '$oldName' AND shared_by='$shared'";
+    }
+    echo $query;
     session_start();
     $user = $_SESSION['user'];
     $query = "UPDATE filesystem SET file_name = '$newName' WHERE owner='$user' AND directory_path = '$currDir' AND file_name = '$oldName'";

@@ -1,24 +1,30 @@
 <?php
     
     session_start(); //Session started for accessing session variables.
-    
+
     if (!empty($_FILES))  // Check if input was provided.
-    {
-        if ($_FILES["file"]["error"] > 0)
+    { $count=count($_FILES['file']['name']);
+         for($i=0; $i<$count; $i++)
+      {echo $_FILES["file"]["name"][$i].": ";
+        if ($_FILES["file"]["error"][$i] > 0)
         {
            
-            echo 'Return Code: ".$_FILES["file"]["error"] "';
+            echo 'Return Code: '.$_FILES["file"]["error"][$i] ;
         }
         else
         {
             //Define variables to access tables.
-
+            if($_FILES["file"]["size"][$i]/(1024*1024)>10){
+                echo 'File size exceeds 10 MB';
+            }
+            else{
+            
             $already_present=0;
             $file_id = 0;
             $file_name = "";
             $owner = $_SESSION['user'];
             $shared_with = "";
-            $file_hash = md5_file ($_FILES["file"]["tmp_name"]); //File hashed
+            $file_hash = md5_file ($_FILES["file"]["tmp_name"][$i]); //File hashed
             
             //Establish connection.
             $query = "SELECT file_hash FROM filesystem";
@@ -66,15 +72,16 @@
                 }
 
                 //Perform manipulation on file name to store.
-                $temp = explode(".", $_FILES["file"]["name"]);
+                $temp = explode(".", $_FILES["file"]["name"][$i]);
                 $ext = end($temp);
-                $file_name = $_FILES["file"]["name"] ;
+                $file_name = $_FILES["file"]["name"][$i] ;
                 $file_id_ext = $file_id.".".$ext;
   
                 //File is new.
                 if($already_present==0 )
                 {
                     $directory_to_upload = $_POST['directory_path'];
+                    
                     $result_new = mysqli_query($con,"SELECT * FROM filesystem WHERE owner = '$owner' AND directory_path = '$directory_to_upload' ORDER BY file_name");
                     if($result_new)
                     {
@@ -102,10 +109,10 @@
                     }
 
                     //Move file
-                    move_uploaded_file($_FILES["file"]["tmp_name"], "files/" . $file_id_ext);
+                    move_uploaded_file($_FILES["file"]["tmp_name"][$i], "files/" . $file_id_ext);
                     echo 'Uploaded Successfully';
-                    include 'backup_file.php';
-                    write_log($query);
+                    //include 'backup_file.php';
+                    //write_log($query);
                 }
 
                 
@@ -138,8 +145,8 @@
                     }
                     echo 'Uploaded Successfuly.';
                     mysqli_close($con);
-                    include 'backup_failure.php';
-                    write_log($query);
+                    //include 'backup_failure.php';
+                    //write_log($query);
                     
                 }
 
@@ -161,6 +168,10 @@
             {
                 echo 'Unable to establish connection with database.';
             }
+            
         }
+        }
+        echo '<br>';
+    }
     }
 ?>
