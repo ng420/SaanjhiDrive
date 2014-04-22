@@ -2,15 +2,11 @@
 2;dwalinb;!a!;1
 3;dwalinc;!a!;1
 4;dwaline;!a!c!;1
+32;dwalinankit;!;1
 5;Desert.jpg;!a!b!;0
 8;Hydrangeas.jpg;!a!c!;0
 16;a.jpg;!a!c!e!;0
-17;ricky williams.jpg;!;0
-18;vikash.PNG;!;0
-19;vk.PNG;!;0
-20;evil.PNG;!;0
-21;rautella.PNG;!;0
-22;Capture.PNG;!;0
+17;ricky williams.jpg;!a!;0
 23;journal.pcbi.1000515.pdf;!;0
 24;coverletter.docx;!;0
 18;new2.txt;!;0
@@ -19,3 +15,6 @@
 28;Wildlife.wmv;!;0
 29;sahd.webm;!;0
 30;fsd.mp4;!;0
+31;sen.png;!;0
+33;vikash.PNG;!ankit!;0
+34;rautella.PNG;!ankit!;0

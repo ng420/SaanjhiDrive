@@ -40,8 +40,11 @@
             elseif($ext == "txt"){
                 echo '<td width="50%"><a  class="go" onclick="displayIFrame(\'files/'.$row['file_id'].'.'.$ext.'\');" >'.$row['file_name']."</a>";
             }
-            else{
+            elseif($ext == "doc"||$ext == "docx"||$ext == "xls"||$ext == "xlsx"||$ext == "rtf"||$ext == "csv"||$ext == "ods"||$ext == "odp"||$ext =="ppt"||$ext=="pptx"||$ext=="pdf"){
                  echo '<td width="50%"><a  class="go" onclick="displayOther(\'files/'.$row['file_id'].'.'.$ext.'\');" >'.$row['file_name']."</a>";
+            }
+            else{
+                 echo '<td width="50%">'.$row['file_name'];               
             }
 
             echo "</td>";

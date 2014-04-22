@@ -1,3 +1,9 @@
+icon.png;\\chrome extension\\first extension\\;0
+manifest.json;\\chrome extension\\first extension\\;0
+popup.html;\\chrome extension\\first extension\\;0
+popup.js;\\chrome extension\\first extension\\;0
 
 `
+dwalinchrome extension;\\;1
+dwalinfirst extension;\\chrome extension\\;1
 
