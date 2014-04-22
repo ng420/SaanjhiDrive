@@ -367,7 +367,7 @@ namespace DownloadTry1
             try
             {
                 System.IO.StreamReader fileToRead = new System.IO.StreamReader(saveTempFilesPath + "currentStatus.txt");
-                int flagToDelete =0;
+                //int flagToDelete =0;
                 string line;
                 while ((line = fileToRead.ReadLine()) != null)
                 {
