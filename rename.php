@@ -24,7 +24,7 @@
     }
     
     if($result = mysqli_query($con, $query)){
-        $query = "SELECT * FROM filesystem  WHERE owner='$user' AND directory_path = '$currDir' AND file_name = '$newName' AND isFolder <> '2' ";
+        $query = "SELECT * FROM filesystem  WHERE owner='$user' AND directory_path = '$currDir' AND file_name = '$newName'  ";
         
         if($result = mysqli_query($con, $query)){
             while($row = mysqli_fetch_array($result)){ 
