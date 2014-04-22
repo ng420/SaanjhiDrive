@@ -51,12 +51,12 @@
                 </li>
                 <li><a href="#" onclick="upload_folder()">Create Folder</a>
                 </li>
-                <li><a href="#">Install For desktop</a>
+                <li><a href="setup/setup.exe">Install For desktop</a>
                 </li>
                 <li>
-                    <div id="drag_drop">
+<!--                    <div id="drag_drop">
                         <a href="#">Drag Files here</a>
-                    </div>
+                    </div>-->
                 </li>
             </ul>
         </div>

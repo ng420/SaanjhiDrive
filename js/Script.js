@@ -171,7 +171,7 @@ function edit(source){
     xmlHttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xmlHttp.send("filename=" + source + "&current_dir=" + dir_path );
     xmlHttp.onreadystatechange = function () {
-        alert(xmlHttp.status);
+     //   alert(xmlHttp.status);
         if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
             //alert(xmlHttp.responseText); //.getElementsByTagName(tr);
             //alert(row.length);
@@ -616,11 +616,11 @@ function displayIFrame(source) {
     bootbox.alert("<iframe align='center' width='100%' height='500px' src =" + source + "></iframe>");
 }
 function displayVideo(source){
-    bootbox.alert('<video width="100%" controls><source src="'+source+'type="video/mp4">Your browser does not support the video tag.</video>' );
+    bootbox.alert('<video width="100%" controls><source src="'+source+'" type="video/mp4">Your browser does not support the video tag.</video>' );
 }
 
 function displayAudio(source){
-    bootbox.alert('<audio controls><source src="'+source+' type="audio/mpeg" >Your browser does not support the video tag.</audio>' );
+    bootbox.alert('<audio controls><source src="'+source+'" type="audio/mpeg" >Your browser does not support the audio tag.</audio>' );
 }
 function displayOther(source) {
     var xmlHttp;

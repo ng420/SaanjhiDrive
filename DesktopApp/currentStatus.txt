@@ -1,3 +1,21 @@
-36;dwalinRohit;!;1
-39;A.cpp;!;0
-40;A.o;!;0
+1;dwalina;!;1
+2;dwalinb;!a!;1
+3;dwalinc;!a!;1
+4;dwaline;!a!c!;1
+5;Desert.jpg;!a!b!;0
+8;Hydrangeas.jpg;!a!c!;0
+16;a.jpg;!a!c!e!;0
+17;ricky williams.jpg;!;0
+18;vikash.PNG;!;0
+19;vk.PNG;!;0
+20;evil.PNG;!;0
+21;rautella.PNG;!;0
+22;Capture.PNG;!;0
+23;journal.pcbi.1000515.pdf;!;0
+24;coverletter.docx;!;0
+18;new2.txt;!;0
+26;Sleep Away.mp3;!;0
+27;desktop.ini;!;0
+28;Wildlife.wmv;!;0
+29;sahd.webm;!;0
+30;fsd.mp4;!;0

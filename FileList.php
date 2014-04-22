@@ -29,9 +29,9 @@
             //Provide preview.
            if($ext=="png"||$ext=="jpg"||$ext=="jpeg"||$ext=="gif"||$ext=="txt")
             {
-                echo '<td width="50%"><a class="go"   href="#" onclick="displayIFrame(\'files/'.$row['file_id'].'.'.$ext.'\');">'.$row['file_name']."</a>";
+                echo '<td width="50%"><a class="go" href="files/'.$row['file_id'].'.'.$ext.'" data-lightbox="example-2" data-title="'.$row['file_name'].'.'.$ext.'");">'.$row['file_name']."</a>";
             }
-            elseif($ext == "mp4" || $ext == "ogg" || $ext == "webM"){
+            elseif($ext == "mp4" || $ext == "ogg" || $ext == "webm"){
                  echo '<td width="50%"><a class="go"   href="#" onclick="displayVideo(\'files/'.$row['file_id'].'.'.$ext.'\');">'.$row['file_name']."</a>";    
             }
             elseif($ext == "mp3" || $ext == "ogg" || $ext == "wav"){
