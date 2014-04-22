@@ -37,7 +37,7 @@ ul.menuH a /*controls the tag "Abhishek Goyal"*/
     font-weight: bold;
     color: #404040;
     outline: 0;
-	margin-right: 190px;
+	margin-right: 70px;
     
 }
 .menuH a:hover
@@ -187,7 +187,7 @@ ul.menuH ul
 	padding: 3px;
 	font-size: 15px;
 	margin-top:-25px;
-	margin-right:130px;
+	margin-right:-60px;
 	font-family:Segoe UI Semibold;
 	border:1px solid #B0B0B0;
     background:url("../images/1.png") no-repeat left;
@@ -211,6 +211,7 @@ ul.menuH ul
     overflow-x:hidden;
     border-spacing: 0px;
     width: 85%;
+    height: 600px;
 }
 
 .go{
@@ -255,12 +256,18 @@ ul.menuH ul
 
 
 
-.delete, .share, .rename, .download, .move{
+.delete, .share, .rename, .download, .move,.edit{
     text-decoration: none;
     color: #004953;
 }
 
 .rename:hover {
+    cursor: pointer;
+    text-decoration: none;
+    color: #1BA1E2;
+}
+
+.edit:hover {
     cursor: pointer;
     text-decoration: none;
     color: #1BA1E2;
@@ -290,11 +297,6 @@ ul.menuH ul
     color: #1BA1E2;
 }
 
-
-#search {
-    float: right;
-    
-}
 
 .heading{
     margin-bottom: 10px;

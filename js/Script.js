@@ -83,9 +83,9 @@ function showopt(id) {
         filenameModified = res[0].substring(0, 7) + "........." + res[0].substring(res[0].length - 7) + "."+res[1];
     }
     if (res[1] == "txt") {
-        var division = '<table width="85%" cellpadding="8px" id="uphead1"><tr id="tr1"><td width="20%">' + filenameModified + '</td>';
+        var division = '<table width="87%" cellpadding="8px" id="uphead1"><tr id="tr1"><td width="16%">' + filenameModified + '</td>';
         division += '<td class="opt" width="10%"><span class="glyphicon glyphicon-link"></span><a class="share" onclick="share_file(\'' + id + '\')">   Share</a></td>';
-        division += '<td class="opt" width="10%"><span class="glyphicon glyphicon-download-alt"></span><a class="download" onclick="download_file(\'' + id + '\')">   Download</a></td>';
+        division += '<td class="opt" width="12%"><span class="glyphicon glyphicon-download-alt"></span><a class="download" onclick="download_file(\'' + id + '\')">   Download</a></td>';
         division += '<td class="opt" width="10%"><span class="glyphicon glyphicon-trash"></span><a class="delete" onclick="Delete(\'' + id + '\')">   Delete</a></td>';
         division += '<td class="opt" width="10%"><span class="glyphicon glyphicon-edit"></span><a class="rename" onclick="rename(\'' + id + '\')">   Rename</a></td>';
         division += '<td class="opt" width="10%"><span class="glyphicon glyphicon-share"></span><a class="move" onclick="move(\'' + id + '\')">   Move</a></td>';
@@ -395,11 +395,9 @@ function download_file(file_name) {
 
 function Delete(id) {
     //delete
-    bootbox.confirm("Are you sure?", function (result) {
-        if (result == null) {
-            bootbox.hideAll();
-        }
-        else{
+   
+       
+        
             var cells = Array.prototype.slice.call(document.getElementById("path").getElementsByTagName("td"));
     var dir_path = "";
     for (var i in cells) {
@@ -440,8 +438,8 @@ function Delete(id) {
             getFiles(dir_path);
         }
     }
-        }
-    }); 
+        
+    
     
     var cells = Array.prototype.slice.call(document.getElementById("path").getElementsByTagName("td"));
     var dir_path = "";
@@ -475,7 +473,7 @@ function Delete(id) {
     xmlHttp.onreadystatechange = function () {
         //alert(xmlHttp.status);
         if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
-            //alert(xmlHttp.responseText); //.getElementsByTagName(tr);
+            bootbox.alert("File Deleted"); //.getElementsByTagName(tr);
             //alert(row.length);
             //var text = row[1].getElementsByTagName("*");
             //var row = document.getElementById(filename).cells;
@@ -530,7 +528,7 @@ function changeRename(input, filename,extension,shared) {
     xmlHttp.onreadystatechange = function () {
         //alert(xmlHttp.status);
         if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
-            alert(xmlHttp.responseText);
+            //alert(xmlHttp.responseText);
             var row = document.getElementById(filename).cells; //.getElementsByTagName(tr);
             //alert(row.length);
             //var text = row[1].getElementsByTagName("*");

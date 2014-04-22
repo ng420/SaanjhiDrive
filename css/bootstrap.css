@@ -1703,6 +1703,7 @@ output {
   -webkit-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
           transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
 }
+
 .form-control:focus {
   border-color: #66afe9;
   outline: 0;
@@ -3313,7 +3314,7 @@ input[type="button"].btn-block {
 }
 .input-group {
   float: right;
-  margin-right: 220px;
+  margin-right: 100px;
   display: table;
   border-collapse: separate;
   width: 250px;

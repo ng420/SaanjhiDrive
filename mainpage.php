@@ -33,6 +33,7 @@
         }
         //_SESSION['user']=$_POST['usrname'];
     ?>
+
     <div id="wrapper">
 
         <!-- Sidebar--> 
@@ -74,7 +75,7 @@
 			    </li>
 			</ul>
 		</li>
-			<li><span class="glyphicon glyphicon-bell" style="margin-top: 10px; margin-right: 30px;"></span></li>
+			<!--<li><span class="glyphicon glyphicon-bell" style="margin-top: 10px; margin-right: 30px;"></span></li>-->
 	</ul><br>
     <div class="sanjhacontainer">
 	<div class="name">SaanjhiDrive</div> 

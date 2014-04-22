@@ -13,7 +13,7 @@
     $currDir = $_POST['current_dir'];
         //echo $currDir;
        $query = "SELECT * FROM filesystem WHERE file_name = '$filename' AND owner='$user' AND directory_path = '$currDir' ";
-    echo $query;
+    //echo $query;
    if($result = mysqli_query($con, $query)){
         //echo 'lol';
         //$count = 0;
@@ -24,23 +24,23 @@
     	$temp = explode(".", $filename);
         $ext = end($temp);
         $filename = 'files/'.$id.'.'.$ext;
-        echo $filename;
+        //echo $filename;
 		$fh = fopen($filename, 'r') or die("Can't open file");
 		$data = fread($fh, filesize($filename));
 		}
     echo '<table>
 	<tr>
 		<td width="70%">
-			<textarea id = "lol" style="border-style:none;font-size:16px;font-family:georgia;background-color:#FFFFCC; padding:20px;" rows = \'30\' cols = \'80\' name=\'text\' form=\'text\' >'.$data.'</textarea>
+			<textarea id = "lol" style="border-style:none;font-size:16px;padding:20px;" rows = \'30\' cols = \'50\' name=\'text\' form=\'text\' >'.$data.'</textarea>
 		</td>
 		<td width="30%" style="padding-left:5%;">
 			<form style="align:center;" id="text" method="post">
 			<div style="padding-left:40px;">
-			<input onclick="save(\''.$filename.'\')" style="cursor:pointer;border-color:#cc9933;background-color:#CC9933;padding-top:8px;padding-bottom:8px;padding-left:5px;padding-right:5px; font-size:16px;" type="submit" name="submit" value="Save">
+			<input onclick="save(\''.$filename.'\')" type="submit" name="submit" value="Save">
 			</div>
 			</form>
 			<div style="padding-top:10px;">
-			<button style="cursor:pointer;border-color:#cc9933;background-color:#CC9933;padding-top:10px;padding-bottom:10px; font-size:16px;" onclick="back()">Cancel and go back</button>
+			<button onclick="back()">Cancel and go back</button>
 			</div>
 		</td>
 	</tr>

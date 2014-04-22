@@ -20,14 +20,14 @@
                 echo '<span class="glyphicon glyphicon-compressed"></span>';
                 elseif($ext=="mp3")
                 echo '<span class="glyphicon glyphicon-music"></span>';
-                elseif($ext=="mp4"||$ext=="flv"||$ext=="mkv"||$ext=="avi"||$ext=="wmv")
+                elseif($ext=="mp4"||$ext=="flv"||$ext=="mkv"||$ext=="avi"||$ext=="wmv"||$ext=="webm")
                 echo '<span class="glyphicon glyphicon-film"></span>';
                 else
                   echo '<span class="glyphicon glyphicon-exclamation-sign"></span>';
             echo"</td>";
             
             //Provide preview.
-           if($ext=="png"||$ext=="jpg"||$ext=="jpeg"||$ext=="gif"||$ext=="txt")
+           if($ext=="png"||$ext=="jpg"||$ext=="jpeg"||$ext=="gif")
             {
                 echo '<td width="50%"><a class="go" href="files/'.$row['file_id'].'.'.$ext.'" data-lightbox="example-2" data-title="'.$row['file_name'].'.'.$ext.'");">'.$row['file_name']."</a>";
             }
@@ -36,6 +36,9 @@
             }
             elseif($ext == "mp3" || $ext == "ogg" || $ext == "wav"){
                  echo '<td width="50%"><a class="go"   href="#" onclick="displayAudio(\'files/'.$row['file_id'].'.'.$ext.'\');">'.$row['file_name']."</a>";
+            }
+            elseif($ext == "txt"){
+                echo '<td width="50%"><a  class="go" onclick="displayIFrame(\'files/'.$row['file_id'].'.'.$ext.'\');" >'.$row['file_name']."</a>";
             }
             else{
                  echo '<td width="50%"><a  class="go" onclick="displayOther(\'files/'.$row['file_id'].'.'.$ext.'\');" >'.$row['file_name']."</a>";
@@ -55,7 +58,7 @@
                 echo 'Compressed';
             elseif($ext=="mp3")
                 echo "Audio";
-            elseif($ext=="mp4"||$ext=="flv"||$ext=="mkv"||$ext=="avi"||$ext == "wmv")
+            elseif($ext=="mp4"||$ext=="flv"||$ext=="mkv"||$ext=="avi"||$ext == "wmv"||$ext=="webm")
                echo "Video";
             else
                 echo 'Miscellaneous';
