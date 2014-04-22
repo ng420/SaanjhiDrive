@@ -10,7 +10,7 @@
     $key = $_GET['key'];
 
     //Establish connection.
-    $query = "SELECT * FROM filesystem WHERE owner='$user' ORDER BY isFolder DESC";
+    $query = "SELECT * FROM filesystem WHERE owner='$user' AND isFolder <> '2' ORDER BY isFolder DESC";
     $con=mysqli_connect("localhost","root","r00tpass","mysql_db");
     if (mysqli_connect_errno())
     {
@@ -62,7 +62,7 @@
             include 'FileList.php';
         }
     }
-    $query = "SELECT * FROM filesystem WHERE owner='$user' ORDER BY isFolder DESC";
+    $query = "SELECT * FROM filesystem WHERE owner='$user' AND isFolder <> '2' ORDER BY isFolder DESC";
 
 
     //Perform query.

@@ -11,7 +11,7 @@
         echo "Failed to connect to MySQL: " . mysqli_connect_error();
     }
  
-    $query = "SELECT * FROM filesystem WHERE file_name = '$name' AND directory_path = '$currDir'";
+    $query = "SELECT * FROM filesystem WHERE file_name = '$name' AND directory_path = '$currDir' AND isFolder <> '2'";
     //echo $query;
     $temp = explode(".", $name);
     $ext = end($temp);
@@ -28,7 +28,7 @@
             $result = exec($query);
             echo $result;
         }
-        $query = "DELETE FROM filesystem WHERE file_id = '$id' AND owner='$user' AND directory_path = '$currDir' LIMIT 1";
+        $query = "UPDATE filesystem SET isFolder = '2' WHERE file_id = '$id' AND owner='$user' AND directory_path = '$currDir'";
         //echo $query;
         if($result = mysqli_query($con, $query)){
             echo "Success";

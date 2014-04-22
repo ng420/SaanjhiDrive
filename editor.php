@@ -12,7 +12,7 @@
        $filename =$_POST['filename'] ;
     $currDir = $_POST['current_dir'];
         //echo $currDir;
-       $query = "SELECT * FROM filesystem WHERE file_name = '$filename' AND owner='$user' AND directory_path = '$currDir' ";
+       $query = "SELECT * FROM filesystem WHERE file_name = '$filename' AND owner='$user' AND directory_path = '$currDir' AND isFolder <> '2' ";
     //echo $query;
    if($result = mysqli_query($con, $query)){
         //echo 'lol';

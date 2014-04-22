@@ -49,7 +49,7 @@
                 //echo "User present in database.";
 
                 //Process share call.
-                $get_file_query = mysqli_query($con, "SELECT * FROM filesystem WHERE file_name = '$file_name' AND owner = '$owner' AND directory_path = '$directory_path_initial'");
+                $get_file_query = mysqli_query($con, "SELECT * FROM filesystem WHERE file_name = '$file_name' AND owner = '$owner' AND isFolder <> '2' AND directory_path = '$directory_path_initial'");
                 
                 //Check if query was successful.
                 if($get_file_query)
