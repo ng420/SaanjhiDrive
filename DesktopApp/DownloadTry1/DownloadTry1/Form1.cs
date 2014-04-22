@@ -190,15 +190,7 @@ namespace DownloadTry1
                 string status = "No";
                 try
                 {
-                    /////////////////////////////////////////////////////Generate Present Structure of Home directory//////////////////////////////////////////////////////////////
-                    DirectoryInfo tDir = new DirectoryInfo(@clientHome1);
-                    TraverseDirs(tDir);
-                    System.IO.StreamWriter fileStructure = new System.IO.StreamWriter(saveTempFilesPath + "presentStructure.txt");
-                    tempToGenerateFile = tempToGenerateFile.Replace("\\", "\\\\");
-                    fileStructure.WriteLine(tempToGenerateFile);
-                    fileStructure.Close();
-                    tempToGenerateFile = tempToGenerateFile.Replace("\\\\", "\\");
-                    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                    
 
                     WebClient webClient = new WebClient();
                     Stream stream = webClient.OpenRead(path+"DesktopApp/status.txt");
@@ -275,6 +267,22 @@ namespace DownloadTry1
                 {
                     try
                     {
+                        DeleteDelete();
+                    }
+                    catch(Exception yuvdun){}
+
+                    try
+                    {
+                        //DeleteDelete();
+                        /////////////////////////////////////////////////////Generate Present Structure of Home directory//////////////////////////////////////////////////////////////
+                        DirectoryInfo tDir = new DirectoryInfo(@clientHome1);
+                        TraverseDirs(tDir);
+                        System.IO.StreamWriter fileStructure = new System.IO.StreamWriter(saveTempFilesPath + "presentStructure.txt");
+                        tempToGenerateFile = tempToGenerateFile.Replace("\\", "\\\\");
+                        fileStructure.WriteLine(tempToGenerateFile);
+                        fileStructure.Close();
+                        tempToGenerateFile = tempToGenerateFile.Replace("\\\\", "\\");
+                    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                         ///////////////////////////////////////////////////Delete Files which are not there on server but are in client's desktop///////////////
                         //DirectoryInfo tDir1 = new DirectoryInfo(@clientHome1);
                         //TraverseDirsTODelete(tDir1);
@@ -298,6 +306,8 @@ namespace DownloadTry1
                         MessageBox.Show("First Get Ready to check Connection and verify your user Details !");
                 }
                 }
+
+                
                 
                     
         }                                                       // event handler - syncs all the files
@@ -348,7 +358,42 @@ namespace DownloadTry1
             catch (Exception)
             {
             }
-        }                                                                           // traverse all the directories inside SaanjhiDrive folder
+        }             
+        
+        
+        
+        private void DeleteDelete()
+        {
+            try
+            {
+                System.IO.StreamReader fileToRead = new System.IO.StreamReader(saveTempFilesPath + "currentStatus.txt");
+                int flagToDelete =0;
+                string line;
+                while ((line = fileToRead.ReadLine()) != null)
+                {
+                    if (line.Length > 2)
+                    {
+                        string[] columns = line.Split(';');
+                        if(columns[3] == "2")
+                        {
+                            int kk=DeleteFileOnDesktop(clientHome1 + columns[2] + columns[1]);
+                            //Delete
+                        }
+                    }
+                }
+                fileToRead.Close();
+            }
+            catch(Exception euidf)
+            {}
+        }
+
+        
+        
+        
+        
+        
+        
+                                                                      // traverse all the directories inside SaanjhiDrive folder
 
         private void TraverseDirsTODelete(DirectoryInfo dir)
         {
