@@ -17,6 +17,23 @@ body{
 	cursor: pointer;
 }
 
+.set{
+    font-size: 20px;
+    margin-bottom: 20px;
+    font-family: "Segoe UI Semibold"
+}
+
+.pwd{
+    font-family: "Segoe UI Semibold";
+    font-size: 20px;
+    margin-bottom: 30px;
+}
+
+.chgpwd{
+    font-family: "Segoe UI Semibold";
+}
+
+
 .menuH li
 {
     padding: 0;
@@ -37,7 +54,7 @@ ul.menuH a /*controls the tag "Abhishek Goyal"*/
     font-weight: bold;
     color: #404040;
     outline: 0;
-	margin-right: 70px;
+	margin-right: 190px;
     
 }
 .menuH a:hover
@@ -102,7 +119,7 @@ ul.menuH ul
     line-height: 26px;
     font-size: 0.9em;
     font-weight: normal;
-     color: #B0B0B0;
+     color: #1404040;
     text-align: left;
 }
 
@@ -187,7 +204,7 @@ ul.menuH ul
 	padding: 3px;
 	font-size: 15px;
 	margin-top:-25px;
-	margin-right:-60px;
+	margin-right:130px;
 	font-family:Segoe UI Semibold;
 	border:1px solid #B0B0B0;
     background:url("../images/1.png") no-repeat left;
@@ -202,7 +219,7 @@ ul.menuH ul
    margin-top:  -20px;
    overflow-y: scroll;
    overflow-x:hidden;
-   height: 300px;
+   height: 400px;
 }
 
 
@@ -211,7 +228,6 @@ ul.menuH ul
     overflow-x:hidden;
     border-spacing: 0px;
     width: 85%;
-    height: 600px;
 }
 
 .go{
@@ -256,7 +272,7 @@ ul.menuH ul
 
 
 
-.delete, .share, .rename, .download, .move,.edit{
+.delete, .share, .rename, .download, .move, .edit{
     text-decoration: none;
     color: #004953;
 }
@@ -266,8 +282,7 @@ ul.menuH ul
     text-decoration: none;
     color: #1BA1E2;
 }
-
-.edit:hover {
+.edit:hover{
     cursor: pointer;
     text-decoration: none;
     color: #1BA1E2;
@@ -297,6 +312,11 @@ ul.menuH ul
     color: #1BA1E2;
 }
 
+
+#search {
+    float: right;
+    
+}
 
 .heading{
     margin-bottom: 10px;
@@ -357,4 +377,20 @@ ul.menuH ul
 
 .opt{
     color: #004953;
+}
+
+.set{
+    font-size: 20px;
+    margin-bottom: 20px;
+    font-family: "Segoe UI Semibold"
+}
+
+.pwd{
+    font-family: "Segoe UI Semibold";
+    font-size: 20px;
+    margin-bottom: 30px;
+}
+
+.chgpwd{
+    font-family: "Segoe UI Semibold";
 }

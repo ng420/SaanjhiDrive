@@ -40,7 +40,7 @@
 			</div>
 			</form>
 			<div style="padding-top:10px;">
-			<button onclick="back()">Cancel and go back</button>
+			<button onclick="back()">Cancel</button>
 			</div>
 		</td>
 	</tr>

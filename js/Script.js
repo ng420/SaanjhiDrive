@@ -117,7 +117,22 @@ function showopt(id) {
 }
 function back()
 {
-window.location.href = "mainpage.php" ;
+     var cells = Array.prototype.slice.call(document.getElementById("path").getElementsByTagName("td"));
+    var dir_path = "";
+    for (var i in cells) {
+        dir_path += cells[i].innerHTML;
+        if (dir_path[dir_path.length - 1] == " ") {
+            dir_path = dir_path.substr(0, dir_path.length - 1);
+        }
+    }
+    dir_path = dir_path.replace('Home', '');
+    while ((dir_path.indexOf('&gt;') != -1)) {
+        dir_path = dir_path.replace('&gt;', '!');
+
+    }
+
+    dir_path = dir_path.concat('!');
+    getFiles(dir_path);
 }
 function save(filename){
     var xmlHttp;
@@ -395,50 +410,6 @@ function download_file(file_name) {
 
 function Delete(id) {
     //delete
-   
-       
-        
-            var cells = Array.prototype.slice.call(document.getElementById("path").getElementsByTagName("td"));
-    var dir_path = "";
-    for (var i in cells) {
-        dir_path += cells[i].innerHTML;
-        if (dir_path[dir_path.length - 1] == " ") {
-            dir_path = dir_path.substr(0, dir_path.length - 1);
-        }
-    }
-    dir_path = dir_path.replace('Home', '');
-    while ((dir_path.indexOf('&gt;') != -1)) {
-        dir_path = dir_path.replace('&gt;', '!');
-
-    }
-
-    dir_path = dir_path.concat('!');
-
-
-    //alert(text);
-
-    var xmlHttp;
-    if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
-        xmlHttp = new XMLHttpRequest();
-    }
-    else {// code for IE6, IE5
-        xmlHttp = new ActiveXObject("Microsoft.XMLHTTP");
-    }
-    xmlHttp.open("POST", "remove.php", true);
-    xmlHttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    xmlHttp.send("filename=" + id + "&current_dir=" + dir_path);
-    xmlHttp.onreadystatechange = function () {
-        //alert(xmlHttp.status);
-        if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
-            //alert(xmlHttp.responseText); //.getElementsByTagName(tr);
-            //alert(row.length);
-            //var text = row[1].getElementsByTagName("*");
-            //var row = document.getElementById(filename).cells;
-            //row[1].innerHTML = '<a class="contents" onclick="displayIFrame(\'files/'+text+'\');">'+text+'</a>';
-            getFiles(dir_path);
-        }
-    }
-        
     
     
     var cells = Array.prototype.slice.call(document.getElementById("path").getElementsByTagName("td"));

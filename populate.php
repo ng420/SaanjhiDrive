@@ -51,6 +51,7 @@
         include 'FileList.php';
     }
     echo "</table>";
+    echo "</table>";
     //echo '<iframe style="height:auto; width:auto;border:0;" id = "preview"></iframe>';
     if($count ==0){
         

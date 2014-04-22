@@ -9,6 +9,11 @@
     $directory_path_initial = $_POST['dir_path'];
     $file_name = $_POST['file_name'];
 
+    if($owner==$user_to_share_with)
+    {
+        echo "You can't share file with yourselves.";
+        die();
+    }
 
     //Establish connection.
     $con=mysqli_connect("localhost","root","r00tpass","mysql_db");

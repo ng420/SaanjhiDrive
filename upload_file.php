@@ -36,7 +36,7 @@
                     echo "Failed to connect to MySQL: " . mysqli_connect_error(); //Terminate if connectin not established.
                 }
 
-            $result = mysqli_query($con,"SELECT file_id, file_hash, owner FROM filesystem AND isFolder <> '2' ORDER BY file_id"); // Perform query.
+            $result = mysqli_query($con,"SELECT file_id, file_hash, owner FROM filesystem WHERE isFolder <> '2' ORDER BY file_id"); // Perform query.
 
             if($result)
             {
